@@ -5,187 +5,179 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>漁 — カードゲーム</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --cyan:#00e5ff;--pink:#ff6ec7;--violet:#a855f7;--gold:#f0c060;
-  --white:#eef6ff;--white-muted:rgba(238,246,255,0.6);
-  --glass:rgba(255,255,255,0.04);--glass-border:rgba(255,255,255,0.09);
-  --glass-strong:rgba(255,255,255,0.065);
-  --font-serif:'Noto Serif JP','Yu Mincho','YuMincho','游明朝',serif;
-  --font-sans:'Hiragino Kaku Gothic ProN','Hiragino Sans','Noto Sans JP',sans-serif;
-}
-html{scroll-behavior:smooth}
-body{background:#000812;color:var(--white);font-family:var(--font-sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── LAYOUT ── */
-main{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:0 20px 0}
-
-/* ── HERO ── */
-.hero{
-  min-height:100svh;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;text-align:center;
-  padding:80px 0 60px;
-overflow: visible; }
-.hero-eyebrow{font-size:10.5px;letter-spacing:0.45em;color:var(--cyan);text-transform:uppercase;margin-bottom:28px;opacity:0.75}
-.hero-title{
-  font-family:var(--font-serif);font-size:clamp(26px,7.5vw,38px);
-  font-weight:600;line-height:1.55;letter-spacing:0.06em;
-  color:var(--white);margin-bottom:36px;text-shadow:0 0 60px rgba(0,229,255,0.25)
-}
-.hero-game-name{
-  display:inline-block;font-family:var(--font-serif);
-  font-size:clamp(80px,26vw,128px);font-weight:700;
-  letter-spacing:0.1em;line-height:1.25;margin-bottom:0;padding-bottom:0.12em;
-  background:linear-gradient(140deg,var(--cyan) 0%,#a0f0ff 35%,var(--pink) 65%,var(--violet) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  filter:drop-shadow(0 0 40px rgba(0,229,255,0.45)) drop-shadow(0 0 80px rgba(255,110,199,0.2));
-  position:relative
-}
-.hero-game-name-wrap{position:relative;display:inline-block;margin-bottom:36px;overflow:visiblerflow:visible;}
-.hero-game-name-glow{position:absolute;inset:-20px;pointer-events:none;background:radial-gradient(ellipse at center,rgba(0,229,255,0.30) 0%,rgba(255,110,199,0.12) 55%,transparent 75%);filter:blur(20px);z-index:-1}
-.hero-catch{
-  font-family:var(--font-serif);font-size:clamp(15px,4.2vw,20px);
-  line-height:2.1;color:var(--white-muted);letter-spacing:0.1em;margin-bottom:16px
-}
-.hero-sub{
-  font-size:11.5px;letter-spacing:0.12em;color:rgba(0,229,255,0.45);
-  border-top:1px solid rgba(0,229,255,0.12);border-bottom:1px solid rgba(0,229,255,0.12);
-  padding:12px 16px;margin-top:28px;line-height:1.9
+:root {
+  --deep: #010c19;
+  --cyan: #00e5ff;
+  --pink: #ff6ec7;
+  --violet: #a855f7;
+  --gold: #f0c060;
+  --white: #eef6ff;
+  --white-muted: rgba(238,246,255,0.6);
+  --glass: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.09);
+  --glass-strong: rgba(255,255,255,0.065);
+  --font-serif: 'Noto Serif JP', 'Yu Mincho', 'YuMincho', '游明朝', serif;
+  --font-sans: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  --r: 20px; --rs: 12px; --gap: 80px;
 }
 
-/* ── TEASE SECTION ── */
-.tease{
-  padding:0 0 100px;display:flex;flex-direction:column;align-items:center;gap:48px
+html { scroll-behavior: smooth; }
+body { background: var(--deep); color: var(--white); font-family: var(--font-sans); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+#bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+/* god-rays now fully canvas-driven */
+
+main { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 20px 120px; }
+
+/* HERO */
+.hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 0 60px; overflow: visible; }
+.hero-eyebrow { font-size: 10.5px; letter-spacing: 0.45em; color: var(--cyan); text-transform: uppercase; margin-bottom: 28px; opacity: 0.75; }
+.hero-title { font-family: var(--font-serif); font-size: clamp(26px, 7.5vw, 38px); font-weight: 600; line-height: 1.55; letter-spacing: 0.06em; color: var(--white); margin-bottom: 36px; text-shadow: 0 0 60px rgba(0,229,255,0.25); }
+.hero-game-name {
+  display: inline-block; font-family: var(--font-serif);
+  font-size: clamp(80px, 26vw, 128px); font-weight: 700; letter-spacing: 0.1em; line-height: 1.25; margin-bottom:0; padding-bottom:0.12em;
+  background: linear-gradient(140deg, var(--cyan) 0%, #a0f0ff 35%, var(--pink) 65%, var(--violet) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  text-shadow: none;
 }
 
-/* Blurred rule cards */
-.tease-cards{width:100%;display:flex;flex-direction:column;gap:12px}
-.tease-label{
-  font-size:10px;letter-spacing:0.5em;color:var(--cyan);
-  text-transform:uppercase;opacity:0.65;margin-bottom:4px
+.hero-game-name-wrap { position:relative; display:inline-block; margin-bottom:36px;   overflow: visible;
 }
-.tease-title{
-  font-family:var(--font-serif);font-size:clamp(20px,5.5vw,26px);
-  font-weight:600;letter-spacing:0.07em;color:var(--white);
-  margin-bottom:20px;line-height:1.45;align-self:flex-start
+.hero-game-name-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(0,229,255,0.35) 0%, rgba(255,110,199,0.15) 55%, transparent 75%);
+  filter: blur(22px); z-index: -1;
 }
+.hero-catch { font-family: var(--font-serif); font-size: clamp(15px, 4.2vw, 20px); line-height: 2.1; color: var(--white-muted); letter-spacing: 0.1em; margin-bottom: 16px; }
+.hero-sub { font-size: 11.5px; letter-spacing: 0.12em; color: rgba(0,229,255,0.45); border-top: 1px solid rgba(0,229,255,0.12); border-bottom: 1px solid rgba(0,229,255,0.12); padding: 12px 16px; margin-top: 28px; line-height: 1.9; }
+.scroll-hint { margin-top: 52px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.28); font-size: 10px; letter-spacing: 0.25em; animation: bob 2.2s ease-in-out infinite; }
+.scroll-hint svg { width: 18px; height: 18px; opacity: 0.35; }
+@keyframes bob { 0%,100%{transform:translateY(0);opacity:0.35}50%{transform:translateY(8px);opacity:0.65} }
 
-.rule-peek{
-  background:var(--glass-strong);border:1px solid var(--glass-border);
-  border-radius:16px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  box-shadow:0 8px 32px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.07);
-  display:grid;grid-template-columns:56px 1fr;overflow:hidden;
-  position:relative
-}
-.rule-peek::before{
-  content:'';position:absolute;top:0;left:0;width:2px;height:100%;
-  background:var(--rc,var(--cyan));box-shadow:0 0 12px var(--rc,var(--cyan))
-}
-.rc-cyan{--rc:var(--cyan)}.rc-pink{--rc:var(--pink)}.rc-gold{--rc:var(--gold)}
-.peek-icon{
-  display:flex;align-items:center;justify-content:center;
-  height:100%;padding:20px 0;font-size:24px;
-  background:rgba(0,0,0,0.20);border-right:1px solid var(--glass-border)
-}
-.peek-body{padding:16px 18px}
-.peek-headline{
-  font-family:var(--font-serif);font-size:16px;font-weight:600;
-  letter-spacing:0.04em;color:var(--white);margin-bottom:5px;line-height:1.4
-}
-.peek-headline em{font-style:normal;color:var(--rc,var(--cyan));font-size:1.28em;line-height:1;margin-right:2px}
-.peek-sub{font-size:12px;line-height:1.75;color:var(--white-muted);letter-spacing:0.03em}
+/* SECTIONS */
+section { margin-bottom: var(--gap); }
+.section-label { font-size: 10px; letter-spacing: 0.5em; color: var(--cyan); text-transform: uppercase; margin-bottom: 6px; opacity: 0.65; }
+.section-title { font-family: var(--font-serif); font-size: clamp(20px, 5.5vw, 28px); font-weight: 600; letter-spacing: 0.07em; color: var(--white); margin-bottom: 28px; line-height: 1.45; }
 
-/* Locked content hint — blurred preview */
-.locked-wrap{
-  width:100%;position:relative;
-  border-radius:20px;overflow:hidden
+/* GLASS */
+.glass {
+  background: var(--glass-strong); border: 1px solid var(--glass-border); border-radius: var(--r);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.locked-content{
-  filter:blur(7px);opacity:0.38;pointer-events:none;
-  display:flex;flex-direction:column;gap:10px
+@media (hover: hover) {
+  .glass:hover { transform: translateY(-4px); box-shadow: 0 18px 50px rgba(0,0,0,0.55), 0 0 32px rgba(0,229,255,0.06), inset 0 1px 0 rgba(255,255,255,0.1); }
 }
-.fake-card{
-  height:64px;background:var(--glass-strong);
-  border:1px solid var(--glass-border);border-radius:14px
-}
-.fake-card.tall{height:90px}
-.fake-step{
-  display:flex;gap:14px;align-items:flex-start
-}
-.fake-num{
-  width:34px;height:34px;border-radius:50%;flex-shrink:0;
-  background:rgba(0,229,255,0.25)
-}
-.fake-text{flex:1;display:flex;flex-direction:column;gap:6px;padding-top:4px}
-.fake-line{height:10px;border-radius:6px;background:rgba(255,255,255,0.12)}
-.fake-line.short{width:55%}
+.glass:active { transform: scale(0.985); }
 
-/* Lock badge */
-.lock-badge{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:14px;
-  background:radial-gradient(ellipse at center,rgba(1,12,25,0.72) 0%,rgba(1,12,25,0.55) 100%);
-  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)
-}
-.lock-icon{
-  width:52px;height:52px;border-radius:50%;
-  background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;
-  box-shadow:0 0 24px rgba(0,229,255,0.15)
-}
-.lock-text{
-  font-family:var(--font-serif);font-size:15px;font-weight:600;
-  letter-spacing:0.08em;color:var(--white);text-align:center;line-height:1.7
-}
-.lock-sub{
-  font-size:11px;letter-spacing:0.12em;color:rgba(0,229,255,0.5);
-  text-align:center;line-height:1.8
-}
+/* OVERVIEW — RULE CARDS */
+.overview-grid { display: flex; flex-direction: column; gap: 14px; }
 
-/* Divider */
-.divider{
-  width:48px;height:1px;
-  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
-  opacity:0.32;margin:0 auto
+.rule-card {
+  display: grid; grid-template-columns: 60px 1fr;
+  overflow: hidden; position: relative; padding: 0 !important;
 }
+.rule-card::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  width: 2px; height: 100%;
+  background: var(--rc, var(--cyan));
+  box-shadow: 0 0 14px var(--rc, var(--cyan));
+}
+.rc-cyan  { --rc: var(--cyan); }
+.rc-pink  { --rc: var(--pink); }
+.rc-gold  { --rc: var(--gold); }
 
-/* ── FOOTER ── */
-footer{
-  text-align:center;padding:40px 20px 56px;
-  position:relative;z-index:1
+.rule-card-icon {
+  display: flex; align-items: center; justify-content: center;
+  height: 100%; padding: 22px 0; font-size: 26px;
+  background: rgba(0,0,0,0.2); border-right: 1px solid var(--glass-border);
+  flex-shrink: 0;
 }
-.footer-title{
-  font-family:var(--font-serif);font-size:26px;font-weight:700;
-  background:linear-gradient(135deg,var(--cyan),var(--pink));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  letter-spacing:0.12em;margin-bottom:10px
-}
-.footer-copy{font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:0.18em}
+.rule-card-body { padding: 18px 20px; }
+.rule-card-headline { font-family: var(--font-serif); font-size: 16px; font-weight: 600; letter-spacing: 0.04em; color: var(--white); margin-bottom: 6px; line-height: 1.45; }
+.rule-card-headline em { font-style: normal; color: var(--rc, var(--cyan)); font-size: 1.3em; line-height: 1; margin-right: 2px; }
+.rule-card-sub { font-size: 12px; line-height: 1.78; color: var(--white-muted); letter-spacing: 0.03em; }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes bob{0%,100%{transform:translateY(0);opacity:0.35}50%{transform:translateY(8px);opacity:0.65}}
-.fi{opacity:0;animation:fadeInUp 0.75s ease forwards}
-.fi-1{animation-delay:.15s}.fi-2{animation-delay:.3s}.fi-3{animation-delay:.45s}
-.fi-4{animation-delay:.6s}.fi-5{animation-delay:.75s}
-.scroll-hint{
-  margin-top:52px;display:flex;flex-direction:column;align-items:center;
-  gap:8px;color:rgba(255,255,255,0.28);font-size:10px;letter-spacing:0.25em;
-  animation:bob 2.2s ease-in-out infinite
+/* CARD TYPES */
+.card-grid { display: flex; flex-direction: column; gap: 16px; }
+.card-item { position: relative; overflow: hidden; padding: 24px 22px; }
+.card-item::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ci, var(--cyan)), transparent); opacity: 0.5;
 }
-.scroll-hint svg{width:18px;height:18px;opacity:0.35}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.ci-cyan { --ci: var(--cyan); } .ci-pink { --ci: var(--pink); } .ci-gold { --ci: var(--gold); }
+.card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.card-icon { width: 42px; height: 42px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; background: rgba(255,255,255,0.04); }
+.card-name { font-family: var(--font-serif); font-size: 17px; font-weight: 600; letter-spacing: 0.05em; flex: 1; }
+.card-count { font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; padding: 3px 11px; border-radius: 20px; white-space: nowrap; }
+.ci-cyan .card-count { color: var(--cyan); background: rgba(0,229,255,0.1); }
+.ci-pink .card-count { color: var(--pink); background: rgba(255,110,199,0.1); }
+.ci-gold .card-count { color: var(--gold); background: rgba(240,192,96,0.1); }
+.card-desc { font-size: 13px; line-height: 1.85; color: var(--white-muted); letter-spacing: 0.03em; }
+.zone-badges { display: flex; gap: 7px; margin-top: 11px; flex-wrap: wrap; }
+.zone-badge { font-size: 10.5px; padding: 3px 11px; border-radius: 20px; letter-spacing: 0.07em; border: 1px solid currentColor; }
+.zone-badge.sh { color: #7dd3fc; border-color: rgba(125,211,252,0.3); background: rgba(125,211,252,0.05); }
+.zone-badge.of { color: var(--cyan); border-color: rgba(0,229,255,0.28); background: rgba(0,229,255,0.05); }
+.zone-badge.dp { color: var(--violet); border-color: rgba(168,85,247,0.28); background: rgba(168,85,247,0.05); }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; }
+.step { display: flex; gap: 18px; }
+.step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.step-num { width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 15px; font-weight: 700; color: var(--deep); background: linear-gradient(135deg, var(--cyan), #8af0ff); box-shadow: 0 0 22px rgba(0,229,255,0.45); flex-shrink: 0; position: relative; z-index: 1; }
+.step-line { width: 1px; flex: 1; min-height: 18px; background: linear-gradient(180deg, rgba(0,229,255,0.28), rgba(0,229,255,0.04)); margin: 3px 0; }
+.step:last-child .step-line { display: none; }
+.step-content { padding-bottom: 32px; flex: 1; }
+.step:last-child .step-content { padding-bottom: 0; }
+.step-title { font-family: var(--font-serif); font-size: 15.5px; font-weight: 600; color: var(--white); letter-spacing: 0.05em; margin-bottom: 8px; margin-top: 7px; line-height: 1.45; }
+.step-body { font-size: 13px; line-height: 1.9; color: var(--white-muted); letter-spacing: 0.03em; }
+.acc { color: var(--cyan); font-weight: 600; }
+
+/* VICTORY */
+.victory-wrap {
+  background: linear-gradient(135deg, rgba(0,229,255,0.055), rgba(168,85,247,0.055));
+  border: 1px solid rgba(0,229,255,0.18); border-radius: var(--r);
+  padding: 30px 22px; text-align: center; position: relative; overflow: hidden; margin-bottom: 20px;
+}
+.victory-wrap::before { content:''; position:absolute; top:-40%; left:-40%; width:180%; height:180%; background:radial-gradient(ellipse at center, rgba(0,229,255,0.04) 0%, transparent 60%); pointer-events:none; }
+.victory-icon { font-size: 44px; margin-bottom: 12px; filter: drop-shadow(0 0 18px rgba(240,192,96,0.65)); }
+.victory-title { font-family: var(--font-serif); font-size: 19px; font-weight: 600; color: var(--gold); letter-spacing: 0.1em; margin-bottom: 10px; text-shadow: 0 0 28px rgba(240,192,96,0.4); }
+.victory-desc { font-size: 13px; line-height: 1.95; color: var(--white-muted); letter-spacing: 0.04em; }
+
+.divider { width: 50px; height: 1px; background: linear-gradient(90deg, transparent, var(--cyan), transparent); margin: 0 auto 24px; opacity: 0.35; }
+
+.sup-rules { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.sup-item { display: flex; align-items: flex-start; gap: 13px; padding: 14px 18px; background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--rs); }
+.sup-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 7px var(--cyan); flex-shrink: 0; margin-top: 7px; }
+.sup-dot.gold { background: var(--gold); box-shadow: 0 0 7px var(--gold); }
+.sup-text { font-size: 13px; line-height: 1.8; color: var(--white-muted); letter-spacing: 0.03em; }
+.sup-text strong { color: var(--white); font-weight: 600; }
+
+.free-rule { background: linear-gradient(135deg, rgba(168,85,247,0.07), rgba(255,110,199,0.07)); border: 1px solid rgba(168,85,247,0.22); border-radius: var(--r); padding: 30px 22px; text-align: center; }
+.free-rule-title { font-family: var(--font-serif); font-size: 19px; font-weight: 600; letter-spacing: 0.08em; color: var(--violet); margin-bottom: 12px; text-shadow: 0 0 22px rgba(168,85,247,0.45); }
+.free-rule-text { font-size: 13px; line-height: 1.9; color: var(--white-muted); letter-spacing: 0.03em; }
+
+footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1; }
+.footer-title { font-family: var(--font-serif); font-size: 28px; font-weight: 700; background: linear-gradient(135deg, var(--cyan), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 0.12em; margin-bottom: 10px; }
+.footer-copy { font-size: 10.5px; color: rgba(255,255,255,0.18); letter-spacing: 0.18em; }
+
+@keyframes fadeInUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+.fi { opacity: 0; animation: fadeInUp 0.75s ease forwards; }
+.fi-1{animation-delay:0.15s} .fi-2{animation-delay:0.3s} .fi-3{animation-delay:0.45s} .fi-4{animation-delay:0.6s} .fi-5{animation-delay:0.75s}
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important} }
 </style>
 </head>
 <body>
 
 <canvas id="bg-canvas"></canvas>
 
+
 <main>
 
-  <!-- HERO -->
   <section class="hero">
     <p class="hero-eyebrow fi fi-1">TRADING CARD GAME</p>
     <h2 class="hero-title fi fi-2">狙え！操れ！<br>獲り尽くせ！</h2>
@@ -195,81 +187,140 @@ footer{
     </div>
     <p class="hero-catch fi fi-4">最強の漁師は君だ。<br>大漁旗を振りかざせ。</p>
     <p class="hero-sub fi fi-5">― 漁師カードを使い、魚カードを集めるトレーディング体験 ―</p>
-    <div class="scroll-hint fi fi-5" aria-hidden="true">
+    <div class="scroll-hint fi fi-5">
       <span>SCROLL</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </div>
   </section>
 
-  <!-- TEASE -->
-  <section class="tease">
+  <section aria-labelledby="overview-title">
+    <p class="section-label">Overview</p>
+    <h2 class="section-title" id="overview-title">ゲームの概要</h2>
+    <div class="overview-grid">
 
-    <!-- 3 core rules (visible) -->
-    <div style="width:100%">
-      <p class="tease-label">Overview</p>
-      <h2 class="tease-title">ゲームの概要</h2>
-      <div class="tease-cards">
+      <article class="glass rule-card rc-cyan">
+        <div class="rule-card-icon">🌊</div>
+        <div class="rule-card-body">
+          <div class="rule-card-headline"><em>3</em>回戦で勝負する</div>
+          <p class="rule-card-sub">全3ラウンド戦い続ける。<br>どのラウンドも全力で挑め。</p>
+        </div>
+      </article>
 
-        <article class="rule-peek rc-cyan">
-          <div class="peek-icon">🌊</div>
-          <div class="peek-body">
-            <div class="peek-headline"><em>3</em>回戦で勝負する</div>
-            <p class="peek-sub">全3ラウンド戦い続ける。<br>どのラウンドも全力で挑め。</p>
-          </div>
-        </article>
+      <article class="glass rule-card rc-pink">
+        <div class="rule-card-icon">⚡</div>
+        <div class="rule-card-body">
+          <div class="rule-card-headline">アイテムは<em>1</em>回だけ</div>
+          <p class="rule-card-sub">3回戦のうち、使えるのはたった1度。<br>いつ切るかが勝負の分かれ道。</p>
+        </div>
+      </article>
 
-        <article class="rule-peek rc-pink">
-          <div class="peek-icon">⚡</div>
-          <div class="peek-body">
-            <div class="peek-headline">アイテムは<em>1</em>回だけ</div>
-            <p class="peek-sub">3回戦のうち、使えるのはたった1度。<br>いつ切るかが勝負の分かれ道。</p>
-          </div>
-        </article>
+      <article class="glass rule-card rc-gold">
+        <div class="rule-card-icon">🚫</div>
+        <div class="rule-card-body">
+          <div class="rule-card-headline">出したカードは<em>戻らない</em></div>
+          <p class="rule-card-sub">一度場に出たカードは使えない。<br>先を読み、手札を大切に使え。</p>
+        </div>
+      </article>
 
-        <article class="rule-peek rc-gold">
-          <div class="peek-icon">🚫</div>
-          <div class="peek-body">
-            <div class="peek-headline">出したカードは<em>戻らない</em></div>
-            <p class="peek-sub">一度場に出たカードは使えない。<br>先を読み、手札を大切に使え。</p>
-          </div>
-        </article>
+    </div>
+  </section>
 
+  <section aria-labelledby="cards-title">
+    <p class="section-label">Card Types</p>
+    <h2 class="section-title" id="cards-title">準備するカード</h2>
+    <div class="card-grid">
+      <article class="glass card-item ci-cyan">
+        <div class="card-header">
+          <div class="card-icon">🎣</div>
+          <div class="card-name">漁師カード</div>
+          <span class="card-count">3枚</span>
+        </div>
+        <p class="card-desc">浅瀬・沖合・深海の3種類。どの水域を狙うかを決める大事なカードです。</p>
+        <div class="zone-badges">
+          <span class="zone-badge sh">浅瀬</span>
+          <span class="zone-badge of">沖合</span>
+          <span class="zone-badge dp">深海</span>
+        </div>
+      </article>
+      <article class="glass card-item ci-pink">
+        <div class="card-header">
+          <div class="card-icon">🐟</div>
+          <div class="card-name">魚カード</div>
+          <span class="card-count">15枚</span>
+        </div>
+        <p class="card-desc">シャッフルして使います。毎回どんな魚が出るかは、めくるまでわかりません。</p>
+      </article>
+      <article class="glass card-item ci-gold">
+        <div class="card-header">
+          <div class="card-icon">⚡</div>
+          <div class="card-name">アイテムカード</div>
+          <span class="card-count">2枚</span>
+        </div>
+        <p class="card-desc">使うタイミングが勝負の分かれ道。ゲーム中に使えるのは<strong style="color:var(--gold)">1回だけ</strong>です。</p>
+      </article>
+    </div>
+  </section>
+
+  <section aria-labelledby="howto-title">
+    <p class="section-label">How to Play</p>
+    <h2 class="section-title" id="howto-title">遊び方</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div>
+        <div class="step-content">
+          <h3 class="step-title">使うカードを決めよう！</h3>
+          <p class="step-body">このゲームで使うのは、<span class="acc">漁師カード3枚</span>・<span class="acc">魚カード15枚</span>・<span class="acc">アイテムカード2枚</span>。まずはこの3種類を用意してスタートします。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div>
+        <div class="step-content">
+          <h3 class="step-title">魚カードを5枚並べよう！</h3>
+          <p class="step-body">魚カード15枚をよくシャッフルし、<span class="acc">裏向きで5枚並べます</span>。どんな魚が出るかは、めくるまでのお楽しみです。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div>
+        <div class="step-content">
+          <h3 class="step-title">アイテムカードを使うか考えよう！</h3>
+          <p class="step-body">アイテムカードは、3回戦のあいだで<span class="acc">1回・1枚だけ</span>使用できます。このラウンドで使うか、後に残すかを考えましょう。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left"><div class="step-num">4</div><div class="step-line"></div></div>
+        <div class="step-content">
+          <h3 class="step-title">漁師カードを決めよう</h3>
+          <p class="step-body">浅瀬・沖合・深海のいずれか1枚を選んで場に出します。<span class="acc">どの水域を狙うか</span>が、この勝負の読みどころです。</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-left"><div class="step-num">5</div><div class="step-line"></div></div>
+        <div class="step-content">
+          <h3 class="step-title">漁！！！</h3>
+          <p class="step-body">裏向きだった魚カードを表にし、<span class="acc">漁師が狙う水域にいる魚をゲット！</span> 獲れた魚は自分の手元に置きます。</p>
+        </div>
       </div>
     </div>
+  </section>
 
+  <section aria-labelledby="victory-title">
+    <p class="section-label">Victory</p>
+    <h2 class="section-title" id="victory-title">勝敗と補足</h2>
+    <div class="victory-wrap">
+      <div class="victory-icon">🏆</div>
+      <div class="victory-title">合計点が大きい方の勝利！</div>
+      <p class="victory-desc">最後に、3回戦で捕まえた魚の合計点を比べます。<br>同点の場合は、より大きな魚を捕まえた方が勝利です。</p>
+    </div>
     <div class="divider"></div>
-
-    <!-- Locked content preview -->
-    <div class="locked-wrap">
-      <div class="locked-content" aria-hidden="true">
-        <!-- fake card types -->
-        <div class="fake-card"></div>
-        <div class="fake-card tall"></div>
-        <div class="fake-card"></div>
-        <!-- fake steps -->
-        <div style="height:20px"></div>
-        <div class="fake-step">
-          <div class="fake-num"></div>
-          <div class="fake-text"><div class="fake-line"></div><div class="fake-line short"></div></div>
-        </div>
-        <div class="fake-step">
-          <div class="fake-num"></div>
-          <div class="fake-text"><div class="fake-line"></div><div class="fake-line short"></div></div>
-        </div>
-        <div class="fake-step">
-          <div class="fake-num"></div>
-          <div class="fake-text"><div class="fake-line"></div><div class="fake-line short"></div></div>
-        </div>
-        <div class="fake-card tall"></div>
-      </div>
-
-      <div class="lock-badge" role="status">
-        <div class="lock-icon">🔒</div>
-        <div class="lock-text">詳細ルールは<br>ご参加者のみ公開</div>
-        <p class="lock-sub">当日のご案内をお楽しみに。</p>
-      </div>
+    <div class="sup-rules">
+      <div class="sup-item"><div class="sup-dot"></div><p class="sup-text"><strong>漁師カード・魚カード</strong>は、一度場に出たものを再度使うことはできません。</p></div>
+      <div class="sup-item"><div class="sup-dot"></div><p class="sup-text"><strong>アイテムカード</strong>は、3回戦中に1回・1枚のみ使用できます。</p></div>
+      <div class="sup-item"><div class="sup-dot gold"></div><p class="sup-text"><strong>同点の場合</strong>は、より大きな魚を捕まえた方が勝利です。</p></div>
     </div>
-
+    <div class="free-rule">
+      <div class="free-rule-title">🌊 自由ルール</div>
+      <p class="free-rule-text">ルールは無限大！<br>自分たちでオリジナルルールを考えて遊ぶのもおすすめ。<br>何度でも、新しい『漁』の楽しみ方を見つけよう。</p>
+    </div>
   </section>
 
 </main>
@@ -1237,6 +1288,7 @@ footer{
 
       ctx.restore();
     }
+  }
 
   // ─── INIT & LOOP ───────────────────────────────────────
   const jellies=[], particles=[], schools=[], angler=[];
