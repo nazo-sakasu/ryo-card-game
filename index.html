@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>漁 — カードゲーム</title>
+<title>漁 — トレーディングカードゲーム | 竹島水族館</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -97,52 +97,21 @@ overflow: visible; }
 .peek-sub{font-size:12px;line-height:1.75;color:var(--white-muted);letter-spacing:0.03em}
 
 /* Locked content hint — blurred preview */
-.locked-wrap{
-  width:100%;position:relative;
-  border-radius:20px;overflow:hidden
-}
-.locked-content{
-  filter:blur(7px);opacity:0.38;pointer-events:none;
-  display:flex;flex-direction:column;gap:10px
-}
-.fake-card{
-  height:64px;background:var(--glass-strong);
-  border:1px solid var(--glass-border);border-radius:14px
-}
-.fake-card.tall{height:90px}
-.fake-step{
-  display:flex;gap:14px;align-items:flex-start
-}
-.fake-num{
-  width:34px;height:34px;border-radius:50%;flex-shrink:0;
-  background:rgba(0,229,255,0.25)
-}
-.fake-text{flex:1;display:flex;flex-direction:column;gap:6px;padding-top:4px}
-.fake-line{height:10px;border-radius:6px;background:rgba(255,255,255,0.12)}
-.fake-line.short{width:55%}
+
+
+
+
+
+
+
+
+
 
 /* Lock badge */
-.lock-badge{
-  position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:14px;
-  background:radial-gradient(ellipse at center,rgba(1,12,25,0.72) 0%,rgba(1,12,25,0.55) 100%);
-  backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px)
-}
-.lock-icon{
-  width:52px;height:52px;border-radius:50%;
-  background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.25);
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;
-  box-shadow:0 0 24px rgba(0,229,255,0.15)
-}
-.lock-text{
-  font-family:var(--font-serif);font-size:15px;font-weight:600;
-  letter-spacing:0.08em;color:var(--white);text-align:center;line-height:1.7
-}
-.lock-sub{
-  font-size:11px;letter-spacing:0.12em;color:rgba(0,229,255,0.5);
-  text-align:center;line-height:1.8
-}
+
+
+
+
 
 /* Divider */
 .divider{
@@ -239,36 +208,22 @@ footer{
 
     <div class="divider"></div>
 
-    <!-- Locked content preview -->
-    <div class="locked-wrap">
-      <div class="locked-content" aria-hidden="true">
-        <!-- fake card types -->
-        <div class="fake-card"></div>
-        <div class="fake-card tall"></div>
-        <div class="fake-card"></div>
-        <!-- fake steps -->
-        <div style="height:20px"></div>
-        <div class="fake-step">
-          <div class="fake-num"></div>
-          <div class="fake-text"><div class="fake-line"></div><div class="fake-line short"></div></div>
-        </div>
-        <div class="fake-step">
-          <div class="fake-num"></div>
-          <div class="fake-text"><div class="fake-line"></div><div class="fake-line short"></div></div>
-        </div>
-        <div class="fake-step">
-          <div class="fake-num"></div>
-          <div class="fake-text"><div class="fake-line"></div><div class="fake-line short"></div></div>
-        </div>
-        <div class="fake-card tall"></div>
-      </div>
-
-      <div class="lock-badge" role="status">
-        <div class="lock-icon">🔒</div>
-        <div class="lock-text">詳細ルールは<br>ご参加者のみ公開</div>
-        <p class="lock-sub">当日のご案内をお楽しみに。</p>
-      </div>
+    <!-- Rules page link -->
+    <div style="margin-top:40px;text-align:center">
+      <a href="rules.html"
+         style="display:inline-flex;align-items:center;gap:10px;
+                padding:14px 30px;border-radius:40px;
+                border:1px solid rgba(0,229,255,0.35);
+                background:rgba(0,229,255,0.07);
+                color:#00e5ff;font-family:var(--font-sans);
+                font-size:13px;font-weight:600;letter-spacing:0.1em;
+                text-decoration:none;
+                box-shadow:0 0 20px rgba(0,229,255,0.1)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        ルールを読む
+      </a>
     </div>
+
 
   </section>
 
