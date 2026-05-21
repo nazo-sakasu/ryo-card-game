@@ -142,6 +142,22 @@ body{background:var(--bg);color:var(--white);font-family:var(--font);min-height:
       <label class="lbl">フッター表示名</label>
       <input class="inp" id="hEventName" placeholder="例：ABC労働組合 宝さがし" value="宝さがしカードゲーム 『漁』" />
     </div>
+    <div class="fg">
+      <label class="lbl">スタッフ用パスコード</label>
+      <input class="inp" id="hPasscode" placeholder="例：1234" value="1234" maxlength="8" style="max-width:200px;letter-spacing:0.3em;font-size:18px;font-weight:700;text-align:center" />
+      <div class="fhint">引き換え時にスタッフが入力するコードです。イベントごとに変更してください。</div>
+    </div>
+    <div class="fg" style="margin:0">
+      <label class="lbl">解放時刻 一括設定</label>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <input class="inp" id="hStartTime" placeholder="開始時刻" value="18:45" type="time" style="width:120px" />
+        <span style="font-size:12px;color:var(--muted)">から</span>
+        <input class="inp" id="hInterval" type="number" min="1" max="10" value="1" style="width:70px;text-align:center" />
+        <span style="font-size:12px;color:var(--muted)">分間隔</span>
+        <button class="btn btn-p btn-sm" onclick="autoDistTimes()">一括設定</button>
+      </div>
+      <div class="fhint">全ヒントの解放時刻を自動で等間隔に設定します。</div>
+    </div>
   </div>
 
   <div class="card" style="padding:0;overflow:hidden">
@@ -156,6 +172,8 @@ body{background:var(--bg);color:var(--white);font-family:var(--font);min-height:
     <div style="padding:9px 14px;background:rgba(0,229,255,0.04);border-top:1px solid var(--border);font-size:11px;color:var(--muted)">
       選択中: <span id="pinInfo" style="color:var(--cyan)">ピンをクリックして選択</span>
     </div>
+    <div id="timeSimContainer" style="padding:9px 14px;border-top:1px solid var(--border);background:rgba(0,229,255,0.03)">
+    </div>
   </div>
 
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
@@ -167,6 +185,16 @@ body{background:var(--bg);color:var(--white);font-family:var(--font);min-height:
     </div>
   </div>
   <div id="hintList" style="display:flex;flex-direction:column;gap:7px;margin-bottom:18px"></div>
+
+  <!-- 団体別保存 -->
+  <div class="card">
+    <div class="card-title">団体別ヒント保存</div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+      <input class="inp" id="saveOrgName" placeholder="団体名を入力" style="flex:1;min-width:150px" />
+      <button class="btn btn-p btn-sm" onclick="saveHintsForOrg(document.getElementById('saveOrgName').value.trim())">この団体として保存</button>
+    </div>
+    <div id="savedOrgList" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+  </div>
 
   <button class="btn btn-p btn-full" onclick="genHintMap()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 3v13M5 16l7 7 7-7"/><path d="M3 21h18"/></svg>
@@ -285,7 +313,7 @@ function showPane(name, btn) {
   document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
   document.getElementById('pane-' + name).classList.add('active');
   if (btn) btn.classList.add('active');
-  if (name === 'hint') { renderHintList(); renderPins(); }
+  if (name === 'hint') { renderHintList(); renderPins(); setTimeout(() => initTimeSim(), 50); }
   if (name === 'score') buildScoreBody();
 }
 
@@ -318,10 +346,19 @@ function togglePub(i) { orgs[i].published = !orgs[i].published; saveOrgs(); toas
 function delOrg(i) { if (!confirm('削除しますか？')) return; orgs.splice(i, 1); saveOrgs(); toast('削除しました'); }
 function clearOrgs() { if (!orgs.length || !confirm('すべて削除しますか？')) return; orgs = []; saveOrgs(); toast('すべて削除しました'); }
 function goHintTab(i) {
-  document.getElementById('hEventName').value = orgs[i].name + ' 宝さがし';
+  const orgName = orgs[i].name;
+  document.getElementById('hEventName').value = orgName + ' 宝さがし';
+  // Try to load org-specific hints
+  if (loadHintsForOrg(orgName)) {
+    toast('「' + orgName + '」の保存済み設定を読み込みました');
+  } else {
+    toast('「' + orgName + '」のヒントMAPを編集します（デフォルト設定）');
+  }
   showPane('hint');
   document.querySelectorAll('.tab').forEach((b, idx) => { if (idx === 1) b.classList.add('active'); else b.classList.remove('active'); });
-  toast('「' + orgs[i].name + '」のヒントMAPを編集します');
+  renderHintList();
+  renderPins();
+  setTimeout(() => initTimeSim(), 100);
 }
 function renderOrgs() {
   const el = document.getElementById('orgList');
@@ -373,11 +410,18 @@ function resetHints() {
 }
 
 function renderHintList() {
-  document.getElementById('hintList').innerHTML = editHints.map(h => `
-    <div class="hint-row" id="hr${h.id}">
+  document.getElementById('hintList').innerHTML = editHints.map((h, idx) => `
+    <div class="hint-row" id="hr${h.id}" draggable="true"
+      ondragstart="startSortDrag(event,${idx})"
+      ondragover="onSortDragOver(event)"
+      ondragleave="onSortDragLeave(event)"
+      ondrop="onSortDrop(event,${idx})"
+      ondragend="onSortDragEnd(event)">
       <div class="hint-head" onclick="toggleHR(${h.id})">
+        <div style="cursor:grab;padding:4px;color:var(--muted);font-size:12px;margin-right:4px" title="ドラッグで並び替え">☰</div>
         <div class="hint-num">${h.id}</div>
         <div style="flex:1;font-size:14px;font-weight:600" id="hrt${h.id}">${h.title}</div>
+        <div style="font-size:10px;color:var(--muted);margin-right:8px">${h.unlockTime}</div>
         <div class="hint-chev">▼</div>
       </div>
       <div class="hint-body">
@@ -430,6 +474,191 @@ function deleteHint(id) {
   saveHints();
   if(selPin === id) selPin = null;
   toast('削除しました');
+}
+
+// ══════════════════════════════════════════
+//  2. 解放時刻 一括自動設定
+// ══════════════════════════════════════════
+function autoDistTimes() {
+  const startStr = document.getElementById('hStartTime').value;
+  const interval = parseInt(document.getElementById('hInterval').value) || 1;
+  if (!startStr) { toast('開始時刻を入力してください'); return; }
+  const [sh, sm] = startStr.split(':').map(Number);
+  let baseMin = sh * 60 + sm;
+  
+  editHints.forEach((h, i) => {
+    const totalMin = baseMin + i * interval;
+    const hh = String(Math.floor(totalMin / 60) % 24).padStart(2, '0');
+    const mm = String(totalMin % 60).padStart(2, '0');
+    h.unlockTime = hh + ':' + mm;
+  });
+  renderHintList();
+  saveHints();
+  const lastH = editHints[editHints.length - 1];
+  toast('✓ ' + startStr + ' ～ ' + lastH.unlockTime + ' に設定しました');
+}
+
+// ══════════════════════════════════════════
+//  4. 解放シミュレーション
+// ══════════════════════════════════════════
+function initTimeSim() {
+  const container = document.getElementById('timeSimContainer');
+  if (!container) return;
+  // Insert sim UI into MAP card
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+  container.innerHTML = `
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font-size:11px;color:var(--muted);white-space:nowrap">⏱ 時刻シミュレーション</span>
+      <input class="inp" type="time" id="simTime" value="${hh}:${mm}" style="width:120px;padding:6px 10px;font-size:14px" oninput="runTimeSim()" />
+      <span id="simResult" style="font-size:12px;color:var(--cyan)"></span>
+    </div>
+  `;
+}
+
+function runTimeSim() {
+  const timeStr = document.getElementById('simTime').value;
+  if (!timeStr) return;
+  const [sh, sm] = timeStr.split(':').map(Number);
+  const simMin = sh * 60 + sm;
+  let unlocked = 0;
+  editHints.forEach(h => {
+    const [hh, mm] = (h.unlockTime || '99:99').split(':').map(Number);
+    const hMin = hh * 60 + mm;
+    if (simMin >= hMin) unlocked++;
+  });
+  document.getElementById('simResult').textContent = unlocked + ' / ' + editHints.length + ' 解放';
+  // Highlight pins
+  renderPinsWithSim(simMin);
+}
+
+function renderPinsWithSim(simMin) {
+  const el = document.getElementById('mapPins');
+  if (!el) return;
+  el.innerHTML = editHints.map(h => {
+    const sel = h.id === selPin;
+    const [hh, mm] = (h.unlockTime || '99:99').split(':').map(Number);
+    const isUnlocked = simMin >= (hh * 60 + mm);
+    const sz = sel ? 24 : 18;
+    const color = isUnlocked ? (sel ? 'var(--gold)' : 'var(--cyan)') : 'rgba(255,255,255,0.2)';
+    const glow = isUnlocked ? (sel ? 'rgba(240,192,96,0.9)' : 'rgba(0,229,255,0.7)') : 'rgba(255,255,255,0.1)';
+    const borderOp = isUnlocked ? (sel ? 0.9 : 0.5) : 0.15;
+    const shadow = isUnlocked ? (sel ? 16 : 8) : 0;
+    return `<div style="position:absolute;left:${h.x}%;top:${h.y}%;transform:translate(-50%,-100%);cursor:grab;z-index:${sel?10:5};
+      filter:drop-shadow(0 0 ${shadow}px ${glow})"
+      onmousedown="startDrag(event,${h.id})" ontouchstart="startDragT(event,${h.id})">
+      <div style="width:${sz}px;height:${sz}px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+        background:${color};border:2px solid rgba(255,255,255,${borderOp});
+        box-shadow:0 0 ${shadow}px ${glow};transition:all 0.15s;opacity:${isUnlocked?1:0.4}"></div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════
+//  5. ヒント並び替え（ドラッグ）
+// ══════════════════════════════════════════
+let sortDragIdx = null;
+
+function startSortDrag(e, idx) {
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', idx);
+  sortDragIdx = idx;
+  e.currentTarget.style.opacity = '0.4';
+}
+
+function onSortDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  e.currentTarget.style.borderTop = '2px solid var(--cyan)';
+}
+
+function onSortDragLeave(e) {
+  e.currentTarget.style.borderTop = '';
+}
+
+function onSortDrop(e, toIdx) {
+  e.preventDefault();
+  e.currentTarget.style.borderTop = '';
+  const fromIdx = parseInt(e.dataTransfer.getData('text/plain'));
+  if (isNaN(fromIdx) || fromIdx === toIdx) return;
+  const item = editHints.splice(fromIdx, 1)[0];
+  editHints.splice(toIdx, 0, item);
+  renderHintList();
+  renderPins();
+  saveHints();
+  toast('✓ 順序を変更しました');
+}
+
+function onSortDragEnd(e) {
+  e.currentTarget.style.opacity = '';
+  sortDragIdx = null;
+}
+
+// ══════════════════════════════════════════
+//  6. 団体別ヒント保存
+// ══════════════════════════════════════════
+const ORG_HINTS_PREFIX = 'ryo_org_hints_';
+
+function saveHintsForOrg(orgName) {
+  if (!orgName) return;
+  const key = ORG_HINTS_PREFIX + orgName;
+  localStorage.setItem(key, JSON.stringify({
+    hints: editHints,
+    eventName: document.getElementById('hEventName').value.trim(),
+    passcode: document.getElementById('hPasscode').value.trim()
+  }));
+  toast('✓ 「' + orgName + '」のヒント設定を保存しました');
+}
+
+function loadHintsForOrg(orgName) {
+  if (!orgName) return false;
+  const key = ORG_HINTS_PREFIX + orgName;
+  const s = localStorage.getItem(key);
+  if (!s) return false;
+  try {
+    const data = JSON.parse(s);
+    if (data.hints && data.hints.length) {
+      editHints = data.hints;
+      if (data.eventName) document.getElementById('hEventName').value = data.eventName;
+      if (data.passcode) document.getElementById('hPasscode').value = data.passcode;
+      return true;
+    }
+  } catch(e) {}
+  return false;
+}
+
+function renderSavedOrgList() {
+  const el = document.getElementById('savedOrgList');
+  if (!el) return;
+  const list = listSavedOrgHints();
+  if (!list.length) { el.innerHTML = '<span style="font-size:11px;color:var(--muted)">まだ保存されていません</span>'; return; }
+  el.innerHTML = list.map(name => `
+    <button class="btn btn-g btn-sm" onclick="loadOrgAndRender('${name.replace(/'/g,"\\'")}')" style="font-size:11px">
+      📂 ${name}
+    </button>
+  `).join('');
+}
+
+function loadOrgAndRender(name) {
+  if (loadHintsForOrg(name)) {
+    document.getElementById('saveOrgName').value = name;
+    renderHintList();
+    renderPins();
+    renderSavedOrgList();
+    toast('✓ 「' + name + '」の設定を読み込みました');
+  } else {
+    toast('設定が見つかりません');
+  }
+}
+
+function listSavedOrgHints() {
+  const keys = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k.startsWith(ORG_HINTS_PREFIX)) keys.push(k.slice(ORG_HINTS_PREFIX.length));
+  }
+  return keys;
 }
 
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -550,6 +779,10 @@ function buildHintMapOutput() {
 
 // Step 1: Show URL/QR panel (no download yet)
 function genHintMap() {
+  // Auto-save for org if name is set
+  const orgName = document.getElementById('saveOrgName').value.trim();
+  if (orgName) saveHintsForOrg(orgName);
+  renderSavedOrgList();
   const base = document.getElementById('baseUrl').value.trim().replace('rules.html','').replace(/\/$/, '') || 'https://nazo-sakasu.github.io/ryo-card-game';
   document.getElementById('hintPubUrl').textContent = base + '/hint_map.html';
   document.getElementById('outPanel').classList.add('show');
@@ -560,7 +793,10 @@ function genHintMap() {
 
 // Step 2: Download (only when user explicitly clicks)
 function dlHintMap() {
-  const out = buildHintMapOutput();
+  let out = buildHintMapOutput();
+  // Inject custom passcode
+  const passcode = document.getElementById('hPasscode').value.trim() || '1234';
+  out = out.replace(/const STAFF_PASSCODE = "[^"]*"/, 'const STAFF_PASSCODE = "' + passcode + '"');
   const blob = new Blob([out], {type:'text/html;charset=utf-8'});
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -635,6 +871,7 @@ function toast(msg) { const el=document.getElementById('toast'); el.textContent=
 // ── INIT ──────────────────────────────────────
 renderOrgs();
 buildScoreBody();
+renderSavedOrgList();
 if (loadHints()) {
   const el=document.getElementById('saveStatus');
   if(el){el.textContent='前回の編集を復元';el.style.color='var(--cyan)';}
