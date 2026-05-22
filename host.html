@@ -872,17 +872,11 @@ function getOrgHintInfo(orgName) {
 
 function orgSlug(name) {
   if (!name) return '';
-  // Convert Japanese/spaces to safe ASCII slug
-  return name
-    .toLowerCase()
-    .replace(/[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FFF]+/g, function(m) {
-      // Replace Japanese chars with their index in editHints context (use org index)
-      return encodeURIComponent(m).replace(/%/g,'').toLowerCase().slice(0,8);
-    })
-    .replace(/[^a-z0-9]/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '')
-    .slice(0, 30) || 'custom';
+  // Use org list index for clean filenames (org01, org02...)
+  const idx = orgs.findIndex(o => o.name === name);
+  if (idx >= 0) return 'org' + String(idx + 1).padStart(2, '0');
+  // Not in list = no slug (use hint_map.html)
+  return '';
 }
 
 function dlHintMap() {
