@@ -1114,32 +1114,30 @@ body::after {
       <div class="rule-item">
         <div class="rule-num">3</div>
         <div class="rule-text">
-          <strong>館内は走らないで</strong>ください。<br>
-          転倒や接触など、危険なだけでなく<br>ほかの参加者様へのご迷惑にもなります。
+          集める速さを競うものではありません。<strong>ゆっくり館内を楽しみながら</strong>探してください。<br>
+          また、<strong>館内は走らないで</strong>ください。転倒や接触など危険です。
         </div>
       </div>
-      <div class="rule-divider"></div>
-      <div class="rule-item">
-        <div class="rule-num">4</div>
-        <div class="rule-text">
-          集める速さを競うものではありません。<br>
-          <strong>ゆっくり館内を楽しみながら</strong>探してください。
-        </div>
-      </div>
+
     </div>
-      <div class="rule-divider"></div>
-      <div class="rule-item" style="align-items:center;background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.3);border-radius:10px;padding:10px 12px;margin-top:2px">
-        <div style="font-size:28px;flex-shrink:0;line-height:1">🎁</div>
-        <div class="rule-text" style="color:rgba(238,246,255,0.95)">
-          <strong style="font-size:14px;color:#f0c060">17枚集めたら本部へお越しください！</strong><br>
-          スタッフに声をかけると<strong>特別なカード</strong>をプレゼントします。
-        </div>
-      </div>
     </div>
     <div class="rules-footer">
       <span class="rules-footer-icon">🐟</span>
       <span>ルールを守って、みんなで楽しく宝さがしを楽しみましょう！</span>
     </div>
+  </div>
+
+  <!-- ゴール案内 -->
+  <div style="margin:0 16px 20px;padding:16px 18px;background:linear-gradient(135deg,rgba(240,192,96,0.12),rgba(240,192,96,0.06));border:1px solid rgba(240,192,96,0.4);border-radius:14px;text-align:center">
+    <div style="font-size:28px;margin-bottom:8px">🎁</div>
+    <div style="font-family:'Noto Serif JP','Yu Mincho',serif;font-size:16px;font-weight:700;color:#f0c060;line-height:1.7;letter-spacing:0.04em">
+      17枚すべてのカードを集めたら<br>本部へお越しください！
+    </div>
+    <div style="font-size:13px;color:rgba(238,246,255,0.75);margin-top:6px;line-height:1.6">
+      特別なカードをプレゼントします！
+    </div>
+  </div>
+
   </div>
 
   <!-- モードバナー（テスト/管理） -->
@@ -1195,7 +1193,10 @@ body::after {
 
   <!-- ヒント一覧 -->
   <div class="list-section">
-    <div class="list-heading">💡 ヒント一覧</div>
+    <div class="list-heading" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span>💡 ヒント一覧</span>
+      <span style="font-size:12px;color:rgba(78,201,255,0.7);font-family:monospace;letter-spacing:0.05em;background:rgba(78,201,255,0.08);padding:3px 10px;border-radius:20px;border:1px solid rgba(78,201,255,0.2)">🕐 <span id="inlineTime">--:--:--</span></span>
+    </div>
     <div class="hint-list" id="hintList"></div>
   </div>
 
@@ -1239,7 +1240,7 @@ body::after {
       <strong>本部へ来てください！</strong>
     </div>
     <div class="goal-sub">
-      漁師カードと引き換えにお渡しします 🐟<br>
+      特別なカードをプレゼントします！ 🐟<br>
       スタッフにお声がけください
     </div>
 
@@ -1769,6 +1770,9 @@ function tick() {
   const h = String(now.getHours()).padStart(2, '0');
   const m = String(now.getMinutes()).padStart(2, '0');
   const s = String(now.getSeconds()).padStart(2, '0');
+  // ヒント一覧ヘッダーの時計を更新
+  const inlineEl = document.getElementById('inlineTime');
+  if (inlineEl) inlineEl.textContent = h + ':' + m + ':' + s;
   document.getElementById('clockDisplay').textContent = h + ':' + m + ':' + s;
 
   /* 分が変わったら全更新（解放チェック込み） */
