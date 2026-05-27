@@ -208,6 +208,43 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f8f9fc;color:#1a2030;padding:20px}
+  h1{text-align:center;font-size:22px;font-weight:700;letter-spacing:0.15em;margin-bottom:6px;color:#0a1428}
+  .sub{text-align:center;font-size:11px;color:#666;letter-spacing:0.1em;margin-bottom:24px}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.08)}
+  th{background:#0a1e3a;color:#fff;padding:10px 8px;font-size:12px;letter-spacing:0.08em;text-align:center}
+  td{border:1px solid #e0e4ef;padding:10px 8px;text-align:center;font-size:13px}
+  tr:nth-child(even) td{background:#f4f6fb}
+  .zone{font-weight:700;font-size:11px;letter-spacing:0.1em;padding:3px 10px;border-radius:20px;display:inline-block}
+  .z-s{background:#e0f4ff;color:#0066aa}
+  .z-m{background:#e0eaff;color:#2244bb}
+  .z-d{background:#ede0ff;color:#6622cc}
+  .total-row td{background:#fff8e0;font-weight:700;font-size:14px}
+  .name-row td{background:#f0f4ff;height:36px}
+  @media print{body{padding:10px}box-shadow:none}
+
+.hero-org {
+  font-size: 16px;
+  letter-spacing: 0.28em;
+  color: rgba(238,246,255,0.88);
+  font-family: var(--font-sans);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* ── ACCORDION ── */
+.step-content { cursor: pointer; user-select: none; border-radius: 10px; padding: 4px 8px 4px 4px; margin: -4px -8px -4px -4px; transition: background 0.2s; }
+.step-content:hover { background: rgba(255,255,255,0.03); }
+.step-content.open { background: rgba(0,229,255,0.04); }
+.step-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.step-body-wrap { overflow: hidden; max-height: 0; transition: max-height 0.35s ease, opacity 0.3s ease; opacity: 0; }
+.step-content.open .step-body-wrap { max-height: 400px; opacity: 1; }
+.step-chevron { font-size: 10px; color: var(--cyan); opacity: 0.5; transition: transform 0.3s, opacity 0.3s; flex-shrink: 0; }
+.step-content.open .step-chevron { transform: rotate(180deg); opacity: 1; }
+
 </style>
 </head>
 <body>
@@ -1419,42 +1456,7 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>漁 点数表</title>
-<style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f8f9fc;color:#1a2030;padding:20px}
-  h1{text-align:center;font-size:22px;font-weight:700;letter-spacing:0.15em;margin-bottom:6px;color:#0a1428}
-  .sub{text-align:center;font-size:11px;color:#666;letter-spacing:0.1em;margin-bottom:24px}
-  table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.08)}
-  th{background:#0a1e3a;color:#fff;padding:10px 8px;font-size:12px;letter-spacing:0.08em;text-align:center}
-  td{border:1px solid #e0e4ef;padding:10px 8px;text-align:center;font-size:13px}
-  tr:nth-child(even) td{background:#f4f6fb}
-  .zone{font-weight:700;font-size:11px;letter-spacing:0.1em;padding:3px 10px;border-radius:20px;display:inline-block}
-  .z-s{background:#e0f4ff;color:#0066aa}
-  .z-m{background:#e0eaff;color:#2244bb}
-  .z-d{background:#ede0ff;color:#6622cc}
-  .total-row td{background:#fff8e0;font-weight:700;font-size:14px}
-  .name-row td{background:#f0f4ff;height:36px}
-  @media print{body{padding:10px}box-shadow:none}
 
-.hero-org {
-  font-size: 16px;
-  letter-spacing: 0.28em;
-  color: rgba(238,246,255,0.88);
-  font-family: var(--font-sans);
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-/* ── ACCORDION ── */
-.step-content { cursor: pointer; user-select: none; border-radius: 10px; padding: 4px 8px 4px 4px; margin: -4px -8px -4px -4px; transition: background 0.2s; }
-.step-content:hover { background: rgba(255,255,255,0.03); }
-.step-content.open { background: rgba(0,229,255,0.04); }
-.step-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.step-body-wrap { overflow: hidden; max-height: 0; transition: max-height 0.35s ease, opacity 0.3s ease; opacity: 0; }
-.step-content.open .step-body-wrap { max-height: 400px; opacity: 1; }
-.step-chevron { font-size: 10px; color: var(--cyan); opacity: 0.5; transition: transform 0.3s, opacity 0.3s; flex-shrink: 0; }
-.step-content.open .step-chevron { transform: rotate(180deg); opacity: 1; }
-</style>
 </head>
 <body>
 <h1>漁　点数表</h1>
