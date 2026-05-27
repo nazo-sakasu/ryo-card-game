@@ -20,7 +20,7 @@
   --glass-strong: rgba(255,255,255,0.065);
   --font-serif: 'Noto Serif JP', 'Yu Mincho', 'YuMincho', '游明朝', serif;
   --font-sans: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-  --r: 20px; --rs: 12px; --gap: 80px;
+  --r: 20px; --rs: 12px; --gap: 60px;
 }
 
 html { scroll-behavior: smooth; }
@@ -275,7 +275,7 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
           <div class="card-name">漁師カード</div>
           <span class="card-count">3枚</span>
         </div>
-        <p class="card-desc">表層・中層・深層の3種類。どの水域を狙うかを決める大事なカードです。</p>
+        <p class="card-desc">表層・中層・深層の3種類。どの水域を狙うかを決める大事なカードです。3回戦で<strong style="color:var(--cyan)">1枚ずつ使い切り</strong>、一度出したカードは戻りません。</p>
         <div class="zone-badges">
           <span class="zone-badge sh">表層</span>
           <span class="zone-badge of">中層</span>
@@ -288,7 +288,7 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
           <div class="card-name">魚カード</div>
           <span class="card-count">15枚</span>
         </div>
-        <p class="card-desc">シャッフルして使います。毎回どんな魚が出るかは、めくるまでわかりません。</p>
+        <p class="card-desc">お互いそれぞれ15枚をシャッフルして自分の山として持ちます。毎ラウンド、山から5枚を漁場に出します。めくるまで何の魚かはわかりません。</p>
       </article>
       <article class="glass card-item ci-gold">
         <div class="card-header">
@@ -296,9 +296,143 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
           <div class="card-name">アイテムカード</div>
           <span class="card-count">2枚</span>
         </div>
-        <p class="card-desc">使うタイミングが勝負の分かれ道。ゲーム中に使えるのは<strong style="color:var(--gold)">1回だけ</strong>です。</p>
+        <p class="card-desc">相手の漁場にカードを追加したり、特定のカードを狙ったりできます。使うタイミングが勝負の分かれ道。ゲーム中に使えるのは<strong style="color:var(--gold)">1回だけ</strong>です。（詳しくは各カードに記載）</p>
       </article>
     </div>
+  </section>
+
+  <!-- 場のレイアウト図 -->
+  <section style="margin-bottom:var(--gap)">
+    <p class="section-label">Field Layout</p>
+    <h2 class="section-title">場のレイアウト</h2>
+    <div style="display:flex;justify-content:center">
+      <div style="background:linear-gradient(160deg,#010c19 0%,#040f20 100%);border:1px solid rgba(0,229,255,0.12);border-radius:18px;padding:16px 14px;width:100%;max-width:360px;font-family:var(--font-sans);color:#eef6ff">
+        <div style="display:flex;flex-direction:column;gap:6px">
+
+          <!-- P2 手元 -->
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:9px 11px">
+            <div style="font-size:8px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:7px;color:rgba(255,110,199,0.55)">プレイヤー 2 — 手元</div>
+            <div style="display:flex;align-items:flex-start;gap:8px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="display:flex;gap:3px">
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8)">漁</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8)">漁</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8)">漁</div>
+                </div>
+                <div style="font-size:7px;color:rgba(238,246,255,0.35)">漁師×3</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="display:flex;gap:3px">
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.35);color:rgba(240,192,96,0.8)">✦</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.35);color:rgba(240,192,96,0.8)">✦</div>
+                </div>
+                <div style="font-size:7px;color:rgba(238,246,255,0.35)">アイテム×2</div>
+              </div>
+              <div style="flex:1"></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="position:relative;width:38px;height:42px;flex-shrink:0">
+                  <div style="position:absolute;top:4px;left:0;width:28px;height:42px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);opacity:0.45"></div>
+                  <div style="position:absolute;top:2px;left:2px;width:28px;height:42px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);opacity:0.7"></div>
+                  <div style="position:absolute;top:0;left:4px;width:28px;height:42px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);color:rgba(238,246,255,0.4)">山</div>
+                </div>
+                <div style="font-size:7px;color:rgba(238,246,255,0.35)">魚の山</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 矢印 P2→漁場 -->
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:4px;padding-right:8px">
+            <span style="font-size:8px;color:rgba(255,110,199,0.45)">① 5枚出す</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v8M3 7l3 3 3-3" stroke="rgba(255,110,199,0.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+
+          <!-- P2 漁場 -->
+          <div style="border-radius:10px;padding:8px 10px;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.2)">
+            <div style="font-size:8px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;color:rgba(255,110,199,0.5)">プレイヤー 2 の漁場</div>
+            <div style="display:flex;justify-content:space-between">
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45)">裏</div>
+            </div>
+          </div>
+
+          <!-- アクション -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div style="border-radius:9px;padding:8px 10px;text-align:center;background:rgba(240,192,96,0.06);border:1px solid rgba(240,192,96,0.22)">
+              <div style="font-size:7px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;margin-bottom:4px;color:rgba(240,192,96,0.65)">② アイテム（任意）</div>
+              <div style="font-size:9px;color:rgba(238,246,255,0.6);line-height:1.5">漁場に影響を与える</div>
+            </div>
+            <div style="border-radius:9px;padding:8px 10px;text-align:center;background:rgba(168,85,247,0.06);border:1px solid rgba(168,85,247,0.22)">
+              <div style="font-size:7px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;margin-bottom:4px;color:rgba(168,85,247,0.65)">③ 漁師カード</div>
+              <div style="font-size:9px;color:rgba(238,246,255,0.6);line-height:1.5"><strong style="color:rgba(238,246,255,0.9)">一斉に表へ</strong></div>
+            </div>
+          </div>
+
+          <!-- P1 漁場 -->
+          <div style="border-radius:10px;padding:8px 10px;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.2)">
+            <div style="font-size:8px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;color:rgba(0,229,255,0.5)">プレイヤー 1 の漁場</div>
+            <div style="display:flex;justify-content:space-between">
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.25);color:rgba(0,229,255,0.45)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.25);color:rgba(0,229,255,0.45)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.25);color:rgba(0,229,255,0.45)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.25);color:rgba(0,229,255,0.45)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.25);color:rgba(0,229,255,0.45)">裏</div>
+            </div>
+          </div>
+
+          <!-- 矢印 P1←漁場 -->
+          <div style="display:flex;align-items:center;justify-content:flex-end;gap:4px;padding-right:8px">
+            <span style="font-size:8px;color:rgba(0,229,255,0.45)">① 5枚出す</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 11V3M3 5l3-3 3 3" stroke="rgba(0,229,255,0.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+
+          <!-- P1 手元 -->
+          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:9px 11px">
+            <div style="font-size:8px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:7px;color:rgba(0,229,255,0.55)">プレイヤー 1 — 手元（自分）</div>
+            <div style="display:flex;align-items:flex-start;gap:8px">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="display:flex;gap:3px">
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8)">漁</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8)">漁</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8)">漁</div>
+                </div>
+                <div style="font-size:7px;color:rgba(238,246,255,0.35)">漁師×3</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="display:flex;gap:3px">
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.35);color:rgba(240,192,96,0.8)">✦</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.35);color:rgba(240,192,96,0.8)">✦</div>
+                </div>
+                <div style="font-size:7px;color:rgba(238,246,255,0.35)">アイテム×2</div>
+              </div>
+              <div style="flex:1"></div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+                <div style="position:relative;width:38px;height:42px;flex-shrink:0">
+                  <div style="position:absolute;top:4px;left:0;width:28px;height:42px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);opacity:0.45"></div>
+                  <div style="position:absolute;top:2px;left:2px;width:28px;height:42px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);opacity:0.7"></div>
+                  <div style="position:absolute;top:0;left:4px;width:28px;height:42px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);color:rgba(238,246,255,0.4)">山</div>
+                </div>
+                <div style="font-size:7px;color:rgba(238,246,255,0.35)">魚の山</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- フロー -->
+          <div style="display:flex;gap:3px;justify-content:center;margin-top:2px">
+            <div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(0,229,255,0.12);border:1px solid rgba(0,229,255,0.3);color:rgba(0,229,255,0.9)">①</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">漁場5枚</div></div>
+            <div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(240,192,96,0.12);border:1px solid rgba(240,192,96,0.3);color:rgba(240,192,96,0.9)">②</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">アイテム</div></div>
+            <div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);color:rgba(168,85,247,0.9)">③</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">漁師一斉に</div></div>
+            <div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);color:rgba(52,211,153,0.9)">④</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">漁！</div></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:14px;font-size:12px;line-height:1.8;color:rgba(238,246,255,0.55);text-align:center;letter-spacing:0.04em">
+      ※ <strong style="color:rgba(238,246,255,0.75)">漁場</strong>とは、自分の山から出した魚カードを並べるエリアのことです。
+    </p>
   </section>
 
   <section aria-labelledby="howto-title">
@@ -307,44 +441,44 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
     <div class="steps">
       <div class="step">
         <div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div>
-        <div class="step-content">
-          <h3 class="step-title">使うカードを決めよう！</h3>
-          <p class="step-body">このゲームで使うのは、<span class="acc">漁師カード3枚</span>・<span class="acc">魚カード15枚</span>・<span class="acc">アイテムカード2枚</span>。まずはこの3種類を用意してスタートします。</p>
+        <div class="step-content open" onclick="toggleStep(this)">
+          <h3 class="step-title">使うカードを決めよう！ <span class="step-chevron">▼</span></h3>
+          <div class="step-body-wrap"><p class="step-body">このゲームで使うのは、<span class="acc">漁師カード3枚</span>・<span class="acc">魚カード15枚</span>・<span class="acc">アイテムカード2枚</span>。まずはこの3種類を用意してスタートします。</p></div>
         </div>
       </div>
       <div class="step">
         <div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div>
-        <div class="step-content">
-          <h3 class="step-title">魚カードを5枚並べよう！</h3>
-          <p class="step-body">魚カード15枚をよくシャッフルし、<span class="acc">裏向きで5枚並べます</span>。どんな魚が出るかは、めくるまでのお楽しみです。</p>
+        <div class="step-content" onclick="toggleStep(this)">
+          <h3 class="step-title">魚カード5枚を漁場に出そう！ <span class="step-chevron">▼</span></h3>
+          <div class="step-body-wrap"><p class="step-body">お互い自分の山から魚カードを<span class="acc">5枚裏向きで漁場に出します</span>。どんな魚が出るかは、めくるまでのお楽しみです。</p></div>
         </div>
       </div>
       <div class="step">
         <div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div>
-        <div class="step-content">
-          <h3 class="step-title">アイテムカードを使うか考えよう！</h3>
-          <p class="step-body">アイテムカードは、3回戦のあいだで<span class="acc">1回・1枚だけ</span>使用できます。このラウンドで使うか、後に残すかを考えましょう。</p>
+        <div class="step-content" onclick="toggleStep(this)">
+          <h3 class="step-title">アイテムカードを使うか考えよう！ <span class="step-chevron">▼</span></h3>
+          <div class="step-body-wrap"><p class="step-body">アイテムカードは3回戦で<span class="acc">1回・1枚だけ</span>使用できます。相手や自分の漁場に影響を与える効果があります。（詳しくは各カードに記載）このラウンドで使うか、後に残すかを考えましょう。</p></div>
         </div>
       </div>
       <div class="step">
         <div class="step-left"><div class="step-num">4</div><div class="step-line"></div></div>
-        <div class="step-content">
-          <h3 class="step-title">漁師カードを決めよう</h3>
-          <p class="step-body">表層・中層・深層のいずれか1枚を選んで場に出します。<span class="acc">どの水域を狙うか</span>が、この勝負の読みどころです。</p>
+        <div class="step-content" onclick="toggleStep(this)">
+          <h3 class="step-title">漁師カードを決めよう！ <span class="step-chevron">▼</span></h3>
+          <div class="step-body-wrap"><p class="step-body">表層・中層・深層のいずれか1枚を選んで場に出します。<span class="acc">どの水域を狙うか</span>が、この勝負の読みどころです。</p></div>
         </div>
       </div>
       <div class="step">
         <div class="step-left"><div class="step-num">5</div><div class="step-line"></div></div>
-        <div class="step-content">
-          <h3 class="step-title">漁！！！</h3>
-          <p class="step-body">裏向きだった魚カードを表にし、<span class="acc">漁師が狙う水域にいる魚すべてをゲット！</span> 獲れた魚は自分の手元に置きます。</p>
+        <div class="step-content" onclick="toggleStep(this)">
+          <h3 class="step-title">漁！ <span class="step-chevron">▼</span></h3>
+          <div class="step-body-wrap"><p class="step-body">「漁！」の合図とともに、<span class="acc">お互い漁師カードを表向きに出します。</span>裏向きだった魚カードを表にし、自分の漁師カードが示す水域にいる魚をすべてゲット！<span class="acc"> 獲れた魚は手元に置きます。</span></p></div>
         </div>
       </div>
       <div class="step">
         <div class="step-left"><div class="step-num">6</div></div>
-        <div class="step-content">
-          <h3 class="step-title">カードを片付けて次のラウンドへ！</h3>
-          <p class="step-body">獲れた魚は<span class="acc">自分の手元</span>に。獲れなかった魚は<span class="acc">捨て場</span>へ。使った漁師カードは戻りません。②③を繰り返し、<span class="acc">3回戦終了後に合計点を比べて勝負！</span></p>
+        <div class="step-content" onclick="toggleStep(this)">
+          <h3 class="step-title">片付けて次のラウンドへ！ <span class="step-chevron">▼</span></h3>
+          <div class="step-body-wrap"><p class="step-body">獲れた魚は<span class="acc">自分の手元</span>に。獲れなかった魚と使った漁師カードは<span class="acc">捨て場</span>（テーブルの脇）へ置きます。①〜⑤を繰り返し、<span class="acc">3回戦終了後に合計点を比べて勝負！</span></p></div>
         </div>
       </div>
     </div>
@@ -357,6 +491,13 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
       <div class="victory-icon">🏆</div>
       <div class="victory-title">合計点が大きい方の勝利！</div>
       <p class="victory-desc">最後に、3回戦で捕まえた魚の合計点を比べます。<br>同点の場合は、より大きな魚を捕まえた方が勝利です。</p>
+    <div style="margin-top:18px;padding:14px 16px;background:rgba(240,192,96,0.07);border:1px solid rgba(240,192,96,0.25);border-radius:14px;display:flex;align-items:flex-start;gap:12px">
+      <div style="font-size:22px;flex-shrink:0;line-height:1">🐟</div>
+      <div>
+        <div style="font-family:var(--font-serif);font-size:13px;font-weight:600;color:var(--gold);margin-bottom:5px;letter-spacing:0.05em">獲った魚カードのポイントが君の得点！</div>
+        <div style="font-size:12px;line-height:1.8;color:var(--white-muted)">魚カードにはそれぞれポイントが書かれています。3回戦で獲った魚の<span style="color:var(--gold);font-weight:600">合計点が高い方</span>が勝利！レアな魚ほど高得点です。</div>
+      </div>
+    </div>
     </div>
     <div class="divider"></div>
     <div class="sup-rules">
@@ -1303,6 +1444,16 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+
+/* ── ACCORDION ── */
+.step-content { cursor: pointer; user-select: none; border-radius: 10px; padding: 4px 8px 4px 4px; margin: -4px -8px -4px -4px; transition: background 0.2s; }
+.step-content:hover { background: rgba(255,255,255,0.03); }
+.step-content.open { background: rgba(0,229,255,0.04); }
+.step-title { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.step-body-wrap { overflow: hidden; max-height: 0; transition: max-height 0.35s ease, opacity 0.3s ease; opacity: 0; }
+.step-content.open .step-body-wrap { max-height: 400px; opacity: 1; }
+.step-chevron { font-size: 10px; color: var(--cyan); opacity: 0.5; transition: transform 0.3s, opacity 0.3s; flex-shrink: 0; }
+.step-content.open .step-chevron { transform: rotate(180deg); opacity: 1; }
 </style>
 </head>
 <body>
@@ -1373,6 +1524,15 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
       if (el) { el.textContent = decodeURIComponent(org); el.style.display = ''; }
     }
   })();
+
+// ── STEP ACCORDION ─────────────────
+function toggleStep(el) {
+  const isOpen = el.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.step-content').forEach(s => s.classList.remove('open'));
+  // Open clicked if it was closed
+  if (!isOpen) el.classList.add('open');
+}
 </script>
 </body>
 </html>
