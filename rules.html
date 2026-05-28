@@ -157,11 +157,11 @@ section { margin-bottom: var(--gap); }
 .sup-text { font-size: 13px; line-height: 1.8; color: var(--white-muted); letter-spacing: 0.02em; }
 .sup-text strong { color: var(--white); font-weight: 600; }
 
-.free-rule { background: linear-gradient(135deg, rgba(168,85,247,0.07), rgba(255,110,199,0.07)); border: 1px solid rgba(168,85,247,0.22); border-radius: var(--r); padding: 30px 22px; text-align: center; }
+.free-rule { background: linear-gradient(135deg, rgba(168,85,247,0.07), rgba(255,110,199,0.07)); border: 1px solid rgba(168,85,247,0.22); border-radius: var(--r); padding: 24px 22px 20px; text-align: center; }
 .free-rule-title { font-family: var(--font-serif); font-size: 19px; font-weight: 600; letter-spacing: 0.08em; color: var(--violet); margin-bottom: 12px; text-shadow: 0 0 22px rgba(168,85,247,0.45); }
 .free-rule-text { font-size: 13px; line-height: 1.9; color: var(--white-muted); letter-spacing: 0.02em; }
 
-footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1; }
+footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1; }
 .footer-title { font-family: var(--font-serif); font-size: 28px; font-weight: 700; background: linear-gradient(135deg, var(--cyan), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 0.12em; margin-bottom: 10px; }
 .footer-copy { font-size: 10.5px; color: rgba(255,255,255,0.18); letter-spacing: 0.18em; }
 
@@ -283,11 +283,7 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
           <span class="card-count">3枚</span>
         </div>
         <p class="card-desc">表層・中層・深層の3種類。どの水域を狙うかを決める大事なカードです。3回戦で<strong style="color:var(--cyan)">1枚ずつ使い切り</strong>、一度出したカードは戻りません。</p>
-        <div class="zone-badges">
-          <span class="zone-badge sh">表層</span>
-          <span class="zone-badge of">中層</span>
-          <span class="zone-badge dp">深層</span>
-        </div>
+        
       </article>
       <article class="glass card-item ci-pink">
         <div class="card-header">
@@ -464,7 +460,7 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
         <div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div>
         <div class="step-content">
           <h3 class="step-title">アイテムカードを使うか考えよう！</h3>
-          <p class="step-body">アイテムカードは3回戦で<span class="acc">1回・1枚だけ</span>使用できます。相手や自分の漁場に影響を与える効果があります。（詳しくは各カードに記載）このラウンドで使うか、後に残すかを考えましょう。</p>
+          <p class="step-body">アイテムカードは3回戦で<span class="acc">1回・1枚だけ</span>使用できます。相手や自分の漁場に影響を与える効果があります。（詳しくは各カードに記載）<span class="acc">どのラウンドで使うか</span>考えましょう。</p>
         </div>
       </div>
       <div class="step">
@@ -497,14 +493,7 @@ footer { text-align: center; padding: 36px 20px; position: relative; z-index: 1;
     <div class="victory-wrap">
       <div class="victory-icon">🏆</div>
       <div class="victory-title">合計点が大きい方の勝利！</div>
-      <p class="victory-desc">最後に、3回戦で捕まえた魚の合計点を比べます。<br>同点の場合は、より大きな魚を捕まえた方が勝利です。</p>
-    <div style="margin-top:18px;padding:14px 16px;background:rgba(240,192,96,0.07);border:1px solid rgba(240,192,96,0.25);border-radius:14px;display:flex;align-items:flex-start;gap:12px">
-      <div style="font-size:22px;flex-shrink:0;line-height:1">🐟</div>
-      <div>
-        <div style="font-family:var(--font-serif);font-size:13px;font-weight:600;color:var(--gold);margin-bottom:5px;letter-spacing:0.05em">獲った魚カードのポイントが君の得点！</div>
-        <div style="font-size:12px;line-height:1.8;color:var(--white-muted)">魚カードにはそれぞれポイントが書かれています。3回戦で獲った魚の<span style="color:var(--gold);font-weight:600">合計点が高い方</span>が勝利！レアな魚ほど高得点です。
-      </div>
-    </div>
+      <p class="victory-desc">獲った魚カードのポイントが君の得点に。魚カードにはそれぞれポイントが書かれています。3回戦で獲った魚の合計点が大きい方が勝利！<strong style="color:var(--gold)">レアな魚ほど高得点です。</strong></p>
     </div>
     <div class="divider"></div>
     <div class="sup-rules">
