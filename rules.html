@@ -335,6 +335,34 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
 .about-text { font-size: 12px; line-height: 1.9; color: rgba(238,246,255,0.6); letter-spacing: 0.02em; }
 .about-text p { margin-bottom: 8px; }
 .about-text p:last-child { margin-bottom: 0; }
+
+/* ── 施設名バッジ ── */
+.hero-facility {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 6px 18px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(238,246,255,0.2);
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  backdrop-filter: blur(8px);
+}
+.hero-facility-x {
+  color: rgba(0,229,255,0.6);
+  font-weight: 400;
+  font-size: 12px;
+}
+.hero-facility-game {
+  font-family: var(--font-serif);
+  color: var(--cyan);
+  font-size: 15px;
+}
 </style>
 </head>
 <body>
@@ -346,6 +374,12 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
 
   <section class="hero">
     <p class="hero-org fi fi-1" id="orgName" style="display:none"></p>
+    <!-- 施設名表示 -->
+    <div class="hero-facility fi fi-1" id="facilityBadge" style="display:none">
+      <span id="facilityName"></span>
+      <span class="hero-facility-x"> × </span>
+      <span class="hero-facility-game">漁</span>
+    </div>
     <p class="hero-eyebrow fi fi-1">TRADING CARD GAME</p>
     <h2 class="hero-title fi fi-2">狙え！操れ！<br>獲り尽くせ！</h2>
     <div class="hero-game-name-wrap fi fi-3">
@@ -1734,13 +1768,22 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
   window.toggleAcc = toggleAcc;
 </script>
 <script>
-  // 団体名をURLパラメータから読み込む
+  // URLパラメータ読み込み（org: 団体名 / facility: 施設名）
   (function(){
     var params = new URLSearchParams(location.search);
     var org = params.get('org');
     if(org){
       var el = document.getElementById('orgName');
       if(el){ el.textContent = decodeURIComponent(org); el.style.display=''; }
+    }
+    var facility = params.get('facility');
+    if(facility){
+      var badge = document.getElementById('facilityBadge');
+      var fname = document.getElementById('facilityName');
+      if(badge && fname){
+        fname.textContent = decodeURIComponent(facility);
+        badge.style.display = 'flex';
+      }
     }
   })();
 </script>
