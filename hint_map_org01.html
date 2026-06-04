@@ -1204,34 +1204,25 @@ body::after {
   <div class="goal-banner" id="goalBanner">
     <span class="goal-icon">
       <svg viewBox="0 0 60 80" width="52" height="70" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 10px rgba(240,192,96,0.55)) drop-shadow(0 2px 8px rgba(0,0,0,0.6));">
-        <!-- カード枠（上部） -->
         <rect x="2" y="2" width="56" height="76" rx="6" fill="none" stroke="rgba(240,192,96,0.30)" stroke-width="0.8"/>
-        <!-- 内枠 -->
         <rect x="5" y="5" width="50" height="70" rx="4" fill="none" stroke="rgba(240,192,96,0.30)" stroke-width="0.8"/>
-        <!-- 漁船シルエット（上部） -->
-        <path d="M18 22 L42 22 L39 17 L21 17 Z" fill="rgba(240,192,96,0.75)"/>
-        <rect x="27" y="12" width="8" height="4" rx="1.5" fill="rgba(240,192,96,0.55)"/>
-        <path d="M10 22 L50 22 L46 28 L14 28 Z" fill="rgba(240,192,96,0.55)"/>
-        <!-- 波線 -->
-        <path d="M8 30 Q14 27 20 30 Q26 33 32 30 Q38 27 44 30 Q50 33 52 30" fill="none" stroke="rgba(78,201,255,0.55)" stroke-width="1.2" stroke-linecap="round"/>
-        <!-- タコアシ／深海生物（中央） -->
-        <ellipse cx="30" cy="50" rx="3" ry="7" fill="rgba(78,180,255,0.18)" stroke="rgba(78,201,255,0.50)" stroke-width="1"/>
-        <path d="M22 52 Q18 56 16 62" fill="none" stroke="rgba(78,201,255,0.40)" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M24 55 Q21 60 20 66" fill="none" stroke="rgba(78,201,255,0.40)" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M30 57 Q30 62 29 68" fill="none" stroke="rgba(78,201,255,0.45)" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M36 55 Q39 60 40 66" fill="none" stroke="rgba(78,201,255,0.40)" stroke-width="1.5" stroke-linecap="round"/>
-        <path d="M38 52 Q42 56 44 62" fill="none" stroke="rgba(78,201,255,0.45)" stroke-width="1.5" stroke-linecap="round"/>
-        <!-- 目 -->
-        <circle cx="27" cy="49" r="2" fill="rgba(240,192,96,0.30)"/>
-        <circle cx="33" cy="49" r="2" fill="rgba(240,192,96,0.30)"/>
-        <circle cx="27.8" cy="49.8" r="0.8" fill="#0bf3aa"/>
-        <circle cx="33.8" cy="49.8" r="0.8" fill="#0bf3aa"/>
-        <!-- 泡 -->
-        <circle cx="18" cy="42" r="1.5" fill="none" stroke="rgba(78,201,255,0.40)" stroke-width="0.8"/>
-        <circle cx="43" cy="38" r="1.0" fill="none" stroke="rgba(78,201,255,0.35)" stroke-width="0.7"/>
-        <circle cx="12" cy="35" r="1.2" fill="none" stroke="rgba(78,201,255,0.30)" stroke-width="0.7"/>
+        <!-- マスト -->
+        <rect x="29" y="14" width="2" height="16" rx="0.5" fill="rgba(240,192,96,0.70)"/>
+        <!-- 帆 -->
+        <path d="M31 15 L42 22 L31 27 Z" fill="rgba(240,192,96,0.35)" stroke="rgba(240,192,96,0.50)" stroke-width="0.6"/>
+        <!-- 船橋 -->
+        <rect x="23" y="30" width="12" height="7" rx="1.5" fill="rgba(240,192,96,0.55)"/>
+        <rect x="25" y="31.5" width="3" height="2.5" rx="0.5" fill="rgba(78,201,255,0.40)"/>
+        <rect x="29.5" y="31.5" width="3" height="2.5" rx="0.5" fill="rgba(78,201,255,0.40)"/>
+        <!-- 船体 -->
+        <path d="M12 37 L48 37 L44 45 L16 45 Z" fill="rgba(240,192,96,0.55)"/>
+        <!-- 喫水線 -->
+        <path d="M14 45 Q19 43 24 45 Q29 47 34 45 Q39 43 44 45" fill="none" stroke="rgba(240,192,96,0.35)" stroke-width="0.8" stroke-linecap="round"/>
+        <!-- 波 -->
+        <path d="M8 48 Q14 45 20 48 Q26 51 32 48 Q38 45 44 48 Q50 51 52 48" fill="none" stroke="rgba(78,201,255,0.55)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 52 Q14 49 20 52 Q26 55 32 52 Q38 49 44 52 Q50 55 52 52" fill="none" stroke="rgba(78,201,255,0.30)" stroke-width="0.8" stroke-linecap="round"/>
         <!-- 下部テキスト -->
-        <text x="30" y="79" text-anchor="middle" font-size="6.5" font-family="serif" fill="rgba(240,192,96,0.80)" letter-spacing="1">漁 CARD</text>
+        <text x="30" y="72" text-anchor="middle" font-size="6.5" font-family="serif" fill="rgba(240,192,96,0.80)" letter-spacing="1">漁 CARD</text>
       </svg>
     </span>
     <div class="goal-num">— GOAL —</div>
@@ -1350,8 +1341,8 @@ const HINTS_DATA = [
     "title": "深海大水塊",
     "hint": "国内随大級の深海水槽を見上げると、漁師の舟が描かれた木製プレートが隠されている。暗い方の棚に注目！",
     "unlockTime": "18:03",
-    "x": 44,
-    "y": 0
+    "x": 56,
+    "y": 55
   },
   {
     "id": 3,
@@ -1826,6 +1817,11 @@ setInterval(tick, 1000);
 
   if (!banner) return;
 
+  // SHOW_GOAL制御
+  if (typeof SHOW_GOAL !== 'undefined' && !SHOW_GOAL) {
+    banner.style.display = 'none';
+  }
+
   /* 引き換え済み状態を復元（リセット：常に未引き換えで開始） */
   // localStorage.removeItem(STORAGE_KEY); // 毎回リセットしたい場合はここを有効に
   if (localStorage.getItem(STORAGE_KEY) === '1') {
@@ -1878,6 +1874,7 @@ setInterval(tick, 1000);
   let holdProgress = 0;
   const HOLD_MS = 3000; /* 長押し判定秒数（厳しめ） */
   const STAFF_PASSCODE = "1234"; /* スタッフ用パスコード */
+  const SHOW_GOAL = false;
 
   function getKnobLeft() {
     return parseInt(knob.style.left) || 4;
