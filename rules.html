@@ -423,56 +423,6 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
       </article>
     </div>
   </section>
-  <!-- デッキ構築ルール -->
-  <section style="margin-bottom:var(--gap)" aria-labelledby="deck-title">
-    <p class="section-label">Deck Building</p>
-    <h2 class="section-title" id="deck-title">デッキを組む3つの掟</h2>
-    <p class="step-body" style="margin-bottom:22px">山（魚カード15枚）の組み方には3つの決まりがある。これを守ることで、勝負がフェアに、読み合いが熱くなる。</p>
-
-    <div class="deck-rules">
-
-      <div class="deck-card">
-        <div class="deck-card-head">
-          <span class="deck-icon">🎴</span>
-          <div>
-            <div class="deck-rule-no">Rule 1</div>
-            <div class="deck-rule-title">各層5枚ずつ固定</div>
-          </div>
-        </div>
-        <div class="deck-rule-body">表層・中層・深層から、それぞれ必ず<span class="acc">5枚ずつ</span>選ぶ。合計15枚。</div>
-        <div class="deck-reason">枚数を変えると漁師カードの読み合いが「層の枚数読み」になってしまい、シンプルな駆け引きが崩れる。</div>
-      </div>
-
-      <div class="deck-card">
-        <div class="deck-card-head">
-          <span class="deck-icon">⚖️</span>
-          <div>
-            <div class="deck-rule-no">Rule 2</div>
-            <div class="deck-rule-title">山の合計ポイントは600〜700P</div>
-          </div>
-        </div>
-        <div class="deck-rule-body">15枚のポイント合計は<span class="acc">600点以上、700点以下</span>に収める。</div>
-        <div class="deck-reason">意図的に低ポイントの山を組めば「相手の旨味を減らす」防御戦略が成立してしまう。最低点を保証することで、誰もが本気で勝ちに行く構成になる。</div>
-      </div>
-
-      <div class="deck-card">
-        <div class="deck-card-head">
-          <span class="deck-icon">⭐</span>
-          <div>
-            <div class="deck-rule-no">Rule 3</div>
-            <div class="deck-rule-title">各層に★5（80P以上）を1枚以上</div>
-          </div>
-        </div>
-        <div class="deck-rule-body">表層・中層・深層それぞれに、<span class="acc">★5カード（80P以上）</span>を必ず1枚入れる。</div>
-        <div class="deck-reason">ルール2の最低600Pを構造的に保証するため。また、各層に主役がいることで漁師カードの選択が悩ましくなる。</div>
-      </div>
-
-    </div>
-
-    <div class="deck-note">
-      3つを守るだけで、誰がデッキを組んでも自動的にバランスが取れる。<strong>配布されるスターターキットは、これらのルールに沿って組まれている。</strong>
-    </div>
-  </section>
 
 
     <!-- 場のレイアウト図 -->
@@ -677,13 +627,83 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
       <p class="free-rule-text">ルールは無限大！<br>自分たちでオリジナルルールを考えて遊ぶのもおすすめ。<br>何度でも、新しい『漁』の楽しみ方を見つけよう。</p>
     </div>
   </section>
-  <!-- 上級ルール -->
-  <section style="margin-bottom:var(--gap)">
+
+  <!-- 上級者編 -->
+  <section style="margin-bottom:var(--gap)" aria-labelledby="adv-title">
+    <p class="section-label">For Advanced Players</p>
+    <h2 class="section-title" id="adv-title">上級者編</h2>
+    <p class="step-body" style="margin-bottom:22px">基本ルールに慣れてきたら、もっと『漁』を楽しむためのルールがあります。<br>カードが増えてきたら自分だけのデッキを組んだり、ボーナス得点ありで対戦に深みを出したり。</p>
+
+    <!-- デッキを組む3つの掟（アコーディオン） -->
+    <div class="acc-section" id="deckAcc" style="margin-bottom:14px">
+      <div class="acc-head" onclick="toggleAcc('deckAcc')">
+        <div class="acc-head-text">
+          <p class="section-label" style="color:var(--cyan);opacity:0.65">Deck Building</p>
+          <div class="acc-head-title">📚 デッキを組む3つの掟</div>
+        </div>
+        <span class="acc-chevron" style="color:var(--cyan)">▼</span>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+
+          <div class="adv-lead" style="background:rgba(0,229,255,0.06);border-left-color:rgba(0,229,255,0.4)">
+            対戦相手とカードが異なったり、追加カードが手に入ったり、友達とカードを交換したりして、<strong style="color:var(--cyan)">自分だけのデッキを組みたくなったら</strong>。<br>そんなときに役立つのが、この「3つの掟」です。
+          </div>
+
+          <div class="deck-rules">
+          
+                <div class="deck-card">
+                  <div class="deck-card-head">
+                    <span class="deck-icon">🎴</span>
+                    <div>
+                      <div class="deck-rule-no">Rule 1</div>
+                      <div class="deck-rule-title">各層5枚ずつ固定</div>
+                    </div>
+                  </div>
+                  <div class="deck-rule-body">表層・中層・深層から、それぞれ必ず<span class="acc">5枚ずつ</span>選ぶ。合計15枚。</div>
+                  <div class="deck-reason">枚数を変えると漁師カードの読み合いが「層の枚数読み」になってしまい、シンプルな駆け引きが崩れる。</div>
+                </div>
+          
+                <div class="deck-card">
+                  <div class="deck-card-head">
+                    <span class="deck-icon">⚖️</span>
+                    <div>
+                      <div class="deck-rule-no">Rule 2</div>
+                      <div class="deck-rule-title">山の合計ポイントは600〜700P</div>
+                    </div>
+                  </div>
+                  <div class="deck-rule-body">15枚のポイント合計は<span class="acc">600点以上、700点以下</span>に収める。</div>
+                  <div class="deck-reason">意図的に低ポイントの山を組めば「相手の旨味を減らす」防御戦略が成立してしまう。最低点を保証することで、誰もが本気で勝ちに行く構成になる。</div>
+                </div>
+          
+                <div class="deck-card">
+                  <div class="deck-card-head">
+                    <span class="deck-icon">⭐</span>
+                    <div>
+                      <div class="deck-rule-no">Rule 3</div>
+                      <div class="deck-rule-title">各層に★5（80P以上）を1枚以上</div>
+                    </div>
+                  </div>
+                  <div class="deck-rule-body">表層・中層・深層それぞれに、<span class="acc">★5カード（80P以上）</span>を必ず1枚入れる。</div>
+                  <div class="deck-reason">ルール2の最低600Pを構造的に保証するため。また、各層に主役がいることで漁師カードの選択が悩ましくなる。</div>
+                </div>
+          
+              </div>
+
+          <div class="deck-note">
+            この3つを守るだけで、誰がデッキを組んでも自動的にバランスが取れる。<strong>迷ったときはこのルールに立ち返ろう。</strong>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ボーナス得点（アコーディオン） -->
     <div class="acc-section" id="advAcc">
       <div class="acc-head" onclick="toggleAcc('advAcc')">
         <div class="acc-head-text">
-          <p class="section-label">Advanced</p>
-          <div class="acc-head-title">上級ルール：ボーナス得点</div>
+          <p class="section-label" style="color:var(--violet);opacity:0.65">Bonus Scoring</p>
+          <div class="acc-head-title">🏆 ボーナス得点ルール</div>
         </div>
         <span class="acc-chevron">▼</span>
       </div>
@@ -691,106 +711,108 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
         <div class="acc-body-inner">
 
           <div class="adv-lead">
-            基本ルールに慣れてきたら、ボーナス得点ありで遊んでみよう！どのボーナスを使うかは、ゲームを始める前に対戦相手と相談。全部使ってもいいし、気になるルールだけ使ってもOK！<br><br>
-            <strong>『漁』のルールは無限大！</strong>ここにある上級ルールは、もっと盛り上がるための遊び方の一例です。自分たちだけのオリジナルルールを作って遊ぶのもおすすめだよ！
-          </div>
-
-          <!-- ① 仲間集め -->
-          <div class="bonus">
-            <div class="bonus-head"><span class="bonus-no">1</span><span class="bonus-name">仲間集めボーナス</span></div>
-            <div class="bonus-desc">同じ「科」のカードを集めるとボーナスが入ります。</div>
-            <div class="bonus-list">
-              <div class="bonus-row"><span>同じ科を2枚集めた</span><span class="bonus-pt">＋10P</span></div>
-              <div class="bonus-row"><span>同じ科を3枚以上集めた</span><span class="bonus-pt">＋20P</span></div>
-            </div>
-            <div class="bonus-note">※ 同じ科の組み合わせが複数ある場合は、それぞれボーナスを得られます。例：ハナダイ科2枚、ハタ科2枚を集めた場合は、それぞれ＋10P。</div>
-          </div>
-
-          <!-- ② 図鑑 -->
-          <div class="bonus">
-            <div class="bonus-head"><span class="bonus-no">2</span><span class="bonus-name">図鑑ボーナス</span></div>
-            <div class="bonus-desc">いろいろな「科」のカードを集めるとボーナスが入ります。</div>
-            <div class="bonus-list">
-              <div class="bonus-row"><span>3種類の科を集めた</span><span class="bonus-pt">＋5P</span></div>
-              <div class="bonus-row"><span>4種類の科を集めた</span><span class="bonus-pt">＋10P</span></div>
-              <div class="bonus-row"><span>5種類以上の科を集めた</span><span class="bonus-pt">＋15P</span></div>
-            </div>
-            <div class="bonus-note">※ 同じ科は1種類として数えます。<br>※ もらえるボーナスは、一番高いもの1つだけです。</div>
-          </div>
-
-          <!-- ③ 大漁役 -->
-          <div class="bonus">
-            <div class="bonus-head"><span class="bonus-no">3</span><span class="bonus-name">大漁役ボーナス</span></div>
-            <div class="bonus-desc">決まった「科」の組み合わせを集めると、役が完成します。</div>
-            <div class="bonus-combo">
-              <div class="combo-row">
-                <div class="combo-name">水族館スターズ</div>
-                <div class="combo-detail"><span>スズメダイ科＋ニザダイ科＋ベラ科</span><span class="combo-pt">＋25P</span></div>
-              </div>
-              <div class="combo-row">
-                <div class="combo-name">高級魚づくし</div>
-                <div class="combo-detail"><span>タイ科＋ハタ科＋アマダイ科</span><span class="combo-pt">＋30P</span></div>
-              </div>
-              <div class="combo-row">
-                <div class="combo-name">危険な海の住人</div>
-                <div class="combo-detail"><span>ハリセンボン科＋オニオコゼ科＋フサカサゴ科</span><span class="combo-pt">＋30P</span></div>
-              </div>
-              <div class="combo-row">
-                <div class="combo-name">甲殻コレクション</div>
-                <div class="combo-detail"><span>カブトガニ科＋セミエビ科＋カラッパ科</span><span class="combo-pt">＋30P</span></div>
-              </div>
-              <div class="combo-row">
-                <div class="combo-name">深海スターズ</div>
-                <div class="combo-detail"><span>タカアシガニ科＋メンダコ科＋スナホリムシ科</span><span class="combo-pt">＋30P</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- ④ 大物小物コンボ -->
-          <div class="bonus">
-            <div class="bonus-head"><span class="bonus-no">4</span><span class="bonus-name">大物小物コンボ</span></div>
-            <div class="bonus-desc">獲得したカードの中で、いちばん大きいカードと、いちばん小さいカードの差が大きいとボーナスが入ります。</div>
-            <div class="bonus-list">
-              <div class="bonus-row"><span>大きさの差が100cm以上</span><span class="bonus-pt">＋10P</span></div>
-              <div class="bonus-row"><span>大きさの差が150cm以上</span><span class="bonus-pt">＋20P</span></div>
-            </div>
-            <div class="bonus-note">※ もらえるボーナスは、どちらか高い方1つだけです。<br>※ 体長に幅があるカードは、大きいカードは最大値、小さいカードは最小値で判定します。<br>※ 大物小物コンボは、1ゲームにつき1回だけです。</div>
-          </div>
-
-          <!-- ⑤ 三海域制覇 -->
-          <div class="bonus">
-            <div class="bonus-head"><span class="bonus-no">5</span><span class="bonus-name">三海域制覇</span></div>
-            <div class="bonus-desc">表層・中層・深層のカードを、それぞれ1枚以上獲得するとボーナスが入ります。</div>
-            <div class="bonus-list">
-              <div class="bonus-row"><span>表層・中層・深層をすべて獲得</span><span class="bonus-pt">＋20P</span></div>
-            </div>
-          </div>
-
-          <!-- ⑥ 小物名人 -->
-          <div class="bonus">
-            <div class="bonus-head"><span class="bonus-no">6</span><span class="bonus-name">小物名人</span></div>
-            <div class="bonus-desc">低いポイントのカードをたくさん集めるとボーナスが入ります。</div>
-            <div class="bonus-list">
-              <div class="bonus-row"><span>20P以下のカードを3枚以上獲得</span><span class="bonus-pt">＋20P</span></div>
-            </div>
-          </div>
-
-          <!-- 計算の注意 -->
-          <div class="bonus-calc">
-            <div class="bonus-calc-title">ボーナス計算の注意</div>
-            <ul>
-              <li>ボーナス得点は、ゲーム終了時にまとめて計算します。</li>
-              <li>条件を満たしていれば、複数のボーナスを同時に獲得できます。</li>
-              <li>ただし、「図鑑ボーナス」と「大物小物コンボ」は、一番高いボーナス1つだけを加えます。</li>
-              <li>上級ルールはすべて使う必要はありません。使うボーナスは、ゲームを始める前に対戦相手と決めてください。</li>
-              <li>通常ポイントにボーナス得点を足した合計点で勝敗を決めます。</li>
-            </ul>
-          </div>
+                      基本ルールに慣れてきたら、ボーナス得点ありで遊んでみよう！どのボーナスを使うかは、ゲームを始める前に対戦相手と相談。全部使ってもいいし、気になるルールだけ使ってもOK！<br><br>
+                      <strong>『漁』のルールは無限大！</strong>ここにある上級ルールは、もっと盛り上がるための遊び方の一例です。自分たちだけのオリジナルルールを作って遊ぶのもおすすめだよ！
+                    </div>
+          
+                    <!-- ① 仲間集め -->
+                    <div class="bonus">
+                      <div class="bonus-head"><span class="bonus-no">1</span><span class="bonus-name">仲間集めボーナス</span></div>
+                      <div class="bonus-desc">同じ「科」のカードを集めるとボーナスが入ります。</div>
+                      <div class="bonus-list">
+                        <div class="bonus-row"><span>同じ科を2枚集めた</span><span class="bonus-pt">＋10P</span></div>
+                        <div class="bonus-row"><span>同じ科を3枚以上集めた</span><span class="bonus-pt">＋20P</span></div>
+                      </div>
+                      <div class="bonus-note">※ 同じ科の組み合わせが複数ある場合は、それぞれボーナスを得られます。例：ハナダイ科2枚、ハタ科2枚を集めた場合は、それぞれ＋10P。</div>
+                    </div>
+          
+                    <!-- ② 図鑑 -->
+                    <div class="bonus">
+                      <div class="bonus-head"><span class="bonus-no">2</span><span class="bonus-name">図鑑ボーナス</span></div>
+                      <div class="bonus-desc">いろいろな「科」のカードを集めるとボーナスが入ります。</div>
+                      <div class="bonus-list">
+                        <div class="bonus-row"><span>3種類の科を集めた</span><span class="bonus-pt">＋5P</span></div>
+                        <div class="bonus-row"><span>4種類の科を集めた</span><span class="bonus-pt">＋10P</span></div>
+                        <div class="bonus-row"><span>5種類以上の科を集めた</span><span class="bonus-pt">＋15P</span></div>
+                      </div>
+                      <div class="bonus-note">※ 同じ科は1種類として数えます。<br>※ もらえるボーナスは、一番高いもの1つだけです。</div>
+                    </div>
+          
+                    <!-- ③ 大漁役 -->
+                    <div class="bonus">
+                      <div class="bonus-head"><span class="bonus-no">3</span><span class="bonus-name">大漁役ボーナス</span></div>
+                      <div class="bonus-desc">決まった「科」の組み合わせを集めると、役が完成します。</div>
+                      <div class="bonus-combo">
+                        <div class="combo-row">
+                          <div class="combo-name">水族館スターズ</div>
+                          <div class="combo-detail"><span>スズメダイ科＋ニザダイ科＋ベラ科</span><span class="combo-pt">＋25P</span></div>
+                        </div>
+                        <div class="combo-row">
+                          <div class="combo-name">高級魚づくし</div>
+                          <div class="combo-detail"><span>タイ科＋ハタ科＋アマダイ科</span><span class="combo-pt">＋30P</span></div>
+                        </div>
+                        <div class="combo-row">
+                          <div class="combo-name">危険な海の住人</div>
+                          <div class="combo-detail"><span>ハリセンボン科＋オニオコゼ科＋フサカサゴ科</span><span class="combo-pt">＋30P</span></div>
+                        </div>
+                        <div class="combo-row">
+                          <div class="combo-name">甲殻コレクション</div>
+                          <div class="combo-detail"><span>カブトガニ科＋セミエビ科＋カラッパ科</span><span class="combo-pt">＋30P</span></div>
+                        </div>
+                        <div class="combo-row">
+                          <div class="combo-name">深海スターズ</div>
+                          <div class="combo-detail"><span>タカアシガニ科＋メンダコ科＋スナホリムシ科</span><span class="combo-pt">＋30P</span></div>
+                        </div>
+                      </div>
+                    </div>
+          
+                    <!-- ④ 大物小物コンボ -->
+                    <div class="bonus">
+                      <div class="bonus-head"><span class="bonus-no">4</span><span class="bonus-name">大物小物コンボ</span></div>
+                      <div class="bonus-desc">獲得したカードの中で、いちばん大きいカードと、いちばん小さいカードの差が大きいとボーナスが入ります。</div>
+                      <div class="bonus-list">
+                        <div class="bonus-row"><span>大きさの差が100cm以上</span><span class="bonus-pt">＋10P</span></div>
+                        <div class="bonus-row"><span>大きさの差が150cm以上</span><span class="bonus-pt">＋20P</span></div>
+                      </div>
+                      <div class="bonus-note">※ もらえるボーナスは、どちらか高い方1つだけです。<br>※ 体長に幅があるカードは、大きいカードは最大値、小さいカードは最小値で判定します。<br>※ 大物小物コンボは、1ゲームにつき1回だけです。</div>
+                    </div>
+          
+                    <!-- ⑤ 三海域制覇 -->
+                    <div class="bonus">
+                      <div class="bonus-head"><span class="bonus-no">5</span><span class="bonus-name">三海域制覇</span></div>
+                      <div class="bonus-desc">表層・中層・深層のカードを、それぞれ1枚以上獲得するとボーナスが入ります。</div>
+                      <div class="bonus-list">
+                        <div class="bonus-row"><span>表層・中層・深層をすべて獲得</span><span class="bonus-pt">＋20P</span></div>
+                      </div>
+                    </div>
+          
+                    <!-- ⑥ 小物名人 -->
+                    <div class="bonus">
+                      <div class="bonus-head"><span class="bonus-no">6</span><span class="bonus-name">小物名人</span></div>
+                      <div class="bonus-desc">低いポイントのカードをたくさん集めるとボーナスが入ります。</div>
+                      <div class="bonus-list">
+                        <div class="bonus-row"><span>20P以下のカードを3枚以上獲得</span><span class="bonus-pt">＋20P</span></div>
+                      </div>
+                    </div>
+          
+                    <!-- 計算の注意 -->
+                    <div class="bonus-calc">
+                      <div class="bonus-calc-title">ボーナス計算の注意</div>
+                      <ul>
+                        <li>ボーナス得点は、ゲーム終了時にまとめて計算します。</li>
+                        <li>条件を満たしていれば、複数のボーナスを同時に獲得できます。</li>
+                        <li>ただし、「図鑑ボーナス」と「大物小物コンボ」は、一番高いボーナス1つだけを加えます。</li>
+                        <li>上級ルールはすべて使う必要はありません。使うボーナスは、ゲームを始める前に対戦相手と決めてください。</li>
+                        <li>通常ポイントにボーナス得点を足した合計点で勝敗を決めます。</li>
+                      </ul>
+                    </div>
 
         </div>
       </div>
     </div>
+
   </section>
+
 
 
   <!-- 印刷用DL -->
@@ -805,26 +827,16 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
   </section>
 
   <!-- カード表記について -->
-  <section style="margin-bottom:var(--gap)">
-    <div class="acc-section" id="aboutAcc">
-      <div class="acc-head" onclick="toggleAcc('aboutAcc')">
-        <div class="acc-head-text">
-          <p class="section-label">About The Cards</p>
-          <div class="acc-head-title">カード表記について</div>
-        </div>
-        <span class="acc-chevron">▼</span>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <div class="about-text">
-            <p>※ このカードは、楽しく遊びながら生き物に興味を持ってもらうためのゲームカードです。</p>
-            <p>水深・体長・特徴は代表的な情報をもとに、遊びやすい形に整理しています。実際の生息環境や大きさは、地域・季節・成長段階・個体差などによって変わる場合があります。</p>
-            <p>レア度は、珍しさ・人気・見た目のインパクト・ゲームバランスなどをもとに設定しています。</p>
-          </div>
-        </div>
-      </div>
+  <section style="margin-bottom:var(--gap);opacity:0.88">
+    <p class="section-label">About The Cards</p>
+    <h2 class="section-title" style="font-size:18px;color:rgba(255,255,255,0.68);margin-bottom:14px">カード表記について</h2>
+    <div class="about-text" style="background:rgba(255,255,255,0.025);border:1px solid var(--glass-border);border-radius:var(--rs);padding:18px 20px">
+      <p>※ このカードは、楽しく遊びながら生き物に興味を持ってもらうためのゲームカードです。</p>
+      <p>水深・体長・特徴は代表的な情報をもとに、遊びやすい形に整理しています。実際の生息環境や大きさは、地域・季節・成長段階・個体差などによって変わる場合があります。</p>
+      <p>レア度は、珍しさ・人気・見た目のインパクト・ゲームバランスなどをもとに設定しています。</p>
     </div>
   </section>
+
 
 </main>
 
