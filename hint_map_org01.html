@@ -877,6 +877,7 @@ body::after {
    ゴール告知バナー
 ===================================================== */
 .goal-banner {
+  display: none;
   margin: 20px 16px 0;
   border-radius: var(--radius);
   background: linear-gradient(135deg, rgba(240,192,96,0.12) 0%, rgba(180,130,40,0.08) 100%);
@@ -1128,7 +1129,7 @@ body::after {
   </div>
 
   <!-- ゴール案内 -->
-  <div style="margin:0 16px 20px;padding:16px 18px;background:linear-gradient(135deg,rgba(240,192,96,0.12),rgba(240,192,96,0.06));border:1px solid rgba(240,192,96,0.4);border-radius:14px;text-align:center">
+  <div id="giftBanner" style="display:none;margin:0 16px 20px;padding:16px 18px;background:linear-gradient(135deg,rgba(240,192,96,0.12),rgba(240,192,96,0.06));border:1px solid rgba(240,192,96,0.4);border-radius:14px;text-align:center">
     <div style="font-size:28px;margin-bottom:8px">🎁</div>
     <div style="font-family:'Noto Serif JP','Yu Mincho',serif;font-size:16px;font-weight:700;color:#f0c060;line-height:1.7;letter-spacing:0.04em">
       17枚すべてのカードを集めたら<br>本部へお越しください！
@@ -1818,8 +1819,10 @@ setInterval(tick, 1000);
   if (!banner) return;
 
   // SHOW_GOAL制御
-  if (typeof SHOW_GOAL !== 'undefined' && !SHOW_GOAL) {
-    banner.style.display = 'none';
+  if (typeof SHOW_GOAL === 'undefined' || SHOW_GOAL) {
+    banner.style.display = '';
+    var gb = document.getElementById('giftBanner');
+    if (gb) gb.style.display = '';
   }
 
   /* 引き換え済み状態を復元（リセット：常に未引き換えで開始） */
