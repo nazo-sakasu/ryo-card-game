@@ -132,17 +132,17 @@ body::after {
 }
 .header-title span {
   display: inline-block;
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-size: 15px;
+  letter-spacing: 0.12em;
   color: var(--glow);
-  font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
-  text-transform: uppercase;
+  font-family: 'Noto Serif JP', 'Yu Mincho', serif;
+  font-weight: 600;
   background: linear-gradient(90deg, var(--accent), var(--glow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .header-sub {
   font-size: 12px;
@@ -1079,7 +1079,7 @@ body::after {
       </svg>
     </div>
     <h1 class="header-title">
-      <span>TAKESUI DEEP SEA — 宝さがしカードゲーム『漁』</span>
+      <span id="orgNameDisp" style="display:none"></span>
       宝さがしヒントMAP
     </h1>
     <p class="header-sub">館内にかくされた17枚のカードを見つけよう</p>
@@ -1114,15 +1114,30 @@ body::after {
       <div class="rule-item">
         <div class="rule-num">3</div>
         <div class="rule-text">
-          <strong>館内は走らないで</strong>ください。<br>
-          転倒や接触など、危険なだけでなく<br>ほかの参加者様へのご迷惑にもなります。
+          集める速さを競うものではありません。<strong>ゆっくり館内を楽しみながら</strong>探してください。<br>
+          また、<strong>館内は走らないで</strong>ください。転倒や接触など危険です。
         </div>
       </div>
+
+    </div>
     </div>
     <div class="rules-footer">
       <span class="rules-footer-icon">🐟</span>
       <span>ルールを守って、みんなで楽しく宝さがしを楽しみましょう！</span>
     </div>
+  </div>
+
+  <!-- ゴール案内 -->
+  <div style="margin:0 16px 20px;padding:16px 18px;background:linear-gradient(135deg,rgba(240,192,96,0.12),rgba(240,192,96,0.06));border:1px solid rgba(240,192,96,0.4);border-radius:14px;text-align:center">
+    <div style="font-size:28px;margin-bottom:8px">🎁</div>
+    <div style="font-family:'Noto Serif JP','Yu Mincho',serif;font-size:16px;font-weight:700;color:#f0c060;line-height:1.7;letter-spacing:0.04em">
+      17枚すべてのカードを集めたら<br>本部へお越しください！
+    </div>
+    <div style="font-size:13px;color:rgba(238,246,255,0.75);margin-top:6px;line-height:1.6">
+      特別なカードをプレゼントします！
+    </div>
+  </div>
+
   </div>
 
   <!-- モードバナー（テスト/管理） -->
@@ -1178,7 +1193,10 @@ body::after {
 
   <!-- ヒント一覧 -->
   <div class="list-section">
-    <div class="list-heading">💡 ヒント一覧</div>
+    <div class="list-heading" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+      <span>💡 ヒント一覧</span>
+      <span style="font-size:12px;color:rgba(78,201,255,0.7);font-family:monospace;letter-spacing:0.05em;background:rgba(78,201,255,0.08);padding:3px 10px;border-radius:20px;border:1px solid rgba(78,201,255,0.2)">🕐 <span id="inlineTime">--:--:--</span></span>
+    </div>
     <div class="hint-list" id="hintList"></div>
   </div>
 
@@ -1222,7 +1240,7 @@ body::after {
       <strong>本部へ来てください！</strong>
     </div>
     <div class="goal-sub">
-      漁師カードと引き換えにお渡しします 🐟<br>
+      特別なカードをプレゼントします！ 🐟<br>
       スタッフにお声がけください
     </div>
 
@@ -1241,7 +1259,7 @@ body::after {
 
   <!-- フッター -->
   <footer class="footer">
-    <div class="footer-title">777労働組合 宝さがし</div>
+    <div class="footer-title">アイシンAIW労働組合 宝さがし</div>
     <div>©nazo-sakasu</div>
   </footer>
 
@@ -1285,6 +1303,17 @@ body::after {
 </div>
 
 <script>
+  // 団体名をURLパラメータから取得して表示
+  (function() {
+    const params = new URLSearchParams(location.search);
+    const org = params.get('org');
+    const el = document.getElementById('orgNameDisp');
+    if (org && el) {
+      el.textContent = decodeURIComponent(org);
+      el.style.display = '';
+    }
+  })();
+
 /* =====================================================
    設定 —— MAP画像URL
    差し替えたいときはこの定数を書き換えてください
@@ -1313,8 +1342,8 @@ const HINTS_DATA = [
     "title": "チケット売り場",
     "hint": "入口のすぐそば。水族館の入り口となる場所をよく観察してみよう。大きな数字が刻まれた何かが目印だ。",
     "unlockTime": "18:00",
-    "x": 48,
-    "y": 47
+    "x": 41,
+    "y": 31
   },
   {
     "id": 2,
@@ -1329,48 +1358,48 @@ const HINTS_DATA = [
     "title": "深海ゾーン",
     "hint": "光の届かない深い海をイメージしたゾーン。タカアシガニの水槽の足元、磯の影に何かある。",
     "unlockTime": "18:06",
-    "x": 40,
-    "y": 33
+    "x": 36,
+    "y": 41
   },
   {
     "id": 4,
     "title": "三河湾大水槽",
     "hint": "大きな魚たちが泳ぐメイン水槽の向かい側の壁。魚の絵と番号が描かれた小さなシールを探せ。",
     "unlockTime": "18:09",
-    "x": 53,
-    "y": 45
+    "x": 44,
+    "y": 55
   },
   {
     "id": 5,
     "title": "近海ゾーン",
     "hint": "三河湾で獲れる魚を展示するゾーン。アジの群れが泳ぐ水槽の右下に、貝殻に隠されたカードがある。",
     "unlockTime": "18:12",
-    "x": 67,
-    "y": 29
+    "x": 73,
+    "y": 24
   },
   {
     "id": 6,
     "title": "タケシマンション",
     "hint": "タコやヤドカリが暮らすマンション。一番上の部屋の外壁に小さな宝のマークが貼られているぞ。",
     "unlockTime": "18:15",
-    "x": 70,
-    "y": 53
+    "x": 65,
+    "y": 55
   },
   {
     "id": 7,
     "title": "ウツボ軍団水槽",
     "hint": "土管の中に潜むウツボたち。一番手前の土管の外側、底の部分に赤いシールが貼られている。",
     "unlockTime": "18:18",
-    "x": 65,
-    "y": 50
+    "x": 93,
+    "y": 40
   },
   {
     "id": 8,
     "title": "熱帯海水ゾーン",
     "hint": "色とりどりの熱帯魚が泳ぐカラフルなゾーン。ニモに似た魚のいる水槽の上の棚に注目しよう。",
     "unlockTime": "18:21",
-    "x": 79,
-    "y": 38
+    "x": 87,
+    "y": 37
   },
   {
     "id": 9,
@@ -1385,15 +1414,15 @@ const HINTS_DATA = [
     "title": "さわりんプール（タッチプール）",
     "hint": "オオグソクムシやタカアシガニに触れるプール。プールの縁にある案内板の裏側を確認してみよう。",
     "unlockTime": "18:27",
-    "x": 72,
-    "y": 72
+    "x": 77,
+    "y": 85
   },
   {
     "id": 11,
     "title": "コツメカワウソ",
     "hint": "小さくてかわいいカワウソが暮らすスペース。入口の看板に描かれた絵のどこかに隠し文字がある。",
     "unlockTime": "18:30",
-    "x": 53,
+    "x": 49,
     "y": 62
   },
   {
@@ -1401,48 +1430,48 @@ const HINTS_DATA = [
     "title": "ギャラリー・企画展",
     "hint": "季節の展示が行われるギャラリー。今回の特別展示パネルの最後の1枚の裏面を覗いてみよう。",
     "unlockTime": "18:33",
-    "x": 43,
-    "y": 59
+    "x": 70,
+    "y": 66
   },
   {
     "id": 13,
     "title": "アシカプール",
     "hint": "アシカショーが行われる屋外プール。観客席の一番端の椅子の下に小さなカードが貼られているよ。",
     "unlockTime": "18:36",
-    "x": 77,
-    "y": 80
+    "x": 49,
+    "y": 45
   },
   {
     "id": 14,
     "title": "オットセイプール",
     "hint": "アシカのお隣のオットセイたちのプール。解説板の右側にある魚マークのシールの下を探せ。",
     "unlockTime": "18:39",
-    "x": 86,
-    "y": 37
+    "x": 82,
+    "y": 71
   },
   {
     "id": 15,
     "title": "ミュージアムショップ",
     "hint": "グッズいっぱいのお土産コーナー。深海魚のぬいぐるみコーナーの近く、棚の一番下の段に注目！",
     "unlockTime": "18:42",
-    "x": 62,
-    "y": 72
+    "x": 64,
+    "y": 71
   },
   {
     "id": 16,
     "title": "カピバラ・ケヅメリクガメ",
     "hint": "のんびり暮らす動物たちのコーナー。リクガメの飼育スペースの前にある解説看板を後ろから見てみよう。",
     "unlockTime": "18:45",
-    "x": 77,
-    "y": 50
+    "x": 49,
+    "y": 28
   },
   {
     "id": 17,
     "title": "広場・キッチンカー",
     "hint": "最後の宝！屋外の広場にあるキッチンカーの車輪の近く。地面に描かれた魚のマークの中心に宝がある！",
     "unlockTime": "18:48",
-    "x": 93,
-    "y": 40
+    "x": 79,
+    "y": 60
   }
 ];
 
@@ -1758,6 +1787,9 @@ function tick() {
   const h = String(now.getHours()).padStart(2, '0');
   const m = String(now.getMinutes()).padStart(2, '0');
   const s = String(now.getSeconds()).padStart(2, '0');
+  // ヒント一覧ヘッダーの時計を更新
+  const inlineEl = document.getElementById('inlineTime');
+  if (inlineEl) inlineEl.textContent = h + ':' + m + ':' + s;
   document.getElementById('clockDisplay').textContent = h + ':' + m + ':' + s;
 
   /* 分が変わったら全更新（解放チェック込み） */
@@ -1775,438 +1807,7 @@ refreshAll();
 setInterval(tick, 1000);
 </script>
 
-<!-- =====================================================
-   BGM : Web Audio API による完全自動生成
-   外部ファイル不要。ブラウザ内蔵の音声合成エンジンで
-   「深海×冒険×わくわく」のBGMをリアルタイム生成。
-===================================================== -->
-<style>
-/* BGMボタン */
-.bgm-btn {
-  position: fixed;
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
-  right: 18px;
-  z-index: 200;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(78,201,255,0.45);
-  background: rgba(7,26,54,0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow:
-    0 0 18px rgba(78,201,255,0.22),
-    0 4px 16px rgba(0,0,0,0.5);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: box-shadow 0.3s ease, transform 0.15s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-.bgm-btn:active { transform: scale(0.92); }
-.bgm-btn.playing {
-  border-color: rgba(78,201,255,0.75);
-  box-shadow:
-    0 0 28px rgba(78,201,255,0.40),
-    0 4px 16px rgba(0,0,0,0.5);
-  animation: bgmPulse 2.4s ease-in-out infinite;
-}
-@keyframes bgmPulse {
-  0%,100% { box-shadow: 0 0 18px rgba(78,201,255,0.30), 0 4px 16px rgba(0,0,0,0.5); }
-  50%     { box-shadow: 0 0 36px rgba(78,201,255,0.55), 0 4px 16px rgba(0,0,0,0.5); }
-}
-.bgm-btn svg { width:22px; height:22px; }
-.bgm-icon-play  { display: block; }
-.bgm-icon-pause { display: none; }
-.bgm-btn.playing .bgm-icon-play  { display: none; }
-.bgm-btn.playing .bgm-icon-pause { display: block; }
 
-/* 初回タップ誘導トースト */
-.bgm-toast {
-  position: fixed;
-  bottom: calc(env(safe-area-inset-bottom, 0px) + 80px);
-  right: 18px;
-  z-index: 199;
-  background: rgba(7,26,54,0.90);
-  border: 1px solid rgba(78,201,255,0.30);
-  border-radius: 10px;
-  padding: 8px 14px;
-  font-size: 11px;
-  font-family: 'Hiragino Kaku Gothic ProN', sans-serif;
-  color: rgba(78,201,255,0.9);
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-  animation: toastIn 0.4s ease forwards, toastOut 0.4s ease 4s forwards;
-  pointer-events: none;
-}
-@keyframes toastIn  { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-@keyframes toastOut { from { opacity:1; } to { opacity:0; } }
-</style>
-
-<!-- BGMボタン本体 -->
-<button class="bgm-btn" id="bgmBtn" aria-label="BGM再生／停止">
-  <!-- 再生アイコン -->
-  <svg class="bgm-icon-play" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 4l14 8-14 8V4z" fill="rgba(78,201,255,0.85)"/>
-    <circle cx="12" cy="12" r="10" stroke="rgba(78,201,255,0.3)" stroke-width="1" fill="none"/>
-  </svg>
-  <!-- 停止アイコン -->
-  <svg class="bgm-icon-pause" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="6" y="5" width="4" height="14" rx="1.5" fill="rgba(78,201,255,0.85)"/>
-    <rect x="14" y="5" width="4" height="14" rx="1.5" fill="rgba(78,201,255,0.85)"/>
-    <circle cx="12" cy="12" r="10" stroke="rgba(78,201,255,0.3)" stroke-width="1" fill="none"/>
-  </svg>
-</button>
-
-<script>
-/* =====================================================
-   BGM エンジン（Web Audio API）
-
-   構成：
-   ① ベースライン（低音のリズム）      … 冒険感の土台
-   ② メロディ（ペンタトニック進行）    … わくわく感
-   ③ アルペジオ（高音の輝き）          … 深海の神秘
-   ④ パーカッション（クリックノイズ）  … ドキドキ感
-   ⑤ アンビエントパッド（持続和音）    … 深海の雰囲気
-===================================================== */
-
-(function() {
-  'use strict';
-
-  let ctx = null;          /* AudioContext */
-  let masterGain = null;   /* マスターボリューム */
-  let isPlaying = false;
-  let scheduledNodes = []; /* 停止時にクリアするノード群 */
-  let scheduleTimer = null;
-  let nextBeatTime = 0;
-  let beatCount = 0;
-
-  const BPM      = 32;                    /* テンポ */
-  const BEAT     = 60 / BPM;             /* 1拍の秒数 */
-  const BAR      = BEAT * 4;             /* 1小節 */
-  const SCHEDULE = 0.2;                  /* 先読み秒数 */
-  const LOOKAHEAD= 50;                   /* スケジューラ間隔ms */
-
-  /* —— 音階定義（Dマイナーペンタトニック / 深海っぽい）—— */
-  const note = (n) => 440 * Math.pow(2, n / 12); /* A4=440基準 */
-
-  /* D3=D,F,G,A,C → D minor pentatonic */
-  const PENTA = [
-    note(-26), /* D3  */
-    note(-23), /* F3  */
-    note(-21), /* G3  */
-    note(-19), /* A3  */
-    note(-16), /* C4  */
-    note(-14), /* D4  */
-    note(-11), /* F4  */
-    note(-9),  /* G4  */
-    note(-7),  /* A4  */
-    note(-4),  /* C5  */
-    note(-2),  /* D5  */
-  ];
-
-  /* ベースラインのピッチ */
-  const BASS = [note(-30), note(-33), note(-35), note(-33)]; /* D2,G2,A2,G2 */
-
-  /* メロディパターン（16分音符単位、インデックス） */
-  const MELODY_PATTERNS = [
-    [4,6,7,6,  4,2,4,6,  7,9,7,6,  4,-1,-1,-1],
-    [6,7,9,7,  6,4,8,7,  9,10,9,7, 6,-1,-4,-1],
-    [4,6,7,9,  7,6,4,2,  4,6,7,6,  4,2,-1,-1],
-    [9,7,6,4,  8,7,6,4,  2,4,8,7,  9,-1,7,-1],
-  ];
-  let melodyPatternIdx = 0;
-
-  /* アルペジオパターン */
-  const ARP_CHORD = [[4,6,9],[6,9,10],[2,4,7],[4,7,9]];
-  let arpChordIdx = 0;
-
-  /* =====================================================
-     ユーティリティ：オシレータ生成
-  ===================================================== */
-  function makeOsc(freq, type, startTime, endTime, gainVal, detune) {
-    const osc  = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type          = type || 'sine';
-    osc.frequency.value = freq;
-    if (detune) osc.detune.value = detune;
-    osc.connect(gain);
-    gain.connect(masterGain);
-    gain.gain.setValueAtTime(0, startTime);
-    gain.gain.linearRampToValueAtTime(gainVal, startTime + 0.01);
-    gain.gain.exponentialRampToValueAtTime(0.001, endTime);
-    osc.start(startTime);
-    osc.stop(endTime + 0.05);
-    scheduledNodes.push(osc, gain);
-    return { osc, gain };
-  }
-
-  /* =====================================================
-     ① ベースライン
-  ===================================================== */
-  function scheduleBaseline(barStart) {
-    for (let i = 0; i < 4; i++) {
-      const t    = barStart + i * BEAT;
-      const freq = BASS[i % BASS.length];
-      /* サイン波ベース */
-      makeOsc(freq,     'sine',     t, t + BEAT * 0.7, 0.30);
-      /* 少し上の倍音でコシを足す */
-      makeOsc(freq * 2, 'triangle', t, t + BEAT * 0.4, 0.06);
-    }
-  }
-
-  /* =====================================================
-     ② メロディ
-  ===================================================== */
-  function scheduleMelody(barStart, patternIdx) {
-    const pattern  = MELODY_PATTERNS[patternIdx % MELODY_PATTERNS.length];
-    const sixteenth = BEAT / 4;
-    pattern.forEach((idx, i) => {
-      if (idx < 0) return; /* 休符 */
-      const t    = barStart + i * sixteenth;
-      const freq = PENTA[idx % PENTA.length];
-      const dur  = sixteenth * 0.75;
-      makeOsc(freq,        'triangle', t, t + dur, 0.13);
-      makeOsc(freq * 2, 'sine',      t, t + dur * 0.5, 0.04);
-    });
-  }
-
-  /* =====================================================
-     ③ アルペジオ（高音キラキラ）
-  ===================================================== */
-  function scheduleArpeggio(barStart, chordIdx) {
-    const chord    = ARP_CHORD[chordIdx % ARP_CHORD.length];
-    const sixteenth = BEAT / 4;
-    /* 8分音符でアルペジオ */
-    for (let i = 0; i < 8; i++) {
-      const noteIdx = chord[i % chord.length];
-      const freq    = PENTA[noteIdx % PENTA.length] * 2; /* 1オクターブ上 */
-      const t       = barStart + i * (BEAT / 2);
-      makeOsc(freq, 'sine', t, t + BEAT * 0.25, 0.045, Math.random() * 4 - 2);
-    }
-  }
-
-  /* =====================================================
-     ④ パーカッション（クリックノイズ）
-  ===================================================== */
-  function schedulePerc(barStart) {
-    /* バスドラ的な低域クリック：1拍目・3拍目 */
-    [0, 2].forEach(beat => {
-      const t   = barStart + beat * BEAT;
-      const buf = ctx.createBuffer(1, ctx.sampleRate * 0.06, ctx.sampleRate);
-      const data = buf.getChannelData(0);
-      for (let i = 0; i < data.length; i++) {
-        data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 8);
-      }
-      const src  = ctx.createBufferSource();
-      const gain = ctx.createGain();
-      const flt  = ctx.createBiquadFilter();
-      flt.type = 'lowpass'; flt.frequency.value = 160;
-      src.buffer = buf;
-      src.connect(flt); flt.connect(gain); gain.connect(masterGain);
-      gain.gain.setValueAtTime(0.35, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
-      src.start(t);
-      scheduledNodes.push(src, gain, flt);
-    });
-
-    /* スネア的なハイノイズ：2拍目・4拍目 */
-    [1, 3].forEach(beat => {
-      const t   = barStart + beat * BEAT;
-      const buf = ctx.createBuffer(1, ctx.sampleRate * 0.08, ctx.sampleRate);
-      const data = buf.getChannelData(0);
-      for (let i = 0; i < data.length; i++) {
-        data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 3);
-      }
-      const src  = ctx.createBufferSource();
-      const gain = ctx.createGain();
-      const flt  = ctx.createBiquadFilter();
-      flt.type = 'bandpass'; flt.frequency.value = 1800; flt.Q.value = 0.8;
-      src.buffer = buf;
-      src.connect(flt); flt.connect(gain); gain.connect(masterGain);
-      gain.gain.setValueAtTime(0.12, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.08);
-      src.start(t);
-      scheduledNodes.push(src, gain, flt);
-    });
-
-    /* ハイハット的な細かいビート */
-    for (let i = 0; i < 8; i++) {
-      const t   = barStart + i * (BEAT / 2);
-      const buf = ctx.createBuffer(1, ctx.sampleRate * 0.03, ctx.sampleRate);
-      const data = buf.getChannelData(0);
-      for (let j = 0; j < data.length; j++) {
-        data[j] = (Math.random() * 2 - 1) * Math.pow(1 - j / data.length, 6);
-      }
-      const src  = ctx.createBufferSource();
-      const gain = ctx.createGain();
-      const flt  = ctx.createBiquadFilter();
-      flt.type = 'highpass'; flt.frequency.value = 6000;
-      src.buffer = buf;
-      src.connect(flt); flt.connect(gain); gain.connect(masterGain);
-      gain.gain.setValueAtTime(i % 2 === 0 ? 0.07 : 0.04, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.03);
-      src.start(t);
-      scheduledNodes.push(src, gain, flt);
-    }
-  }
-
-  /* =====================================================
-     ⑤ アンビエントパッド（深海の空気感）
-  ===================================================== */
-  function scheduleAmbient(barStart) {
-    /* 4小節に1回だけスポーン（重くなりすぎないよう） */
-    if (beatCount % 4 !== 0) return;
-    const freqs = [note(-26), note(-19), note(-14)]; /* Dm和音 */
-    freqs.forEach((freq, i) => {
-      const osc  = ctx.createOscillator();
-      const gain = ctx.createGain();
-      const lfoG = ctx.createGain();
-      const lfo  = ctx.createOscillator();
-      /* LFO（ゆっくりビブラート） */
-      lfo.frequency.value = 0.15 + i * 0.07;
-      lfoG.gain.value     = 3;
-      lfo.connect(lfoG);
-      lfoG.connect(osc.detune);
-      osc.type        = 'sawtooth';
-      osc.frequency.value = freq;
-      osc.connect(gain);
-      gain.connect(masterGain);
-      const dur = BAR * 4;
-      gain.gain.setValueAtTime(0, barStart);
-      gain.gain.linearRampToValueAtTime(0.018, barStart + 1.5);
-      gain.gain.setValueAtTime(0.018, barStart + dur - 1.5);
-      gain.gain.linearRampToValueAtTime(0, barStart + dur);
-      lfo.start(barStart);  lfo.stop(barStart + dur + 0.1);
-      osc.start(barStart);  osc.stop(barStart + dur + 0.1);
-      scheduledNodes.push(osc, gain, lfo, lfoG);
-    });
-  }
-
-  /* =====================================================
-     スケジューラ：次の小節を先読み登録
-  ===================================================== */
-  function scheduler() {
-    while (nextBeatTime < ctx.currentTime + SCHEDULE) {
-      const barStart = nextBeatTime;
-
-      scheduleBaseline(barStart);
-      scheduleMelody(barStart, melodyPatternIdx);
-      scheduleArpeggio(barStart, arpChordIdx);
-      schedulePerc(barStart);
-      scheduleAmbient(barStart);
-
-      /* パターンローテーション */
-      beatCount++;
-      melodyPatternIdx = (melodyPatternIdx + 1) % MELODY_PATTERNS.length;
-      if (beatCount % 2 === 0) arpChordIdx = (arpChordIdx + 1) % ARP_CHORD.length;
-
-      nextBeatTime += BAR;
-    }
-  }
-
-  /* =====================================================
-     再生開始
-  ===================================================== */
-  function startBGM() {
-    if (!ctx) {
-      ctx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    if (ctx.state === 'suspended') ctx.resume();
-
-    masterGain = ctx.createGain();
-
-    /* リバーブ（コンボリューションの代わりにフィードバックディレイで深海感） */
-    const delay  = ctx.createDelay(0.6);
-    const delayG = ctx.createGain();
-    const lpf    = ctx.createBiquadFilter();
-    delay.delayTime.value = 0.38;
-    delayG.gain.value     = 0.28;
-    lpf.type = 'lowpass'; lpf.frequency.value = 800;
-    masterGain.connect(delay);
-    delay.connect(lpf);
-    lpf.connect(delayG);
-    delayG.connect(delay);       /* フィードバックループ */
-    masterGain.connect(ctx.destination);
-    delayG.connect(ctx.destination);
-    scheduledNodes.push(delay, delayG, lpf);
-
-    masterGain.gain.setValueAtTime(0, ctx.currentTime);
-    masterGain.gain.linearRampToValueAtTime(0.75, ctx.currentTime + 1.5); /* フェードイン */
-
-    nextBeatTime = ctx.currentTime + 0.1;
-    beatCount = 0;
-    melodyPatternIdx = 0;
-    arpChordIdx = 0;
-
-    scheduler();
-    scheduleTimer = setInterval(scheduler, LOOKAHEAD);
-    isPlaying = true;
-  }
-
-  /* =====================================================
-     停止
-  ===================================================== */
-  function stopBGM() {
-    clearInterval(scheduleTimer);
-    scheduleTimer = null;
-
-    if (masterGain) {
-      masterGain.gain.setValueAtTime(masterGain.gain.value, ctx.currentTime);
-      masterGain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.6); /* フェードアウト */
-    }
-
-    /* 少し待ってから全ノード解放 */
-    setTimeout(() => {
-      scheduledNodes.forEach(n => { try { n.disconnect(); } catch(e) {} });
-      scheduledNodes = [];
-      masterGain = null;
-    }, 1000);
-
-    isPlaying = false;
-  }
-
-  /* =====================================================
-     ボタン制御
-  ===================================================== */
-  const btn = document.getElementById('bgmBtn');
-
-  /* 初回：トーストを表示 */
-  setTimeout(() => {
-    const toast = document.createElement('div');
-    toast.className = 'bgm-toast';
-    toast.textContent = '♪ BGMを再生';
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 5000);
-  }, 1500);
-
-  /* 初回タップで自動再生（iOSはユーザー操作必須のため、ページ最初のタップで起動） */
-  let autoStarted = false;
-  function tryAutoStart() {
-    if (!autoStarted && !isPlaying) {
-      autoStarted = true;
-      startBGM();
-      btn.classList.add('playing');
-    }
-    document.removeEventListener('touchstart', tryAutoStart);
-    document.removeEventListener('click', tryAutoStart);
-  }
-  document.addEventListener('touchstart', tryAutoStart, { once: true });
-  document.addEventListener('click', tryAutoStart, { once: true });
-
-  btn.addEventListener('click', () => {
-    if (isPlaying) {
-      stopBGM();
-      btn.classList.remove('playing');
-    } else {
-      startBGM();
-      btn.classList.add('playing');
-    }
-  });
-
-})();
-</script>
 
 <script>
 /* =====================================================
@@ -2363,5 +1964,10 @@ setInterval(tick, 1000);
 
 })();
 </script>
+</body>
+</html>
+
+
+
 </body>
 </html>
