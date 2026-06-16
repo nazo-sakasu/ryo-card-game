@@ -390,6 +390,32 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
     </div>
   </section>
 
+  <!-- セクションナビゲーション -->
+  <nav class="page-nav fi fi-5" aria-label="ページ内ナビゲーション">
+    <a href="#overview-title" class="page-nav-item">
+      <span class="page-nav-icon">🌊</span>
+      <span class="page-nav-label">概要</span>
+    </a>
+    <a href="#layout-title" class="page-nav-item">
+      <span class="page-nav-icon">🎴</span>
+      <span class="page-nav-label">レイアウト</span>
+    </a>
+    <a href="#howto-title" class="page-nav-item">
+      <span class="page-nav-icon">🎣</span>
+      <span class="page-nav-label">遊び方</span>
+    </a>
+    <a href="#adv-title" class="page-nav-item">
+      <span class="page-nav-icon">📚</span>
+      <span class="page-nav-label">上級者編</span>
+    </a>
+    <a href="#faq-title" class="page-nav-item">
+      <span class="page-nav-icon">❓</span>
+      <span class="page-nav-label">Q&amp;A</span>
+    </a>
+  </nav>
+
+
+
   <section aria-labelledby="overview-title">
     <p class="section-label">Overview</p>
     <h2 class="section-title" id="overview-title">ゲームの概要</h2>
@@ -443,7 +469,7 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
     <!-- 場のレイアウト図 -->
   <section style="margin-bottom:var(--gap)">
     <p class="section-label">Field Layout</p>
-    <h2 class="section-title">場のレイアウト</h2>
+    <h2 class="section-title" id="layout-title">場のレイアウト</h2>
     <div style="display:flex;justify-content:center">
       <div style="background:linear-gradient(160deg,#010c19 0%,#040f20 100%);border:1px solid rgba(0,229,255,0.12);border-radius:18px;padding:16px 14px;width:100%;max-width:360px;font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;color:#eef6ff">
         <div style="display:flex;flex-direction:column;gap:6px">
@@ -835,7 +861,7 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
   <section style="margin-bottom:var(--gap)" aria-labelledby="faq-title">
     <p class="section-label">FAQ</p>
     <h2 class="section-title" id="faq-title">よくある質問</h2>
-    <p class="section-lead" style="margin-bottom:24px">遊んでいて疑問に思ったら、まずはここをチェック！</p>
+    <p style="margin-bottom:28px;color:var(--white-muted);font-size:14px;line-height:1.8;letter-spacing:0.02em">遊んでいて疑問に思ったら、まずはここをチェック！</p>
 
     <style>
       .faq-acc { border-radius: 14px; overflow: hidden; margin-bottom: 12px; }
@@ -854,7 +880,77 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
       .qa-q-mark { flex-shrink: 0; font-family: var(--font-serif); font-weight: 600; }
       .qa-a { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--white-muted); line-height: 1.85; letter-spacing: 0.02em; }
       .qa-a-mark { flex-shrink: 0; font-family: var(--font-serif); font-weight: 600; color: var(--gold); opacity: 0.8; }
-    </style>
+      .faq-master { border-radius: 16px; overflow: hidden; margin-bottom: 16px; background: linear-gradient(135deg, rgba(0,229,255,0.05), rgba(168,85,247,0.04)); border: 1px solid rgba(0,229,255,0.18); }
+      .faq-master-head { display: flex; align-items: center; gap: 16px; padding: 20px 22px; cursor: pointer; transition: background 0.2s; }
+      .faq-master-head:hover { background: rgba(0,229,255,0.05); }
+      .faq-master-icon { font-size: 28px; flex-shrink: 0; }
+      .faq-master-text { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+      .faq-master-title { font-size: 17px; font-weight: 700; color: var(--white); letter-spacing: 0.03em; }
+      .faq-master-sub { font-size: 12px; color: var(--white-muted); letter-spacing: 0.05em; opacity: 0.8; }
+      .faq-master-chev { color: var(--cyan); transition: transform 0.3s; font-size: 13px; flex-shrink: 0; }
+      .faq-master.open .faq-master-chev { transform: rotate(180deg); }
+      .faq-master-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+      .faq-master.open .faq-master-body { max-height: 8000px; }
+      .faq-master-inner { padding: 0 18px 20px; border-top: 1px solid rgba(0,229,255,0.12); }
+      .faq-master-inner .faq-acc { margin-top: 12px; }
+
+    
+/* ── ページ内ナビゲーション ── */
+.page-nav {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin: 0 auto var(--gap);
+  padding: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(238,246,255,0.08);
+  border-radius: 18px;
+  backdrop-filter: blur(8px);
+  max-width: 520px;
+}
+.page-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 4px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--white-muted);
+  transition: all 0.2s;
+  scroll-behavior: smooth;
+}
+.page-nav-item:hover, .page-nav-item:active {
+  background: rgba(0,229,255,0.10);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+.page-nav-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+.page-nav-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+html { scroll-behavior: smooth; }
+</style>
+
+    <!-- 大カテゴリ：すべてのFAQをまとめる -->
+    <div class="faq-master" id="faqMaster">
+      <div class="faq-master-head" onclick="toggleFaq('faqMaster')">
+        <span class="faq-master-icon">❓</span>
+        <div class="faq-master-text">
+          <span class="faq-master-title">よくある質問を見る</span>
+          <span class="faq-master-sub">22問のQ&Aを6カテゴリに分類</span>
+        </div>
+        <span class="faq-master-chev">▼</span>
+      </div>
+      <div class="faq-master-body">
+        <div class="faq-master-inner">
 
     <!-- A. 基本のこと -->
     <div class="faq-acc" id="faqA">
@@ -1008,6 +1104,11 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
           <div class="qa-a"><span class="qa-a-mark">A.</span><span>両方の手番を自分でこなせば、ルールの確認や戦略の練習はできます。本格的な駆け引きは、ぜひ対人戦でお楽しみください。</span></div>
         </div>
       </div></div>
+    </div>
+
+
+        </div>
+      </div>
     </div>
 
     <script>
