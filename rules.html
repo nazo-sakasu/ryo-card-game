@@ -393,32 +393,17 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
   <section aria-labelledby="overview-title">
     <p class="section-label">Overview</p>
     <h2 class="section-title" id="overview-title">ゲームの概要</h2>
-    <div class="overview-grid">
-
-      <article class="glass rule-card rc-cyan">
-        <div class="rule-card-icon">🌊</div>
-        <div class="rule-card-body">
-          <div class="rule-card-headline"><em>3</em>回戦で勝負する</div>
-          <p class="rule-card-sub">全3ラウンド戦い続ける。<br>どのラウンドも全力で挑め。</p>
-        </div>
-      </article>
-
-      <article class="glass rule-card rc-pink">
-        <div class="rule-card-icon">⚡</div>
-        <div class="rule-card-body">
-          <div class="rule-card-headline">アイテムは<em>1</em>回だけ</div>
-          <p class="rule-card-sub">3回戦のうち、使えるのはたった1度。<br>いつ切るかが勝負の分かれ道。</p>
-        </div>
-      </article>
-
-      <article class="glass rule-card rc-gold">
-        <div class="rule-card-icon">🚫</div>
-        <div class="rule-card-body">
-          <div class="rule-card-headline">出したカードは<em>戻らない</em></div>
-          <p class="rule-card-sub">一度場に出たカードは使えない。<br>先を読み、手札を大切に使え。</p>
-        </div>
-      </article>
-
+    <div class="overview-intro glass" style="margin-bottom:24px;padding:24px 28px;border-radius:18px;line-height:2.0;font-size:15px;color:#eef6ff">
+      <p>このゲームは、2人で対戦するカードゲームです。<br>
+      全3回戦の合計点で勝負を決めます。</p>
+      <p style="margin-top:14px">プレイヤーは漁師となり、自分の漁師カード（<span style="color:var(--cyan)">表層</span>・<span style="color:var(--pink,#ff6ec7)">中層</span>・<span style="color:var(--violet,#a855f7)">深層</span>）を駆使して、相手の漁場から魚を獲ります。</p>
+      <p style="margin-top:14px">相手の漁場にはどんな魚が潜んでいるのか。<br>
+      読み合いと駆け引きを楽しみましょう。</p>
+      <p style="margin-top:14px">ここぞという場面ではアイテムカードを使い、流れを変えることもできます。</p>
+      <p style="margin-top:18px;font-size:17px;font-weight:700;color:var(--gold);text-align:center;letter-spacing:0.04em;line-height:1.8">
+        最終ラウンドまであきらめず大漁を目指せ！<br>
+        最強の漁師は君だ！
+      </p>
     </div>
   </section>
 
@@ -611,7 +596,7 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
         <div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div>
         <div class="step-content">
           <h3 class="step-title">アイテムカードを使うか考えよう！</h3>
-          <p class="step-body">アイテムカードは3回戦で<span class="acc">1回・1枚だけ</span>使用できます。相手や自分の漁場に影響を与える効果があります。（詳しくは各カードに記載）<span class="acc">どのラウンドで使うか</span>考えましょう。</p>
+          <p class="step-body">アイテムカードは3回戦で<span class="acc">1回・1枚だけ</span>使用できます。相手や自分の漁場に影響を与える効果があります。（詳しくは各カードに記載）<span class="acc">どのラウンドで使うか</span>考えましょう。</p><p class="step-body" style="margin-top:14px"><strong style="color:var(--cyan)">使うと決めたら、このタイミングで場に出します。</strong></p>
         </div>
       </div>
       <div class="step">
@@ -644,7 +629,7 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
     <div class="victory-wrap">
       <div class="victory-icon">🏆</div>
       <div class="victory-title">合計点が大きい方の勝利！</div>
-      <p class="victory-desc">獲った魚カードのポイントが君の得点に。魚カードにはそれぞれポイントが書かれています。3回戦で獲った魚の合計点が大きい方が勝利！<strong style="color:var(--gold)">レアな魚ほど高得点です。</strong></p>
+      <p class="victory-desc">獲った魚カードのポイントが君の得点に。魚カードにはそれぞれポイントが書かれています。3回戦で獲った魚の合計点が大きい方が勝利！<strong style="color:var(--gold)">レアな魚ほど高得点です。</strong><br><br>同点だった場合は、<strong style="color:var(--gold)">体長の大きい魚</strong>を持っている方の勝ちとなります。</p>
     </div>
     <div class="divider"></div>
     <div class="sup-rules">
@@ -843,6 +828,195 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
   </section>
 
 
+
+
+
+  <!-- よくある質問 -->
+  <section style="margin-bottom:var(--gap)" aria-labelledby="faq-title">
+    <p class="section-label">FAQ</p>
+    <h2 class="section-title" id="faq-title">よくある質問</h2>
+    <p class="section-lead" style="margin-bottom:24px">遊んでいて疑問に思ったら、まずはここをチェック！</p>
+
+    <style>
+      .faq-acc { border-radius: 14px; overflow: hidden; margin-bottom: 12px; }
+      .faq-head { display: flex; align-items: center; gap: 14px; padding: 14px 18px; cursor: pointer; background: rgba(255,255,255,0.04); border: 1px solid rgba(238,246,255,0.10); transition: background 0.2s; }
+      .faq-head:hover { background: rgba(255,255,255,0.07); }
+      .faq-head-icon { font-size: 20px; flex-shrink: 0; }
+      .faq-head-title { font-size: 15px; font-weight: 600; color: var(--white); flex: 1; letter-spacing: 0.02em; }
+      .faq-head-chev { color: var(--cyan); transition: transform 0.3s; font-size: 12px; }
+      .faq-acc.open .faq-head-chev { transform: rotate(180deg); }
+      .faq-body { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; background: rgba(255,255,255,0.02); border-left: 1px solid rgba(238,246,255,0.08); border-right: 1px solid rgba(238,246,255,0.08); border-bottom: 1px solid rgba(238,246,255,0.08); border-radius: 0 0 14px 14px; }
+      .faq-acc.open .faq-body { max-height: 4000px; }
+      .faq-body-inner { padding: 4px 18px 16px; }
+      .qa-item { padding: 14px 0; border-bottom: 1px solid rgba(238,246,255,0.06); }
+      .qa-item:last-child { border-bottom: none; }
+      .qa-q { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; font-weight: 700; color: var(--cyan); margin-bottom: 8px; line-height: 1.6; letter-spacing: 0.02em; }
+      .qa-q-mark { flex-shrink: 0; font-family: var(--font-serif); font-weight: 600; }
+      .qa-a { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--white-muted); line-height: 1.85; letter-spacing: 0.02em; }
+      .qa-a-mark { flex-shrink: 0; font-family: var(--font-serif); font-weight: 600; color: var(--gold); opacity: 0.8; }
+    </style>
+
+    <!-- A. 基本のこと -->
+    <div class="faq-acc" id="faqA">
+      <div class="faq-head" onclick="toggleFaq('faqA')">
+        <span class="faq-head-icon">🌊</span>
+        <span class="faq-head-title">基本のこと</span>
+        <span class="faq-head-chev">▼</span>
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>何人で遊べますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>基本は2人での対戦ですが、3人以上でも遊べます。トーナメント形式にしたり、勝者総当たり戦にしたり、人数に合わせて自由に工夫してみてください。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>1ゲームは何分くらいですか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>慣れれば3〜5分ほどで終わります。短時間で繰り返し遊べるのも魅力です。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>対象年齢はありますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>数を数えたり、カードに書かれた水域（表層・中層・深層）を読めれば、お子様から大人まで一緒に楽しめます。漢字が読めなくても、絵柄と色で水域を判断できます。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>カードは何枚必要ですか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>1人につき、漁師カード3枚（表層・中層・深層 各1枚）、魚カード15枚、アイテムカード2枚の合計20枚が必要です。2人で対戦する場合は、それぞれが20枚ずつ用意します。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>漁師カードは表層・中層・深層の3種類だけですか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>はい。3種類の漁師カードを各1枚ずつ、合計3枚を使います。3回戦で1枚ずつ使い切るので、毎ラウンド異なる水域を狙うことになります。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>魚カード15枚は3回戦で使い切るのですか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>はい。毎ラウンドの開始時に、自分の山から5枚ずつ漁場に出します。3回戦×5枚＝合計15枚で、ちょうど使い切る計算です。</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- B. 対戦中の動き -->
+    <div class="faq-acc" id="faqB">
+      <div class="faq-head" onclick="toggleFaq('faqB')">
+        <span class="faq-head-icon">⚔️</span>
+        <span class="faq-head-title">対戦中の動き</span>
+        <span class="faq-head-chev">▼</span>
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>漁師カードはどっちが先に出しますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>お互い同時に出します。先に「使う漁師カード」を手元で決めておき、「漁！」の合図で同時に表向きで場に出します。これがこのゲームの最大の駆け引きポイントです。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>相手の漁場の魚は、漁師カードを決める前に見られますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>いいえ、魚カードは裏向きのままです。相手の漁場には何が潜んでいるのか分からない状態で、自分の漁師カード（表層・中層・深層）を選びます。読みと運が試される瞬間です。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>お互いが同じ層の漁師カードを選んだらどうなりますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>何の問題もありません。お互いに相手の漁場の同じ層を狙うことになり、それぞれが相手の魚を獲ります。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>相手の漁場に、自分が狙った層の魚が1匹もなかったらどうなりますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>その場合は0匹獲得となります。残ったカードは捨て場によせて、次のラウンドに進みましょう。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>アイテムカードは漁師カードと一緒に出しますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>アイテムカードは③のタイミング（漁師カードを決める前）で場に出します。アイテムの効果を確認した上で、漁師カードを決めることになります。</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- C. 魚の扱い -->
+    <div class="faq-acc" id="faqC">
+      <div class="faq-head" onclick="toggleFaq('faqC')">
+        <span class="faq-head-icon">🐟</span>
+        <span class="faq-head-title">魚の扱い</span>
+        <span class="faq-head-chev">▼</span>
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>獲れなかった魚（相手の漁場に残った魚）は次のラウンドに持ち越せますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>いいえ、持ち越せません。獲れなかった魚は使った漁師カードと一緒に捨て場へ置きます。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>自分が漁場に出した魚なのに、相手に獲られなかったものは自分の山に戻りますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>いいえ、戻りません。獲られなかった魚も捨て場行きです。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>一度獲った魚は次のラウンドの漁場に出せますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>いいえ、出せません。獲った魚は自分の得点として手元に置き、ゲーム終了まで動かしません。</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- D. アイテムカード -->
+    <div class="faq-acc" id="faqD">
+      <div class="faq-head" onclick="toggleFaq('faqD')">
+        <span class="faq-head-icon">⚓</span>
+        <span class="faq-head-title">アイテムカード</span>
+        <span class="faq-head-chev">▼</span>
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>アイテムカードを使わずにゲームを終えてもいいですか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>はい、構いません。使わなくてもペナルティはありません。ただし、3回戦中に1枚しか使えないので、使うタイミングは慎重に選びましょう。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>アイテムカードを2枚同時に使えますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>いいえ、1ゲーム（3回戦中）に1枚だけです。2枚目は持っているだけで使用できません。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>アイテムカードはどんな効果がありますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>それぞれのカードに効果が書かれています。相手や自分の漁場に影響を与えるものがあるので、カードを確認してから使い方を考えてみてください。</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- E. 勝敗 -->
+    <div class="faq-acc" id="faqE">
+      <div class="faq-head" onclick="toggleFaq('faqE')">
+        <span class="faq-head-icon">🏆</span>
+        <span class="faq-head-title">勝敗</span>
+        <span class="faq-head-chev">▼</span>
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>同点だったらどうなりますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>体長の大きい魚を持っている方が勝ちです。魚カードに体長が書かれているので、お互いが持っている魚の中で<strong style="color:var(--gold)">最も体長が大きい1枚</strong>を比べてください。それでも同じ場合は引き分けです（2番目に大きい魚との比較はしません）。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>体長も同じだったらどうなりますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>引き分けです。お互いの健闘を称えあって、もう1ゲームどうぞ！</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>1回戦・2回戦で大差がついたら、その時点で勝負を終えてもいい？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>最後まで遊ぶことをおすすめします。アイテムカードの使い方次第で、3回戦目に一発逆転も十分あり得るのが「漁」の面白さです。</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- F. シチュエーション別 -->
+    <div class="faq-acc" id="faqF">
+      <div class="faq-head" onclick="toggleFaq('faqF')">
+        <span class="faq-head-icon">🧭</span>
+        <span class="faq-head-title">シチュエーション別</span>
+        <span class="faq-head-chev">▼</span>
+      </div>
+      <div class="faq-body"><div class="faq-body-inner">
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>相手の漁場を覗き見してしまった気がします……</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>偶然見えてしまうこともありますが、その場合は正直に伝えてやり直すなど、お互いフェアプレイで楽しみましょう。</span></div>
+        </div>
+        <div class="qa-item">
+          <div class="qa-q"><span class="qa-q-mark">Q.</span><span>1人で練習することはできますか？</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>両方の手番を自分でこなせば、ルールの確認や戦略の練習はできます。本格的な駆け引きは、ぜひ対人戦でお楽しみください。</span></div>
+        </div>
+      </div></div>
+    </div>
+
+    <script>
+      function toggleFaq(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.toggle('open');
+      }
+    </script>
+  </section>
 
   <!-- 印刷用DL -->
   <section style="margin-bottom:var(--gap);text-align:center">
