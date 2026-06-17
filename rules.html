@@ -33,7 +33,7 @@ body { background: var(--deep); color: var(--white); font-family: var(--font-san
 main { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 20px 120px; }
 
 /* HERO */
-.hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 0 60px; overflow: visible; }
+.hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 0 30px; overflow: visible; }
 .hero-eyebrow { font-size: 10.5px; letter-spacing: 0.45em; color: var(--cyan); text-transform: uppercase; margin-bottom: 28px; opacity: 0.75; }
 .hero-title { font-family: var(--font-serif); font-size: clamp(26px, 7.5vw, 38px); font-weight: 600; line-height: 1.55; letter-spacing: 0.06em; color: var(--white); margin-bottom: 36px; text-shadow: 0 0 60px rgba(0,229,255,0.25); }
 .hero-game-name {
@@ -53,14 +53,14 @@ main { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding
 }
 .hero-catch { font-family: var(--font-serif); font-size: clamp(15px, 4.2vw, 20px); line-height: 2.1; color: var(--white-muted); letter-spacing: 0.1em; margin-bottom: 16px; }
 .hero-sub { font-size: 11.5px; letter-spacing: 0.12em; color: rgba(0,229,255,0.45); border-top: 1px solid rgba(0,229,255,0.12); border-bottom: 1px solid rgba(0,229,255,0.12); padding: 12px 16px; margin-top: 28px; line-height: 1.9; }
-.scroll-hint { margin-top: 52px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.28); font-size: 10px; letter-spacing: 0.25em; animation: bob 2.2s ease-in-out infinite; }
+.scroll-hint { margin-top: 26px; display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.28); font-size: 10px; letter-spacing: 0.25em; animation: bob 2.2s ease-in-out infinite; }
 .scroll-hint svg { width: 18px; height: 18px; opacity: 0.35; }
 @keyframes bob { 0%,100%{transform:translateY(0);opacity:0.35}50%{transform:translateY(8px);opacity:0.65} }
 
 /* SECTIONS */
 section { margin-bottom: var(--gap); }
 .section-label { font-size: 10px; letter-spacing: 0.5em; color: var(--cyan); text-transform: uppercase; margin-bottom: 6px; opacity: 0.65; }
-.section-title { font-family: var(--font-serif); font-size: clamp(20px, 5.5vw, 28px); font-weight: 600; letter-spacing: 0.07em; color: var(--white); margin-bottom: 28px; line-height: 1.45; }
+.section-title { font-family: var(--font-serif); font-size: clamp(20px, 5.5vw, 28px); font-weight: 600; letter-spacing: 0.07em; color: var(--white); margin-bottom: 28px; line-height: 1.45; scroll-margin-top: 80px; }
 
 /* GLASS */
 .glass {
@@ -383,7 +383,7 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
       <div class="hero-game-name">漁</div>
     </div>
     <p class="hero-catch fi fi-4">最強の漁師は君だ。<br>大漁旗を振りかざせ。</p>
-    <p class="hero-sub fi fi-5">― 漁師カードを使い、魚カードを集めるトレーディング体験 ―</p>
+    <p class="hero-sub fi fi-5">― 漁師カードを使い、魚カードを集める対戦カードゲーム ―</p>
     <div class="scroll-hint fi fi-5">
       <span>SCROLL</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
@@ -397,7 +397,7 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
       <span class="page-nav-label">概要</span>
     </a>
     <a href="#layout-title" class="page-nav-item">
-      <span class="page-nav-icon">🎴</span>
+      <span class="page-nav-icon">🗺️</span>
       <span class="page-nav-label">レイアウト</span>
     </a>
     <a href="#howto-title" class="page-nav-item">
@@ -615,7 +615,7 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
         <div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div>
         <div class="step-content">
           <h3 class="step-title">魚カード5枚を漁場に出そう！</h3>
-          <p class="step-body">お互い自分の山から魚カードを<span class="acc">5枚裏向きで漁場に出します</span>。どんな魚が出るかは、めくるまでのお楽しみです。</p>
+          <p class="step-body">お互い、自分の山から魚カードを<span class="acc">5枚裏向きで漁場に出します</span>。どんな魚が出るかは、めくるまでのお楽しみです。</p>
         </div>
       </div>
       <div class="step">
@@ -655,7 +655,7 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
     <div class="victory-wrap">
       <div class="victory-icon">🏆</div>
       <div class="victory-title">合計点が大きい方の勝利！</div>
-      <p class="victory-desc">獲った魚カードのポイントが君の得点に。魚カードにはそれぞれポイントが書かれています。3回戦で獲った魚の合計点が大きい方が勝利！<strong style="color:var(--gold)">レアな魚ほど高得点です。</strong><br><br>同点だった場合は、<strong style="color:var(--gold)">体長の大きい魚</strong>を持っている方の勝ちとなります。</p>
+      <p class="victory-desc">獲った魚カードのポイントが君の得点に。魚カードにはそれぞれポイントが書かれています。3回戦で獲った魚の合計点が大きい方が勝利！<strong style="color:var(--gold)">レアな魚ほど高得点です。</strong><br><br>同点だった場合は、<strong style="color:var(--gold)">体長の大きいカード</strong>を持っている方の勝ちとなります。</p>
     </div>
     <div class="divider"></div>
     <div class="sup-rules">
@@ -937,6 +937,43 @@ footer { text-align: center; padding: 16px 20px; position: relative; z-index: 1;
   white-space: nowrap;
 }
 html { scroll-behavior: smooth; }
+
+/* ── トップに戻るボタン ── */
+#toTopBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(0,229,255,0.15);
+  border: 1px solid rgba(0,229,255,0.45);
+  color: var(--cyan);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 20px rgba(0,229,255,0.15);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s, background 0.2s;
+  z-index: 1000;
+}
+#toTopBtn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+#toTopBtn:hover, #toTopBtn:active {
+  background: rgba(0,229,255,0.25);
+  border-color: var(--cyan);
+  transform: translateY(-2px);
+}
+@media (max-width: 480px) {
+  #toTopBtn { bottom: 18px; right: 18px; width: 44px; height: 44px; }
+}
 </style>
 
     <!-- 大カテゴリ：すべてのFAQをまとめる -->
@@ -1074,7 +1111,7 @@ html { scroll-behavior: smooth; }
       <div class="faq-body"><div class="faq-body-inner">
         <div class="qa-item">
           <div class="qa-q"><span class="qa-q-mark">Q.</span><span>同点だったらどうなりますか？</span></div>
-          <div class="qa-a"><span class="qa-a-mark">A.</span><span>体長の大きい魚を持っている方が勝ちです。魚カードに体長が書かれているので、お互いが持っている魚の中で<strong style="color:var(--gold)">最も体長が大きい1枚</strong>を比べてください。それでも同じ場合は引き分けです（2番目に大きい魚との比較はしません）。</span></div>
+          <div class="qa-a"><span class="qa-a-mark">A.</span><span>体長の大きいカードを持っている方が勝ちです。カードに体長が書かれているので、お互いが持っているカードの中で<strong style="color:var(--gold)">最も体長が大きい1枚</strong>を比べてください。それでも同じ場合は引き分けです（2番目に大きい魚との比較はしません）。</span></div>
         </div>
         <div class="qa-item">
           <div class="qa-q"><span class="qa-q-mark">Q.</span><span>体長も同じだったらどうなりますか？</span></div>
@@ -1090,7 +1127,7 @@ html { scroll-behavior: smooth; }
     <!-- F. シチュエーション別 -->
     <div class="faq-acc" id="faqF">
       <div class="faq-head" onclick="toggleFaq('faqF')">
-        <span class="faq-head-icon">🧭</span>
+        <span class="faq-head-icon">💭</span>
         <span class="faq-head-title">シチュエーション別</span>
         <span class="faq-head-chev">▼</span>
       </div>
@@ -2057,6 +2094,27 @@ html { scroll-behavior: smooth; }
       }
     }
   })();
+</script>
+
+  <!-- トップに戻るボタン -->
+  <button id="toTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="トップに戻る">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+
+<script>
+(function(){
+  var btn = document.getElementById('toTopBtn');
+  if (!btn) return;
+  function check() {
+    if (window.scrollY > 300) btn.classList.add('visible');
+    else btn.classList.remove('visible');
+  }
+  window.addEventListener('scroll', check, { passive: true });
+  check();
+})();
 </script>
 </body>
 </html>
