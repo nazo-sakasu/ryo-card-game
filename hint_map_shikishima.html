@@ -1826,7 +1826,10 @@ setInterval(tick, 1000);
    - localStorage で状態を永続化
 ===================================================== */
 (function() {
-  const STORAGE_KEY = 'takesui_redeemed_v3'; /* v3: パスコード必須化 */
+  const STORAGE_KEY    = 'takesui_redeemed_v3'; /* v3: パスコード必須化 */
+  const STAFF_PASSCODE = "0726"; /* スタッフ用パスコード（イベントごとに変更） */
+  const HOLD_MS        = 3000;   /* 長押し判定秒数（厳しめ） */
+
   const banner = document.getElementById('goalBanner');
   const wrap   = document.getElementById('goalSwipeWrap');
   const knob   = document.getElementById('goalSwipeKnob');
@@ -1835,41 +1838,42 @@ setInterval(tick, 1000);
 
   if (!banner) return;
 
-  /* 引き換え済み状態を復元（リセット：常に未引き換えで開始） */
-  // localStorage.removeItem(STORAGE_KEY); // 毎回リセットしたい場合はここを有効に
+  /* 既に引き換え済みなら、プロンプトを出さず見た目だけ復元 */
   if (localStorage.getItem(STORAGE_KEY) === '1') {
-    redeem(false);
+    markRedeemedUI(false);
     return;
   }
 
-  /* —— 引き換え実行 —— */
-  function redeem(animate) {
-    /* スタッフのパスコード確認 */
-    const code = prompt('🎣 スタッフ確認\n\nスタッフに「引き換えコード」を聞いてから入力してください。\n（プレイヤー自身では引き換えできません）');
-    if (code === null) {
-      /* キャンセル時は元に戻す */
-      resetSwipe();
-      return;
-    }
-    if (code !== STAFF_PASSCODE) {
-      alert('❌ コードが違います。スタッフに確認してください。');
-      resetSwipe();
-      return;
-    }
-    /* 認証成功 → 引き換え実行 */
+  /* —— 見た目だけ「引き換え済み」にする（プロンプトなし） —— */
+  function markRedeemedUI(animate) {
     banner.classList.add('redeemed');
     if (animate) {
       knob.style.transition = 'left 0.3s ease';
       const maxLeft = wrap.clientWidth - knob.offsetWidth - 4;
       knob.style.left = maxLeft + 'px';
       track.style.width = '100%';
-      setTimeout(() => {
-        banner.classList.add('redeemed');
-      }, 280);
       if (navigator.vibrate) navigator.vibrate([30, 20, 60]);
     }
-    localStorage.setItem(STORAGE_KEY, '1');
   }
+
+  /* —— 引き換え試行（スワイプ／長押し完了時のみ呼ばれる） —— */
+  let verifying = false;
+  function tryRedeem() {
+    if (verifying || banner.classList.contains('redeemed')) return;
+    verifying = true;
+    const code = prompt('🎣 スタッフ確認\n\nスタッフに「引き換えコード」を聞いてから入力してください。\n（プレイヤー自身では引き換えできません）');
+    verifying = false;
+    if (code === null) { resetSwipe(); return; }
+    if (code !== STAFF_PASSCODE) {
+      alert('❌ コードが違います。スタッフに確認してください。');
+      resetSwipe();
+      return;
+    }
+    /* 認証成功 → 引き換え確定 */
+    localStorage.setItem(STORAGE_KEY, '1');
+    markRedeemedUI(true);
+  }
+
   function resetSwipe() {
     banner.classList.remove('redeemed');
     knob.classList.add('snap-back');
@@ -1885,8 +1889,6 @@ setInterval(tick, 1000);
   let dragging = false;
   let holdTimer = null;
   let holdProgress = 0;
-  const HOLD_MS = 3000; /* 長押し判定秒数（厳しめ） */
-  const STAFF_PASSCODE = "0726"; /* スタッフ用パスコード */
 
   function getKnobLeft() {
     return parseInt(knob.style.left) || 4;
@@ -1906,12 +1908,13 @@ setInterval(tick, 1000);
     holdTimer = setInterval(() => {
       elapsed += interval;
       holdProgress = Math.min(elapsed / HOLD_MS, 1);
-      /* トラックで進捗を表現 */
       track.style.width = (holdProgress * 100) + '%';
       knob.style.transform = `scale(${1 + holdProgress * 0.12})`;
       if (holdProgress >= 1) {
         clearInterval(holdTimer);
-        redeem(true);
+        holdTimer = null;
+        dragging = false;
+        tryRedeem();
       }
     }, interval);
   }
@@ -1928,7 +1931,8 @@ setInterval(tick, 1000);
     knob.style.transform = 'scale(1)';
 
     if (newLeft >= maxLeft * 0.92) {
-      redeem(false);
+      dragging = false;
+      tryRedeem();
     }
   }
 
