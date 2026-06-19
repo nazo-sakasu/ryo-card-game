@@ -393,6 +393,30 @@ body::after {
   100% { opacity: 0;   transform: scale(1.65); }
 }
 
+/* 一覧で選択中のオーブ：金色ハイライト（未公開ピンには付かない） */
+.pin.highlight { z-index: 50; }
+.pin.highlight .pin-inner {
+  background: radial-gradient(circle at 38% 32%,
+    rgba(255, 252, 235, 0.98) 0%,
+    rgba(255, 224, 130, 0.92) 26%,
+    rgba(255, 193,  50, 0.55) 56%,
+    transparent 78%
+  );
+  box-shadow:
+    0 0  8px  3px  rgba(255, 214, 90, 0.85),
+    0 0  26px 12px rgba(255, 184, 40, 0.55),
+    0 0  60px 24px rgba(255, 150, 20, 0.30);
+  animation: orbGold 1.1s ease-in-out infinite;
+}
+.pin.highlight .pin-inner::before,
+.pin.highlight .pin-inner::after {
+  border-color: rgba(255, 214, 90, 0.55);
+}
+@keyframes orbGold {
+  0%, 100% { transform: scale(1);    filter: brightness(1); }
+  50%      { transform: scale(1.22); filter: brightness(1.25); }
+}
+
 /* =====================================================
    ヒントモーダル
 ===================================================== */
@@ -1593,9 +1617,11 @@ HINTS_DATA.forEach(hint => {
     item.querySelector('.hint-item-header').style.cursor = 'default';
   }
 
-  /* アコーディオン開閉：解放済みのみ */
+  /* アコーディオン開閉：解放済みのみ。開いた項目に対応するオーブを金色に光らせる */
   item.querySelector('.hint-item-header').addEventListener('click', () => {
-    if (isUnlocked(hint)) item.classList.toggle('open');
+    if (!isUnlocked(hint)) return;
+    item.classList.toggle('open');
+    syncPinHighlight();
   });
 
   hintList.appendChild(item);
@@ -1674,6 +1700,16 @@ adminUnlockBtn.addEventListener('click', () => {
 /* =====================================================
    全UI更新（時刻変化時・解放時に呼ぶ）
 ===================================================== */
+function syncPinHighlight() {
+  HINTS_DATA.forEach(hint => {
+    const pin = document.getElementById('pin-' + hint.id);
+    if (!pin) return;
+    const item = document.getElementById('list-item-' + hint.id);
+    const active = !!(item && item.classList.contains('open') && pin.classList.contains('unlocked'));
+    pin.classList.toggle('highlight', active);
+  });
+}
+
 function refreshAll() {
   let unlockedCount = 0;
 
@@ -1685,7 +1721,8 @@ function refreshAll() {
     const pin = document.getElementById('pin-' + hint.id);
     if (pin) {
       const wasLocked = pin.classList.contains('locked');
-      pin.className = 'pin ' + (unlocked ? 'unlocked' : 'locked');
+      const wasHi = pin.classList.contains('highlight');
+      pin.className = 'pin ' + (unlocked ? 'unlocked' : 'locked') + (wasHi && unlocked ? ' highlight' : '');
       /* 新たに解放された瞬間：出現アニメを再トリガー */
       if (wasLocked && unlocked) {
         const inner = pin.querySelector('.pin-inner');
