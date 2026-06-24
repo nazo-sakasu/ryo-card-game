@@ -161,6 +161,13 @@ section { margin-bottom: var(--gap); }
 .free-rule-title { font-family: var(--font-serif); font-size: 19px; font-weight: 600; letter-spacing: 0.08em; color: var(--violet); margin-bottom: 12px; text-shadow: 0 0 22px rgba(168,85,247,0.45); }
 .free-rule-text { font-size: 13px; line-height: 1.9; color: var(--white-muted); letter-spacing: 0.02em; }
 
+.afterplay { background: linear-gradient(135deg, rgba(240,192,96,0.10), rgba(255,110,199,0.07)); border: 1px solid rgba(240,192,96,0.28); border-radius: var(--r); padding: 26px 22px 22px; text-align: center; position: relative; overflow: hidden; margin-top: 20px; }
+.afterplay::before { content:''; position:absolute; top:-40%; left:-40%; width:180%; height:180%; background:radial-gradient(ellipse at center, rgba(240,192,96,0.05) 0%, transparent 60%); pointer-events:none; }
+.afterplay-icon { font-size: 38px; margin-bottom: 10px; filter: drop-shadow(0 0 16px rgba(240,192,96,0.55)); position: relative; }
+.afterplay-title { font-family: var(--font-serif); font-size: 19px; font-weight: 600; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 12px; text-shadow: 0 0 24px rgba(240,192,96,0.4); position: relative; }
+.afterplay-text { font-size: 13.5px; line-height: 1.95; color: var(--white-muted); letter-spacing: 0.02em; position: relative; }
+.afterplay-text strong { color: var(--white); font-weight: 600; }
+
 footer { text-align: center; padding: 28px 20px 20px; position: relative; z-index: 1; }
 .footer-title { font-family: var(--font-serif); font-size: 28px; font-weight: 700; background: linear-gradient(135deg, var(--cyan), var(--pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 0.12em; margin-bottom: 10px; }
 .footer-copy { font-size: 10.5px; color: rgba(255,255,255,0.18); letter-spacing: 0.18em; }
@@ -675,6 +682,11 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
       <div class="free-rule-title">🌊 自由ルール</div>
       <p class="free-rule-text">ルールは無限大！<br>自分たちでオリジナルルールを考えて遊ぶのもおすすめ。<br>何度でも、新しい『漁』の楽しみ方を見つけよう。</p>
     </div>
+    <div class="afterplay">
+      <div class="afterplay-icon">🤝</div>
+      <div class="afterplay-title">漁のあとは...</div>
+      <p class="afterplay-text">勝敗が決まったら、「漁！」でゲットしたカードは<strong>相手に返そう。</strong><br>最後はお互いをたたえ合って、きれいに片付けよう！</p>
+    </div>
   </section>
 
   <!-- 上級者編 -->
@@ -760,7 +772,7 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
         <div class="acc-body-inner">
 
           <div class="adv-lead">
-                      基本ルールに慣れてきたら、ボーナス得点ありで遊んでみよう！どのボーナスを使うかは、ゲームを始める前に対戦相手と相談。全部使ってもいいし、気になるルールだけ使ってもOK！<br><br>
+                      基本ルールに慣れてきたり、いろんな種類のカードが集まったら、ボーナス得点ありで遊んでみよう！どのボーナスを使うかは、ゲームを始める前に対戦相手と相談。全部使ってもいいし、気になるルールだけ使ってもOK！<br><br>
                       <strong>『漁』のルールは無限大！</strong>ここにある上級ルールは、もっと盛り上がるための遊び方の一例です。自分たちだけのオリジナルルールを作って遊ぶのもおすすめだよ！
                     </div>
           
