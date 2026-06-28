@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#010c19">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>漁 — カードゲーム</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -101,6 +104,11 @@ section { margin-bottom: var(--gap); }
 .rule-card-headline { font-family: var(--font-serif); font-size: 16px; font-weight: 600; letter-spacing: 0.02em; color: var(--white); margin-bottom: 6px; line-height: 1.45; }
 .rule-card-headline em { font-style: normal; color: var(--rc, var(--cyan)); font-size: 1.3em; line-height: 1; margin-right: 2px; }
 .rule-card-sub { font-size: 12px; line-height: 1.78; color: var(--white-muted); letter-spacing: 0.02em; }
+
+/* HOW-TO MOVIE */
+.video-frame { position: relative; border-radius: var(--r); overflow: hidden; border: 1px solid var(--glass-border); background: #000; box-shadow: 0 12px 44px rgba(0,0,0,0.55); }
+.video-frame video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #000; }
+.video-note { font-size: 12px; line-height: 1.8; color: var(--white-muted); margin-top: 13px; text-align: center; letter-spacing: 0.03em; }
 
 /* CARD TYPES */
 .card-grid { display: flex; flex-direction: column; gap: 16px; }
@@ -407,6 +415,10 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
       <span class="page-nav-icon">🗺️</span>
       <span class="page-nav-label">レイアウト</span>
     </a>
+    <a href="#howto-movie" class="page-nav-item">
+      <span class="page-nav-icon">🎬</span>
+      <span class="page-nav-label">動画</span>
+    </a>
     <a href="#howto-title" class="page-nav-item">
       <span class="page-nav-icon">🎣</span>
       <span class="page-nav-label">遊び方</span>
@@ -486,73 +498,91 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
     <p class="section-label">Field Layout</p>
     <h2 class="section-title" id="layout-title">場のレイアウト</h2>
     <div style="display:flex;justify-content:center">
-      <div style="background:linear-gradient(160deg,#010c19 0%,#040f20 100%);border:1px solid rgba(0,229,255,0.12);border-radius:18px;padding:16px 14px;width:100%;max-width:360px;font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;color:#eef6ff">
+      <div style="position:relative;background:linear-gradient(rgba(1,8,18,0.72),rgba(1,8,18,0.82)),url('ryo-layout-bg.jpg') center/cover;border:1px solid rgba(0,229,255,0.16);border-radius:18px;padding:16px 14px;width:100%;max-width:360px;font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;color:#eef6ff;overflow:hidden">
         <div style="display:flex;flex-direction:column;gap:6px">
 
           <!-- P2 手元 -->
           <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:9px 11px">
-            <div style="font-size:8px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:7px;color:rgba(255,110,199,0.55)">プレイヤー 2 — 手元</div>
+            <div style="font-size:8px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:7px;color:rgba(255,110,199,0.7);transform:rotate(180deg)">プレイヤー 2 — 手元（相手）</div>
             <div style="display:flex;align-items:flex-start;gap:8px">
               <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
                 <div style="display:flex;gap:3px">
-                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8)">漁</div>
-                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8)">漁</div>
-                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8)">漁</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8);transform:rotate(180deg)">漁</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8);transform:rotate(180deg)">漁</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.35);color:rgba(0,229,255,0.8);transform:rotate(180deg)">漁</div>
                 </div>
-                <div style="font-size:7px;color:rgba(238,246,255,0.35)">漁師×3</div>
+                <div style="font-size:7px;color:rgba(238,246,255,0.35);transform:rotate(180deg)">漁師×3</div>
               </div>
               <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
                 <div style="display:flex;gap:3px">
-                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.35);color:rgba(240,192,96,0.8)">✦</div>
-                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.35);color:rgba(240,192,96,0.8)">✦</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.35);color:rgba(240,192,96,0.8);transform:rotate(180deg)">✦</div>
+                  <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(240,192,96,0.08);border:1px solid rgba(240,192,96,0.35);color:rgba(240,192,96,0.8);transform:rotate(180deg)">✦</div>
                 </div>
-                <div style="font-size:7px;color:rgba(238,246,255,0.35)">アイテム×2</div>
+                <div style="font-size:7px;color:rgba(238,246,255,0.35);transform:rotate(180deg)">アイテム×2</div>
               </div>
               <div style="flex:1"></div>
               <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
                 <div style="position:relative;width:38px;height:42px;flex-shrink:0">
                   <div style="position:absolute;top:4px;left:0;width:28px;height:42px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);opacity:0.45"></div>
                   <div style="position:absolute;top:2px;left:2px;width:28px;height:42px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);opacity:0.7"></div>
-                  <div style="position:absolute;top:0;left:4px;width:28px;height:42px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);color:rgba(238,246,255,0.4)">山</div>
+                  <div style="position:absolute;top:0;left:4px;width:28px;height:42px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.15);color:rgba(238,246,255,0.4);transform:rotate(180deg)">山</div>
                 </div>
-                <div style="font-size:7px;color:rgba(238,246,255,0.35)">魚の山</div>
+                <div style="font-size:7px;color:rgba(238,246,255,0.35);transform:rotate(180deg)">魚の山</div>
               </div>
             </div>
           </div>
 
           <!-- 矢印 P2→漁場 -->
           <div style="display:flex;align-items:center;justify-content:flex-end;gap:4px;padding-right:8px">
-            <span style="font-size:8px;color:rgba(255,110,199,0.45)">① 5枚出す</span>
+            <span style="font-size:8px;color:rgba(255,110,199,0.45);transform:rotate(180deg);display:inline-block">① 5枚出す</span>
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v8M3 7l3 3 3-3" stroke="rgba(255,110,199,0.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
 
           <!-- P2 漁場 -->
           <div style="border-radius:10px;padding:8px 10px;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.2)">
-            <div style="font-size:8px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;color:rgba(255,110,199,0.5)">プレイヤー 2 の漁場</div>
+            <div style="font-size:8px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;color:rgba(255,110,199,0.65);transform:rotate(180deg)">プレイヤー 2 の漁場</div>
             <div style="display:flex;justify-content:space-between">
-              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45)">裏</div>
-              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45)">裏</div>
-              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45)">裏</div>
-              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45)">裏</div>
-              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45);transform:rotate(180deg)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45);transform:rotate(180deg)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45);transform:rotate(180deg)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45);transform:rotate(180deg)">裏</div>
+              <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(255,110,199,0.04);border:1px solid rgba(255,110,199,0.25);color:rgba(255,110,199,0.45);transform:rotate(180deg)">裏</div>
             </div>
           </div>
 
-          <!-- アクション -->
+          <!-- アクション（左右2カラム：左=プレイヤー2〔180°回転〕／右=プレイヤー1〔正立〕） -->
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-            <div style="border-radius:9px;padding:8px 10px;text-align:center;background:rgba(240,192,96,0.06);border:1px solid rgba(240,192,96,0.22)">
-              <div style="font-size:7px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;margin-bottom:4px;color:rgba(240,192,96,0.65)">② アイテム（任意）</div>
-              <div style="font-size:9px;color:rgba(238,246,255,0.6);line-height:1.5">漁場に影響を与える</div>
+            <div style="border-radius:9px;padding:9px 7px 8px;background:rgba(255,110,199,0.06);border:1px solid rgba(255,110,199,0.22);transform:rotate(180deg)">
+              <div style="text-align:center;font-size:8.5px;letter-spacing:0.08em;font-weight:700;color:rgba(255,110,199,0.95);margin-bottom:6px">プレイヤー 2</div>
+              <div style="display:flex;gap:5px">
+                <div style="flex:1;min-width:0;text-align:center">
+                  <div style="font-size:7.5px;font-weight:700;color:rgba(240,192,96,1);margin-bottom:1px">②アイテム</div>
+                  <div style="font-size:7px;color:rgba(238,246,255,0.72);line-height:1.3">(任意)</div>
+                </div>
+                <div style="flex:1;min-width:0;text-align:center">
+                  <div style="font-size:7.5px;font-weight:700;color:rgba(168,85,247,1);margin-bottom:1px">③漁師カード</div>
+                  <div style="font-size:7px;color:rgba(238,246,255,0.72);line-height:1.3"><strong style="color:rgba(238,246,255,1)">一斉に表へ</strong></div>
+                </div>
+              </div>
             </div>
-            <div style="border-radius:9px;padding:8px 10px;text-align:center;background:rgba(168,85,247,0.06);border:1px solid rgba(168,85,247,0.22)">
-              <div style="font-size:7px;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;margin-bottom:4px;color:rgba(168,85,247,0.65)">③ 漁師カード</div>
-              <div style="font-size:9px;color:rgba(238,246,255,0.6);line-height:1.5"><strong style="color:rgba(238,246,255,0.9)">一斉に表へ</strong></div>
+            <div style="border-radius:9px;padding:9px 7px 8px;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.22)">
+              <div style="text-align:center;font-size:8.5px;letter-spacing:0.08em;font-weight:700;color:rgba(0,229,255,1);margin-bottom:6px">プレイヤー 1</div>
+              <div style="display:flex;gap:5px">
+                <div style="flex:1;min-width:0;text-align:center">
+                  <div style="font-size:7.5px;font-weight:700;color:rgba(240,192,96,1);margin-bottom:1px">②アイテム</div>
+                  <div style="font-size:7px;color:rgba(238,246,255,0.72);line-height:1.3">(任意)</div>
+                </div>
+                <div style="flex:1;min-width:0;text-align:center">
+                  <div style="font-size:7.5px;font-weight:700;color:rgba(168,85,247,1);margin-bottom:1px">③漁師カード</div>
+                  <div style="font-size:7px;color:rgba(238,246,255,0.72);line-height:1.3"><strong style="color:rgba(238,246,255,1)">一斉に表へ</strong></div>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- P1 漁場 -->
           <div style="border-radius:10px;padding:8px 10px;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.2)">
-            <div style="font-size:8px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;color:rgba(0,229,255,0.5)">プレイヤー 1 の漁場</div>
+            <div style="font-size:8px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;color:rgba(0,229,255,0.65)">プレイヤー 1 の漁場</div>
             <div style="display:flex;justify-content:space-between">
               <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.25);color:rgba(0,229,255,0.45)">裏</div>
               <div style="width:28px;height:42px;border-radius:5px;flex-shrink:0;flex-grow:0;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.25);color:rgba(0,229,255,0.45)">裏</div>
@@ -570,7 +600,7 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
 
           <!-- P1 手元 -->
           <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:9px 11px">
-            <div style="font-size:8px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:7px;color:rgba(0,229,255,0.55)">プレイヤー 1 — 手元（自分）</div>
+            <div style="font-size:8px;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:7px;color:rgba(0,229,255,0.7)">プレイヤー 1 — 手元（自分）</div>
             <div style="display:flex;align-items:flex-start;gap:8px">
               <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
                 <div style="display:flex;gap:3px">
@@ -600,17 +630,11 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
           </div>
 
           <!-- フロー -->
-          <div style="display:flex;gap:3px;justify-content:center;margin-top:2px">
-            <div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(0,229,255,0.12);border:1px solid rgba(0,229,255,0.3);color:rgba(0,229,255,0.9)">①</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">漁場5枚</div></div>
-            <div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(240,192,96,0.12);border:1px solid rgba(240,192,96,0.3);color:rgba(240,192,96,0.9)">②</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">アイテム</div></div>
-            <div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);color:rgba(168,85,247,0.9)">③</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">漁師一斉に</div></div>
-            <div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);color:rgba(52,211,153,0.9)">④</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">漁！</div></div>
-          </div>
-
+          <div style="display:flex;gap:3px;justify-content:center;margin-top:2px"><div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(0,229,255,0.12);border:1px solid rgba(0,229,255,0.3);color:rgba(0,229,255,0.9)">①</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">漁場5枚</div></div><div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(240,192,96,0.12);border:1px solid rgba(240,192,96,0.3);color:rgba(240,192,96,0.9)">②</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">アイテム</div></div><div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);color:rgba(168,85,247,0.9)">③</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">漁師一斉に</div></div><div style="display:flex;align-items:center;gap:3px;padding:3px 6px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03)"><div style="width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.3);color:rgba(52,211,153,0.9)">④</div><div style="font-size:7px;color:rgba(238,246,255,0.5);white-space:nowrap">漁！</div></div></div>
         </div>
       </div>
     </div>
-    <p style="margin-top:14px;font-size:12px;line-height:1.8;color:rgba(238,246,255,0.55);text-align:center;letter-spacing:0.04em">
+    <p style="margin-top:16px;font-size:12px;line-height:1.8;color:rgba(238,246,255,0.55);text-align:center;letter-spacing:0.04em">
       ※ <strong style="color:rgba(238,246,255,0.75)">漁場</strong>とは、自分の山から出した魚カードを並べるエリアのことです。
     </p>
   </section>
@@ -618,6 +642,14 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
   <section aria-labelledby="howto-title">
     <p class="section-label">How to Play</p>
     <h2 class="section-title" id="howto-title">遊び方</h2>
+    <!-- ▼ 遊び方ムービー -->
+    <div class="video-frame" id="howto-movie" style="scroll-margin-top:80px;margin-bottom:13px">
+      <video controls playsinline preload="metadata" poster="ryo-howto-poster.jpg">
+        <source src="ryo-howto.mp4" type="video/mp4">
+        お使いのブラウザでは動画を再生できません。
+      </video>
+    </div>
+    <p class="video-note" style="margin-bottom:34px">まず動画で全体の流れを。くわしい手順は下の①〜で。</p>
     <div class="steps">
       <div class="step">
         <div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div>
@@ -918,10 +950,10 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
 /* ── ページ内ナビゲーション ── */
 .page-nav {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 6px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
   margin: 0 auto var(--gap);
-  padding: 10px;
+  padding: 10px 8px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(238,246,255,0.08);
   border-radius: 18px;
@@ -934,7 +966,7 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
   align-items: center;
   justify-content: center;
   gap: 4px;
-  padding: 10px 4px;
+  padding: 9px 2px;
   border-radius: 12px;
   text-decoration: none;
   color: var(--white-muted);
@@ -947,13 +979,13 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
   transform: translateY(-1px);
 }
 .page-nav-icon {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1;
 }
 .page-nav-label {
-  font-size: 10.5px;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   white-space: nowrap;
 }
 html { scroll-behavior: smooth; }
@@ -2135,5 +2167,28 @@ html { scroll-behavior: smooth; }
   check();
 })();
 </script>
+<!-- BGM（ループ・音量小さめ。スマホの自動再生制限のため最初のタップで開始） -->
+<audio id="bgm" loop preload="metadata">
+  <source src="ryo-bgm.mp3" type="audio/mpeg">
+</audio>
+<button id="bgmBtn" aria-label="BGMの再生／停止" style="position:fixed;left:16px;bottom:20px;z-index:60;width:46px;height:46px;border-radius:50%;border:1px solid rgba(0,229,255,0.35);background:rgba(1,12,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:rgba(238,246,255,0.55);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4);transition:color .2s,border-color .2s">🔇</button>
+<script>
+(function(){
+  var a=document.getElementById('bgm'), btn=document.getElementById('bgmBtn');
+  a.volume=0.18; // 音量小さめ
+  var on=false, started=false;
+  function paint(){ btn.textContent = on?'🔊':'🔇'; btn.style.color = on?'#00e5ff':'rgba(238,246,255,0.55)'; btn.style.borderColor = on?'rgba(0,229,255,0.6)':'rgba(0,229,255,0.35)'; }
+  function play(){ a.play().then(function(){on=true;paint();}).catch(function(){on=false;paint();}); }
+  // 下へスクロールしたらBGM開始（最初の1回だけ）
+  function onScroll(){ if(started) return; if(window.scrollY>60){ started=true; play(); window.removeEventListener('scroll',onScroll); } }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  // ボタンで手動ON/OFF
+  btn.addEventListener('click',function(e){ e.stopPropagation(); started=true; window.removeEventListener('scroll',onScroll); if(on){ a.pause(); on=false; paint(); } else { play(); } });
+  paint();
+})();
+</script>
+<!-- アクセス計測（GoatCounter）: 下の YOURCODE を登録したコードに差し替えてください -->
+<script data-goatcounter="https://YOURCODE.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
