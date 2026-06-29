@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#010c19">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -2176,29 +2176,28 @@ html { scroll-behavior: smooth; }
 (function(){
   var a=document.getElementById('bgm'), btn=document.getElementById('bgmBtn');
   a.volume=0.18; // 音量小さめ
-  var on=false, started=false;
+  var on=false;
   function paint(){ btn.textContent = on?'🔊':'🔇'; btn.style.color = on?'#00e5ff':'rgba(238,246,255,0.55)'; btn.style.borderColor = on?'rgba(0,229,255,0.6)':'rgba(0,229,255,0.35)'; }
-  function play(){ a.play().then(function(){on=true;paint();}).catch(function(){on=false;paint();}); }
-  function cleanup(){ document.removeEventListener('touchend',onTouch); document.removeEventListener('click',onTouch); window.removeEventListener('scroll',onScroll); }
-  function go(){ if(started) return; started=true; cleanup(); play(); }
-  // スクロール時など、最初に画面へ触れた瞬間に再生（iOSはtouchend/clickが必要）
-  function onTouch(e){ if(e.target&&e.target.closest&&e.target.closest('#bgmBtn')) return; go(); }
-  function onScroll(){ if(window.scrollY>40) go(); }
-  document.addEventListener('touchend', onTouch, {passive:true});
-  document.addEventListener('click', onTouch);
-  window.addEventListener('scroll', onScroll, {passive:true});
-  // ボタンで手動ON/OFF
-  btn.addEventListener('click',function(e){ e.stopPropagation(); started=true; cleanup(); if(on){ a.pause(); on=false; paint(); } else { play(); } });
+  function detach(){ document.removeEventListener('touchend',onGesture); document.removeEventListener('click',onGesture); }
+  // 画面に触れて指を離した瞬間（タップ／スクロール後）に再生。失敗したら次の操作で再試行。
+  function onGesture(e){
+    if(e.target && e.target.closest && e.target.closest('#bgmBtn')) return; // ボタンは個別処理
+    a.play().then(function(){ on=true; paint(); detach(); }).catch(function(){ /* まだ鳴らせない→次の操作で再試行 */ });
+  }
+  document.addEventListener('touchend', onGesture);
+  document.addEventListener('click', onGesture);
+  // スピーカーボタンで手動ON/OFF
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    if(on){ a.pause(); on=false; paint(); }
+    else { a.play().then(function(){ on=true; paint(); detach(); }).catch(function(){}); }
+  });
   paint();
 })();
 </script>
-<!-- Google Analytics 4: 下の G-XXXXXXXXXX を、ご自分の測定ID（GA4プロパティ）に差し替えてください -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
-</script>
+<!-- アクセス計測（Cloudflare Web Analytics・Cookieなし／同意バナー不要） -->
+<!-- 手順: cloudflare.com で無料登録 → Web Analytics で「Add a site」→ 発行された JSON 内の token を下の YOUR_TOKEN に差し替え -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "YOUR_TOKEN"}'></script>
 </body>
 </html>
