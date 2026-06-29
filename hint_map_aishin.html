@@ -811,7 +811,7 @@ body::after {
    注意事項パネル
 ===================================================== */
 .rules-panel {
-  margin: 16px 16px 0;
+  margin: 16px 16px 16px;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1.5px solid rgba(240,192,96,0.55);
@@ -1674,7 +1674,7 @@ HINTS_DATA.forEach(hint => {
         <div class="hint-item-title">${unlocked ? hint.title : '— — —'}</div>
         <div class="hint-item-time">${unlocked ? hint.unlockTime + ' 解放' : hint.unlockTime + ' 公開'}</div>
       </div>
-            <button class="found-check" type="button" aria-label="みつけた"><span class="fc-box"></span><span class="fc-text">みつけた</span></button>
+            <button class="found-check" type="button" aria-label="みつけた"><span class="fc-box"></span><span class="fc-text">みつけた？</span></button>
       <div class="hint-item-arrow">▼</div>
     </div>
     <div class="hint-item-body">
@@ -1697,9 +1697,11 @@ HINTS_DATA.forEach(hint => {
   /* みつけたチェック（ヘッダーに常時表示） */
   const foundChk = item.querySelector('.found-check');
   if (foundChk) {
+    const fcText = foundChk.querySelector('.fc-text');
     const applyFound = (f) => {
       foundChk.classList.toggle('found', f);
       item.classList.toggle('is-found', f);
+      if (fcText) fcText.textContent = f ? 'みつけた！' : 'みつけた？';
     };
     applyFound(isFound(hint.id));
     foundChk.addEventListener('click', (e) => {
