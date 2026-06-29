@@ -1364,51 +1364,179 @@ document.addEventListener('DOMContentLoaded', () => {
 const HINTS_DATA = [
   {
     "id": 1,
-    "title": "Ocellaris Clownfish",
-    "hint": "※エリア名はカードに描いている生物の英名です。\n※一部、展示場所とのリンクはしていません。",
+    "title": "ダイコクサギフエ",
+    "hint": "細長い口をもつサギフエの仲間。\nからだを立てるように泳ぎ、\n小さなエサをすいこむ。\n\n※一部、展示場所とのリンクはしていません。",
     "unlockTime": "18:45",
-    "x": 78,
-    "y": 81
+    "x": 35,
+    "y": 41
   },
   {
     "id": 2,
-    "title": "Spotted Garden Eel",
-    "hint": "※エリア名はカードに描いている生物の英名だよ。\n※展示場所とのリンクはしていません。",
+    "title": "カクレクマノミ",
+    "hint": "イソギンチャクと共生する人気者。\n実はオスからメスへ性転換する魚。\n群れで一番大きな個体がメスになる。\n\n※一部、展示場所とのリンクはしていません。",
     "unlockTime": "19:00",
-    "x": 82,
-    "y": 71
+    "x": 78,
+    "y": 85
   },
   {
     "id": 3,
-    "title": "エリア3",
-    "hint": "（ヒント文を入力してください）",
+    "title": "イエローヘッドジョーフィッシュ",
+    "hint": "穴から顔を出してキョロキョロ。\nオスが口の中で卵を守る、\n子煩悩な「イクメン」として有名。\n\n※一部、展示場所とのリンクはしていません。",
     "unlockTime": "19:00",
-    "x": 50,
-    "y": 50
+    "x": 76,
+    "y": 74
   },
   {
     "id": 4,
-    "title": "エリア4",
-    "hint": "（ヒント文を入力してください）",
+    "title": "キンギョハナダイ",
+    "hint": "海の中でキンギョのように舞う美しい魚。\n成長に合わせてメスからオスへ\n性転換するドラマチックな生態。\n\n※一部、展示場所とのリンクはしていません。",
     "unlockTime": "19:00",
-    "x": 50,
-    "y": 50
+    "x": 79,
+    "y": 68
   },
   {
     "id": 5,
-    "title": "エリア5",
-    "hint": "（ヒント文を入力してください）",
+    "title": "ナヌカザメ",
+    "hint": "水を飲んで体を膨らませ、敵を驚かせる。\n卵は「人魚の財布」と呼ばれる\n不思議な形をしている。\n\n※一部、展示場所とのリンクはしていません。",
     "unlockTime": "19:00",
-    "x": 50,
-    "y": 50
+    "x": 64,
+    "y": 64
   },
   {
     "id": 6,
-    "title": "エリア6",
-    "hint": "（ヒント文を入力してください）",
+    "title": "アメリカカブトガニ",
+    "hint": "何億年も姿が変わらない『生きた化石』。\n見た目はカニでも、\nクモやサソリに近い不思議な生き物。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 68,
+    "y": 70
+  },
+  {
+    "id": 7,
+    "title": "ITEM1",
+    "hint": "※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 48,
+    "y": 45
+  },
+  {
+    "id": 8,
+    "title": "ユメカサゴ",
+    "hint": "赤い体と大きな目が目を引く、\n深場のカサゴの仲間。暗い海底近くで、\n小さな獲物を探してくらす。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 85,
+    "y": 41
+  },
+  {
+    "id": 9,
+    "title": "ITEM2",
+    "hint": "※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 52,
+    "y": 21
+  },
+  {
+    "id": 10,
+    "title": "オニオコゼ",
+    "hint": "背びれに強い毒針をもつ海底のハンター。\n岩に化ける能力は超一流で、\n近づいた獲物を待ちぶせる。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 91,
+    "y": 48
+  },
+  {
+    "id": 11,
+    "title": "ミノカサゴ",
+    "hint": "ヒラヒラした美しいヒレに、\n猛毒のトゲを隠し持つ。\n優雅に泳ぐ姿に惑わされると危険な魚。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 68,
+    "y": 50
+  },
+  {
+    "id": 12,
+    "title": "メンダコ",
+    "hint": "耳のようなヒレでふわふわ泳ぐ深海のタコ。\n丸い体と短い腕がかわいらしい、\n深海でも人気のアイドル。\n\n※一部、展示場所とのリンクはしていません。",
     "unlockTime": "19:00",
     "x": 50,
-    "y": 50
+    "y": 58
+  },
+  {
+    "id": 13,
+    "title": "アカイサキ",
+    "hint": "名前にイサキと付くが、ハナダイの仲間。\nオスとメスで体の模様が違う、\nオシャレな魚。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 55,
+    "y": 29
+  },
+  {
+    "id": 14,
+    "title": "メガネモチノウオ",
+    "hint": "サンゴ礁をゆったり泳ぐ、\n大きなコブと堂々とした姿で、圧倒的な存在感を放つ。\n世界最大級のベラの仲間。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 81,
+    "y": 77
+  },
+  {
+    "id": 15,
+    "title": "アラ",
+    "hint": "深場の岩礁域にすむ、大型の高級魚。\n堂々とした姿が印象的で、\nきめ細かな白身は上品な味わいで知られる。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 40,
+    "y": 31
+  },
+  {
+    "id": 16,
+    "title": "マコガレイ",
+    "hint": "「左ヒラメに右カレイ」。\n両目が体の右側に集まり、\n砂地や砂泥底に身を隠してくらす。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 62,
+    "y": 73
+  },
+  {
+    "id": 17,
+    "title": "ハコフグ",
+    "hint": "体が硬い板に覆われた四角いフグ。\nおびえると皮膚から毒を出すので、\n他の魚と一緒に飼うのは大変。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 85,
+    "y": 54
+  },
+  {
+    "id": 18,
+    "title": "ウチワエビ",
+    "hint": "うちわのように平べったい不思議な体。\n見た目はユニークだが、味は\n伊勢海老に匹敵するほど絶品！\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 74,
+    "y": 24
+  },
+  {
+    "id": 19,
+    "title": "チゴダラ",
+    "hint": "タラの仲間で、下アゴに一本のヒゲがある。\nこのヒゲをセンサーのように使い、\n砂の中の食べ物を探す。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 79,
+    "y": 57
+  },
+  {
+    "id": 20,
+    "title": "ナンヨウハギ",
+    "hint": "鮮やかな青と黄色が美しい魚。\n尾びれの付け根に鋭いトゲがあり、\n触ると危ないので要注意！\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 86,
+    "y": 63
+  },
+  {
+    "id": 21,
+    "title": "マツカサウオ",
+    "hint": "松ぼっくりのような硬い鱗が特徴。\nアゴの先に発光器を持っていて、\n暗い海でピカッと光るハイテク魚。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 83,
+    "y": 48
+  },
+  {
+    "id": 22,
+    "title": "アカアマダイ",
+    "hint": "高級食材として有名な、冬の味覚。\n砂地に穴を掘って住み、顔だけ\nひょっこり出していることもある。\n\n※一部、展示場所とのリンクはしていません。",
+    "unlockTime": "19:00",
+    "x": 52,
+    "y": 38
   }
 ];
 
@@ -1432,6 +1560,8 @@ function setManualUnlocked(arr) {
 
 /* 既定のヒント文（個別ヒント未設定時に表示） */
 const DEFAULT_HINT = '※一部、展示場所とのリンクはしていません。';
+const PLACEHOLDER_HINT = '（ヒント文を入力してください）';
+function hintText(h){ const v=(h.hint||'').trim(); return (v==='' || v===PLACEHOLDER_HINT) ? DEFAULT_HINT : h.hint; }
 
 /* みつけたチェックの永続化 */
 const FOUND_KEY = 'takesui_found_v1';
@@ -1547,7 +1677,7 @@ HINTS_DATA.forEach(hint => {
     <div class="hint-item-body">
       <div class="hint-item-content">
         ${unlocked
-          ? `<div class="hint-item-hint-text">${hint.hint || DEFAULT_HINT}</div>`
+          ? `<div class="hint-item-hint-text">${hintText(hint)}</div>`
           : `<div class="hint-item-locked-note">ヒントは ${hint.unlockTime} に公開されます</div>`
         }
         <button class="found-btn" type="button">□ みつけた？</button>
@@ -1610,7 +1740,7 @@ function openModal(hint) {
 
   if (unlocked) {
     modalHintBox.style.display = '';
-    modalHintText.textContent = hint.hint || DEFAULT_HINT;
+    modalHintText.textContent = hintText(hint);
     modalLockedBox.style.display = 'none';
   } else {
     modalHintBox.style.display = 'none';
@@ -1710,7 +1840,7 @@ function refreshAll() {
       const content = item.querySelector('.hint-item-content');
       if (content) {
         content.innerHTML = (unlocked
-          ? `<div class="hint-item-hint-text">${hint.hint || DEFAULT_HINT}</div>`
+          ? `<div class="hint-item-hint-text">${hintText(hint)}</div>`
           : `<div class="hint-item-locked-note">ヒントは ${hint.unlockTime} に公開されます</div>`)
           + `<button class="found-btn" type="button">□ みつけた？</button>`;
         const fb = content.querySelector('.found-btn');
