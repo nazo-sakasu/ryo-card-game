@@ -2,10 +2,10 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#010c19">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <title>漁 — カードゲーム</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,13 +27,26 @@
 }
 
 html { scroll-behavior: smooth; background: #010c19; }
-body { background: var(--deep); color: var(--white); font-family: var(--font-sans); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body { margin: 0; padding: 0; min-height: 100dvh; background: var(--deep); color: var(--white); font-family: var(--font-sans); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
-#bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+#bg-canvas { position: fixed; inset: 0; width: 100vw; height: 100dvh; z-index: 0; pointer-events: none; }
+
+/* iOS Safari: 半透明URLバー／下部ツールバー越しに本文の枠線が透けないよう、上下に固定の暗いマスクを敷く */
+body::before, body::after { content: ""; position: fixed; left: 0; right: 0; pointer-events: none; z-index: 50; }
+body::before {
+  top: 0;
+  height: calc(env(safe-area-inset-top, 0px) + 86px);
+  background: linear-gradient(to bottom, #010c19 0%, rgba(1,12,25,0.98) 60%, rgba(1,12,25,0) 100%);
+}
+body::after {
+  bottom: 0;
+  height: calc(env(safe-area-inset-bottom, 0px) + 96px);
+  background: linear-gradient(to top, #010c19 0%, rgba(1,12,25,0.96) 58%, rgba(1,12,25,0) 100%);
+}
 
 /* god-rays now fully canvas-driven */
 
-main { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 20px 120px; }
+main { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 20px calc(env(safe-area-inset-bottom, 0px) + 140px); }
 
 /* HERO */
 .hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 80px 0 30px; overflow: visible; }
@@ -203,21 +216,7 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
 }
 
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f8f9fc;color:#1a2030;padding:20px}
-  h1{text-align:center;font-size:22px;font-weight:700;letter-spacing:0.15em;margin-bottom:6px;color:#0a1428}
-  .sub{text-align:center;font-size:11px;color:#666;letter-spacing:0.1em;margin-bottom:24px}
-  table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.08)}
-  th{background:#0a1e3a;color:#fff;padding:10px 8px;font-size:12px;letter-spacing:0.08em;text-align:center}
-  td{border:1px solid #e0e4ef;padding:10px 8px;text-align:center;font-size:13px}
-  tr:nth-child(even) td{background:#f4f6fb}
-  .zone{font-weight:700;font-size:11px;letter-spacing:0.1em;padding:3px 10px;border-radius:20px;display:inline-block}
-  .z-s{background:#e0f4ff;color:#0066aa}
-  .z-m{background:#e0eaff;color:#2244bb}
-  .z-d{background:#ede0ff;color:#6622cc}
-  .total-row td{background:#fff8e0;font-weight:700;font-size:14px}
-  .name-row td{background:#f0f4ff;height:36px}
-  @media print{body{padding:10px}box-shadow:none}
+  /* （ここにあった印刷用テーブルCSSの混入を削除：body{background:#f8f9fc;padding:20px} 等。本文未使用のデッドCSSでiOS表示崩れの一因） */
 
 .hero-org {
   font-size: 16px;
@@ -993,7 +992,7 @@ html { scroll-behavior: smooth; }
 /* ── トップに戻るボタン ── */
 #toTopBtn {
   position: fixed;
-  bottom: 24px;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
   right: 24px;
   width: 48px;
   height: 48px;
@@ -1024,7 +1023,7 @@ html { scroll-behavior: smooth; }
   transform: translateY(-2px);
 }
 @media (max-width: 480px) {
-  #toTopBtn { bottom: 18px; right: 18px; width: 44px; height: 44px; }
+  #toTopBtn { bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); right: 18px; width: 44px; height: 44px; }
 }
 </style>
 
@@ -2171,7 +2170,7 @@ html { scroll-behavior: smooth; }
 <audio id="bgm" loop preload="metadata">
   <source src="ryo-bgm.mp3" type="audio/mpeg">
 </audio>
-<button id="bgmBtn" aria-label="BGMの再生／停止" style="position:fixed;left:16px;bottom:20px;z-index:60;width:46px;height:46px;border-radius:50%;border:1px solid rgba(0,229,255,0.35);background:rgba(1,12,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:rgba(238,246,255,0.55);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4);transition:color .2s,border-color .2s">🔇</button>
+<button id="bgmBtn" aria-label="BGMの再生／停止" style="position:fixed;left:16px;bottom:calc(env(safe-area-inset-bottom, 0px) + 24px);z-index:1000;width:46px;height:46px;border-radius:50%;border:1px solid rgba(0,229,255,0.35);background:rgba(1,12,25,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:rgba(238,246,255,0.55);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.4);transition:color .2s,border-color .2s">🔇</button>
 <script>
 (function(){
   var a=document.getElementById('bgm'), btn=document.getElementById('bgmBtn');
