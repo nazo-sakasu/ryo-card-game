@@ -31,19 +31,6 @@ body { margin: 0; padding: 0; min-height: 100dvh; background: var(--deep); color
 
 #bg-canvas { position: fixed; inset: 0; width: 100vw; height: 100dvh; z-index: 0; pointer-events: none; }
 
-/* iOS Safari: 半透明URLバー／下部ツールバー越しに本文の枠線が透けないよう、上下に固定の暗いマスクを敷く */
-body::before, body::after { content: ""; position: fixed; left: 0; right: 0; pointer-events: none; z-index: 50; }
-body::before {
-  top: 0;
-  height: calc(env(safe-area-inset-top, 0px) + 86px);
-  background: linear-gradient(to bottom, #010c19 0%, rgba(1,12,25,0.98) 60%, rgba(1,12,25,0) 100%);
-}
-body::after {
-  bottom: 0;
-  height: calc(env(safe-area-inset-bottom, 0px) + 96px);
-  background: linear-gradient(to top, #010c19 0%, rgba(1,12,25,0.96) 58%, rgba(1,12,25,0) 100%);
-}
-
 /* god-rays now fully canvas-driven */
 
 main { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 20px calc(env(safe-area-inset-bottom, 0px) + 140px); }
@@ -690,7 +677,7 @@ footer { text-align: center; padding: 28px 20px 20px; position: relative; z-inde
         <div class="step-content">
           <h3 class="step-title">片付けて次のラウンドへ！</h3>
           <p class="step-body">獲れた魚カードは<span class="acc">自分の手元</span>に。獲れなかった魚カードと使った漁師カードは<span class="acc">捨て場</span>（テーブルの脇）へ置きます。②〜⑤を繰り返し、<span class="acc">3回戦終了後に合計点を比べて勝負！</span></p>
-        
+        </div>
       </div>
     </div>
   </section>
