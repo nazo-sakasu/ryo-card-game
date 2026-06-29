@@ -6,11 +6,16 @@
   <title>宝さがしヒントMAP | 竹島水族館</title>
 
 <style>
-/* みつけたチェックボタン */
-.found-btn{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:9px 18px;border-radius:22px;border:1px solid rgba(0,229,255,0.4);background:rgba(0,229,255,0.08);color:#7fd4ff;font-size:13px;font-weight:700;letter-spacing:0.04em;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
-.found-btn:active{transform:scale(0.96)}
+/* みつけたチェック（ヘッダー常時表示） */
+.found-check{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;margin-right:8px;padding:5px 9px;border-radius:14px;border:1px solid rgba(0,229,255,0.3);background:rgba(0,229,255,0.05);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.found-check:active{transform:scale(0.95)}
+.found-check .fc-box{width:17px;height:17px;border-radius:5px;border:2px solid rgba(0,229,255,0.6);display:flex;align-items:center;justify-content:center;color:transparent;font-size:12px;font-weight:900;line-height:1}
+.found-check .fc-box::before{content:'✓'}
+.found-check .fc-text{font-size:11px;font-weight:700;color:rgba(0,229,255,0.85);white-space:nowrap}
+.found-check.found{border-color:rgba(52,211,153,0.6);background:rgba(52,211,153,0.16)}
+.found-check.found .fc-box{background:#34d399;border-color:#34d399;color:#06301f}
+.found-check.found .fc-text{color:#34d399}
 .hint-item-locked-note{font-size:13px;color:rgba(238,246,255,0.5);line-height:1.6}
-.found-btn.found{background:rgba(52,211,153,0.16);border-color:rgba(52,211,153,0.65);color:#34d399}
 .hint-item.is-found .hint-item-num{background:rgba(52,211,153,0.22);border-color:rgba(52,211,153,0.6);color:#34d399}
 
 /* =====================================================
@@ -1152,7 +1157,6 @@ body::after {
       </div>
 
     </div>
-    </div>
     <div class="rules-footer">
       <span class="rules-footer-icon">🐟</span>
       <span>ルールを守って、みんなで楽しく宝さがしを楽しみましょう！</span>
@@ -1168,8 +1172,6 @@ body::after {
     <div style="font-size:13px;color:rgba(238,246,255,0.75);margin-top:6px;line-height:1.6">
       特別なカードをプレゼントします！
     </div>
-  </div>
-
   </div>
 
   <!-- モードバナー（テスト/管理） -->
@@ -1366,7 +1368,7 @@ const HINTS_DATA = [
     "id": 1,
     "title": "ダイコクサギフエ",
     "hint": "細長い口をもつサギフエの仲間。\nからだを立てるように泳ぎ、\n小さなエサをすいこむ。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:45",
+    "unlockTime": "18:00",
     "x": 35,
     "y": 41
   },
@@ -1374,7 +1376,7 @@ const HINTS_DATA = [
     "id": 2,
     "title": "カクレクマノミ",
     "hint": "イソギンチャクと共生する人気者。\n実はオスからメスへ性転換する魚。\n群れで一番大きな個体がメスになる。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:03",
     "x": 78,
     "y": 85
   },
@@ -1382,7 +1384,7 @@ const HINTS_DATA = [
     "id": 3,
     "title": "イエローヘッドジョーフィッシュ",
     "hint": "穴から顔を出してキョロキョロ。\nオスが口の中で卵を守る、\n子煩悩な「イクメン」として有名。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:06",
     "x": 76,
     "y": 74
   },
@@ -1390,7 +1392,7 @@ const HINTS_DATA = [
     "id": 4,
     "title": "キンギョハナダイ",
     "hint": "海の中でキンギョのように舞う美しい魚。\n成長に合わせてメスからオスへ\n性転換するドラマチックな生態。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:09",
     "x": 79,
     "y": 68
   },
@@ -1398,7 +1400,7 @@ const HINTS_DATA = [
     "id": 5,
     "title": "ナヌカザメ",
     "hint": "水を飲んで体を膨らませ、敵を驚かせる。\n卵は「人魚の財布」と呼ばれる\n不思議な形をしている。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:12",
     "x": 64,
     "y": 64
   },
@@ -1406,7 +1408,7 @@ const HINTS_DATA = [
     "id": 6,
     "title": "アメリカカブトガニ",
     "hint": "何億年も姿が変わらない『生きた化石』。\n見た目はカニでも、\nクモやサソリに近い不思議な生き物。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:15",
     "x": 68,
     "y": 70
   },
@@ -1414,7 +1416,7 @@ const HINTS_DATA = [
     "id": 7,
     "title": "ITEM1",
     "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:18",
     "x": 48,
     "y": 45
   },
@@ -1422,7 +1424,7 @@ const HINTS_DATA = [
     "id": 8,
     "title": "ユメカサゴ",
     "hint": "赤い体と大きな目が目を引く、\n深場のカサゴの仲間。暗い海底近くで、\n小さな獲物を探してくらす。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:21",
     "x": 85,
     "y": 41
   },
@@ -1430,7 +1432,7 @@ const HINTS_DATA = [
     "id": 9,
     "title": "ITEM2",
     "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:24",
     "x": 52,
     "y": 21
   },
@@ -1438,7 +1440,7 @@ const HINTS_DATA = [
     "id": 10,
     "title": "オニオコゼ",
     "hint": "背びれに強い毒針をもつ海底のハンター。\n岩に化ける能力は超一流で、\n近づいた獲物を待ちぶせる。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:27",
     "x": 91,
     "y": 48
   },
@@ -1446,7 +1448,7 @@ const HINTS_DATA = [
     "id": 11,
     "title": "ミノカサゴ",
     "hint": "ヒラヒラした美しいヒレに、\n猛毒のトゲを隠し持つ。\n優雅に泳ぐ姿に惑わされると危険な魚。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:30",
     "x": 68,
     "y": 50
   },
@@ -1454,7 +1456,7 @@ const HINTS_DATA = [
     "id": 12,
     "title": "メンダコ",
     "hint": "耳のようなヒレでふわふわ泳ぐ深海のタコ。\n丸い体と短い腕がかわいらしい、\n深海でも人気のアイドル。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:33",
     "x": 50,
     "y": 58
   },
@@ -1462,7 +1464,7 @@ const HINTS_DATA = [
     "id": 13,
     "title": "アカイサキ",
     "hint": "名前にイサキと付くが、ハナダイの仲間。\nオスとメスで体の模様が違う、\nオシャレな魚。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:36",
     "x": 55,
     "y": 29
   },
@@ -1470,7 +1472,7 @@ const HINTS_DATA = [
     "id": 14,
     "title": "メガネモチノウオ",
     "hint": "サンゴ礁をゆったり泳ぐ、\n大きなコブと堂々とした姿で、圧倒的な存在感を放つ。\n世界最大級のベラの仲間。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:39",
     "x": 81,
     "y": 77
   },
@@ -1478,7 +1480,7 @@ const HINTS_DATA = [
     "id": 15,
     "title": "アラ",
     "hint": "深場の岩礁域にすむ、大型の高級魚。\n堂々とした姿が印象的で、\nきめ細かな白身は上品な味わいで知られる。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:42",
     "x": 40,
     "y": 31
   },
@@ -1486,7 +1488,7 @@ const HINTS_DATA = [
     "id": 16,
     "title": "マコガレイ",
     "hint": "「左ヒラメに右カレイ」。\n両目が体の右側に集まり、\n砂地や砂泥底に身を隠してくらす。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:45",
     "x": 62,
     "y": 73
   },
@@ -1494,7 +1496,7 @@ const HINTS_DATA = [
     "id": 17,
     "title": "ハコフグ",
     "hint": "体が硬い板に覆われた四角いフグ。\nおびえると皮膚から毒を出すので、\n他の魚と一緒に飼うのは大変。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:48",
     "x": 85,
     "y": 54
   },
@@ -1502,7 +1504,7 @@ const HINTS_DATA = [
     "id": 18,
     "title": "ウチワエビ",
     "hint": "うちわのように平べったい不思議な体。\n見た目はユニークだが、味は\n伊勢海老に匹敵するほど絶品！\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:51",
     "x": 74,
     "y": 24
   },
@@ -1510,7 +1512,7 @@ const HINTS_DATA = [
     "id": 19,
     "title": "チゴダラ",
     "hint": "タラの仲間で、下アゴに一本のヒゲがある。\nこのヒゲをセンサーのように使い、\n砂の中の食べ物を探す。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:54",
     "x": 79,
     "y": 57
   },
@@ -1518,7 +1520,7 @@ const HINTS_DATA = [
     "id": 20,
     "title": "ナンヨウハギ",
     "hint": "鮮やかな青と黄色が美しい魚。\n尾びれの付け根に鋭いトゲがあり、\n触ると危ないので要注意！\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "18:57",
     "x": 86,
     "y": 63
   },
@@ -1534,7 +1536,7 @@ const HINTS_DATA = [
     "id": 22,
     "title": "アカアマダイ",
     "hint": "高級食材として有名な、冬の味覚。\n砂地に穴を掘って住み、顔だけ\nひょっこり出していることもある。\n\n※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
+    "unlockTime": "19:03",
     "x": 52,
     "y": 38
   }
@@ -1672,6 +1674,7 @@ HINTS_DATA.forEach(hint => {
         <div class="hint-item-title">${unlocked ? hint.title : '— — —'}</div>
         <div class="hint-item-time">${unlocked ? hint.unlockTime + ' 解放' : hint.unlockTime + ' 公開'}</div>
       </div>
+            <button class="found-check" type="button" aria-label="みつけた"><span class="fc-box"></span><span class="fc-text">みつけた</span></button>
       <div class="hint-item-arrow">▼</div>
     </div>
     <div class="hint-item-body">
@@ -1680,7 +1683,6 @@ HINTS_DATA.forEach(hint => {
           ? `<div class="hint-item-hint-text">${hintText(hint)}</div>`
           : `<div class="hint-item-locked-note">ヒントは ${hint.unlockTime} に公開されます</div>`
         }
-        <button class="found-btn" type="button">□ みつけた？</button>
       </div>
     </div>
   `;
@@ -1692,16 +1694,15 @@ HINTS_DATA.forEach(hint => {
     syncPinHighlight();
   });
 
-  /* みつけたチェック */
-  const foundBtn = item.querySelector('.found-btn');
-  if (foundBtn) {
+  /* みつけたチェック（ヘッダーに常時表示） */
+  const foundChk = item.querySelector('.found-check');
+  if (foundChk) {
     const applyFound = (f) => {
-      foundBtn.classList.toggle('found', f);
-      foundBtn.textContent = f ? '✅ みつけた！' : '□ みつけた？';
+      foundChk.classList.toggle('found', f);
       item.classList.toggle('is-found', f);
     };
     applyFound(isFound(hint.id));
-    foundBtn.addEventListener('click', (e) => {
+    foundChk.addEventListener('click', (e) => {
       e.stopPropagation();
       applyFound(toggleFound(hint.id));
     });
@@ -1841,16 +1842,7 @@ function refreshAll() {
       if (content) {
         content.innerHTML = (unlocked
           ? `<div class="hint-item-hint-text">${hintText(hint)}</div>`
-          : `<div class="hint-item-locked-note">ヒントは ${hint.unlockTime} に公開されます</div>`)
-          + `<button class="found-btn" type="button">□ みつけた？</button>`;
-        const fb = content.querySelector('.found-btn');
-        const applyFound = (f) => {
-          fb.classList.toggle('found', f);
-          fb.textContent = f ? '✅ みつけた！' : '□ みつけた？';
-          item.classList.toggle('is-found', f);
-        };
-        applyFound(isFound(hint.id));
-        fb.addEventListener('click', (e) => { e.stopPropagation(); applyFound(toggleFound(hint.id)); });
+          : `<div class="hint-item-locked-note">ヒントは ${hint.unlockTime} に公開されます</div>`);
       }
     }
   });
@@ -1956,7 +1948,7 @@ setInterval(tick, 1000);
 ===================================================== */
 (function() {
   const STORAGE_KEY    = 'takesui_redeemed_v3'; /* v3: パスコード必須化 */
-  const STAFF_PASSCODE = "1234"; /* スタッフ用パスコード（イベントごとに変更） */
+  const STAFF_PASSCODE = "0719"; /* スタッフ用パスコード（イベントごとに変更） */
   const HOLD_MS        = 3000;   /* 長押し判定秒数（厳しめ） */
 
   const banner = document.getElementById('goalBanner');
@@ -2106,10 +2098,5 @@ setInterval(tick, 1000);
 
 })();
 </script>
-</body>
-</html>
-
-
-
 </body>
 </html>
