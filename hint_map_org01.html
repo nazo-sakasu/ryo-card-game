@@ -1049,6 +1049,18 @@ body::after {
 .goal-swipe-knob.snap-back {
   transition: left 0.4s cubic-bezier(0.34,1.56,0.64,1);
 }
+
+/* みつけたチェック（ヘッダー常時表示） */
+.hint-item-header{align-items:center}
+.found-check{display:inline-flex;align-items:center;gap:5px;flex:0 0 auto;margin-right:8px;padding:5px 9px;border-radius:14px;border:1px solid rgba(0,229,255,0.3);background:rgba(0,229,255,0.05);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent}
+.found-check:active{transform:scale(0.95)}
+.found-check .fc-box{width:17px;height:17px;border-radius:5px;border:2px solid rgba(0,229,255,0.6);display:flex;align-items:center;justify-content:center;color:transparent;font-size:12px;font-weight:900;line-height:1}
+.found-check .fc-box::before{content:'✓'}
+.found-check .fc-text{font-size:11px;font-weight:700;color:rgba(0,229,255,0.85);white-space:nowrap}
+.found-check.found{border-color:rgba(52,211,153,0.6);background:rgba(52,211,153,0.16)}
+.found-check.found .fc-box{background:#34d399;border-color:#34d399;color:#06301f}
+.found-check.found .fc-text{color:#34d399}
+.hint-item.is-found .hint-item-num{background:rgba(52,211,153,0.22);border-color:rgba(52,211,153,0.6);color:#34d399}
 </style>
 </head>
 <body>
@@ -1561,6 +1573,31 @@ HINTS_DATA.forEach(hint => {
 /* =====================================================
    ヒント一覧（アコーディオン）を動的生成
 ===================================================== */
+
+/* =====================================================
+   みつけたチェック - localStorage 管理
+===================================================== */
+const FOUND_STORAGE_KEY = 'takesui_found_v1';
+function getFoundSet() {
+  try {
+    const s = localStorage.getItem(FOUND_STORAGE_KEY);
+    return s ? new Set(JSON.parse(s)) : new Set();
+  } catch(e) { return new Set(); }
+}
+function saveFoundSet(set) {
+  try {
+    localStorage.setItem(FOUND_STORAGE_KEY, JSON.stringify([...set]));
+  } catch(e) {}
+}
+function isFound(id) { return getFoundSet().has(id); }
+function toggleFound(id) {
+  const set = getFoundSet();
+  if (set.has(id)) set.delete(id);
+  else set.add(id);
+  saveFoundSet(set);
+  return set.has(id);
+}
+
 const hintList = document.getElementById('hintList');
 
 HINTS_DATA.forEach(hint => {
@@ -1576,6 +1613,7 @@ HINTS_DATA.forEach(hint => {
         <div class="hint-item-title">${unlocked ? hint.title : '— — —'}</div>
         <div class="hint-item-time">${unlocked ? hint.unlockTime + ' 解放' : hint.unlockTime + ' 公開'}</div>
       </div>
+      <button class="found-check" type="button" aria-label="みつけた"><span class="fc-box"></span><span class="fc-text">みつけた</span></button>
       ${unlocked ? '<div class="hint-item-arrow">▼</div>' : ''}
     </div>
     <div class="hint-item-body">
@@ -1596,6 +1634,20 @@ HINTS_DATA.forEach(hint => {
   item.querySelector('.hint-item-header').addEventListener('click', () => {
     if (isUnlocked(hint)) item.classList.toggle('open');
   });
+
+  /* みつけたチェック（ヘッダーに常時表示） */
+  const foundChk = item.querySelector('.found-check');
+  if (foundChk) {
+    const applyFound = (f) => {
+      foundChk.classList.toggle('found', f);
+      item.classList.toggle('is-found', f);
+    };
+    applyFound(isFound(hint.id));
+    foundChk.addEventListener('click', (e) => {
+      e.stopPropagation();
+      applyFound(toggleFound(hint.id));
+    });
+  }
 
   hintList.appendChild(item);
 });
