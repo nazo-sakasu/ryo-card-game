@@ -877,6 +877,7 @@ body::after {
    ゴール告知バナー
 ===================================================== */
 .goal-banner {
+  display: none;
   margin: 20px 16px 0;
   border-radius: var(--radius);
   background: linear-gradient(135deg, rgba(240,192,96,0.12) 0%, rgba(180,130,40,0.08) 100%);
@@ -1128,7 +1129,7 @@ body::after {
   </div>
 
   <!-- ゴール案内 -->
-  <div id="giftBanner" style="margin:0 16px 20px;padding:16px 18px;background:linear-gradient(135deg,rgba(240,192,96,0.12),rgba(240,192,96,0.06));border:1px solid rgba(240,192,96,0.4);border-radius:14px;text-align:center">
+  <div id="giftBanner" style="display:none;margin:0 16px 20px;padding:16px 18px;background:linear-gradient(135deg,rgba(240,192,96,0.12),rgba(240,192,96,0.06));border:1px solid rgba(240,192,96,0.4);border-radius:14px;text-align:center">
     <div style="font-size:28px;margin-bottom:8px">🎁</div>
     <div style="font-family:'Noto Serif JP','Yu Mincho',serif;font-size:16px;font-weight:700;color:#f0c060;line-height:1.7;letter-spacing:0.04em">
       17枚すべてのカードを集めたら<br>本部へお越しください！
@@ -1250,7 +1251,7 @@ body::after {
 
   <!-- フッター -->
   <footer class="footer">
-    <div class="footer-title">デンソーテクノ労働組合 宝さがし</div>
+    <div class="footer-title">アイシンAIW労働組合 宝さがし</div>
     <div>©nazo-sakasu</div>
   </footer>
 
@@ -1294,8 +1295,6 @@ body::after {
 </div>
 
 <script>
-const SHOW_GOAL = true; // GOALバナー表示制御
-
   // 団体名をURLパラメータから取得して表示
   (function() {
     const params = new URLSearchParams(location.search);
@@ -1332,139 +1331,139 @@ document.addEventListener('DOMContentLoaded', () => {
 const HINTS_DATA = [
   {
     "id": 1,
-    "title": "チンアナゴ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
+    "title": "チケット売り場",
+    "hint": "入口のすぐそば。水族館の入り口となる場所をよく観察してみよう。大きな数字が刻まれた何かが目印だ。",
     "unlockTime": "18:00",
-    "x": 75,
-    "y": 82
+    "x": 41,
+    "y": 31
   },
   {
     "id": 2,
-    "title": "モンハナシャコ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:04",
-    "x": 77,
-    "y": 73
+    "title": "深海大水塊",
+    "hint": "国内随大級の深海水槽を見上げると、漁師の舟が描かれた木製プレートが隠されている。暗い方の棚に注目！",
+    "unlockTime": "18:03",
+    "x": 56,
+    "y": 55
   },
   {
     "id": 3,
-    "title": "チカメキントキ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:08",
-    "x": 84,
-    "y": 43
+    "title": "深海ゾーン",
+    "hint": "光の届かない深い海をイメージしたゾーン。タカアシガニの水槽の足元、磯の影に何かある。",
+    "unlockTime": "18:06",
+    "x": 36,
+    "y": 41
   },
   {
     "id": 4,
-    "title": "アイテム１",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:12",
-    "x": 52,
-    "y": 40
+    "title": "三河湾大水槽",
+    "hint": "大きな魚たちが泳ぐメイン水槽の向かい側の壁。魚の絵と番号が描かれた小さなシールを探せ。",
+    "unlockTime": "18:09",
+    "x": 44,
+    "y": 55
   },
   {
     "id": 5,
-    "title": "ミズクラゲ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:16",
-    "x": 74,
-    "y": 68
+    "title": "近海ゾーン",
+    "hint": "三河湾で獲れる魚を展示するゾーン。アジの群れが泳ぐ水槽の右下に、貝殻に隠されたカードがある。",
+    "unlockTime": "18:12",
+    "x": 73,
+    "y": 24
   },
   {
     "id": 6,
-    "title": "ハリセンボン",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:20",
-    "x": 85,
-    "y": 56
+    "title": "タケシマンション",
+    "hint": "タコやヤドカリが暮らすマンション。一番上の部屋の外壁に小さな宝のマークが貼られているぞ。",
+    "unlockTime": "18:15",
+    "x": 65,
+    "y": 55
   },
   {
     "id": 7,
-    "title": "オニオコゼ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:24",
-    "x": 91,
-    "y": 42
-  },
-  {
-    "id": 8,
-    "title": "カクレクマノミ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:28",
-    "x": 79,
-    "y": 81
-  },
-  {
-    "id": 9,
-    "title": "ヤマトカラッパ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:32",
-    "x": 89,
-    "y": 53
-  },
-  {
-    "id": 10,
-    "title": "ノコギリザメ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:36",
-    "x": 65,
-    "y": 72
-  },
-  {
-    "id": 11,
-    "title": "マアジ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:40",
+    "title": "ウツボ軍団水槽",
+    "hint": "土管の中に潜むウツボたち。一番手前の土管の外側、底の部分に赤いシールが貼られている。",
+    "unlockTime": "18:18",
     "x": 93,
-    "y": 36
-  },
-  {
-    "id": 12,
-    "title": "オオホモラ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:44",
-    "x": 41,
-    "y": 32
-  },
-  {
-    "id": 13,
-    "title": "アイテム２",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:48",
-    "x": 69,
-    "y": 60
-  },
-  {
-    "id": 14,
-    "title": "ミノカサゴ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:52",
-    "x": 52,
-    "y": 57
-  },
-  {
-    "id": 15,
-    "title": "チゴダラ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "18:56",
-    "x": 79,
-    "y": 56
-  },
-  {
-    "id": 16,
-    "title": "エビスダイ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:00",
-    "x": 36,
     "y": 40
   },
   {
+    "id": 8,
+    "title": "熱帯海水ゾーン",
+    "hint": "色とりどりの熱帯魚が泳ぐカラフルなゾーン。ニモに似た魚のいる水槽の上の棚に注目しよう。",
+    "unlockTime": "18:21",
+    "x": 87,
+    "y": 37
+  },
+  {
+    "id": 9,
+    "title": "サンゴ・カブトガニ",
+    "hint": "カブトガニと生きているサンゴを展示している場所。サンゴの根元に小さな貝のオブジェがある。",
+    "unlockTime": "18:24",
+    "x": 88,
+    "y": 55
+  },
+  {
+    "id": 10,
+    "title": "さわりんプール（タッチプール）",
+    "hint": "オオグソクムシやタカアシガニに触れるプール。プールの縁にある案内板の裏側を確認してみよう。",
+    "unlockTime": "18:27",
+    "x": 77,
+    "y": 85
+  },
+  {
+    "id": 11,
+    "title": "コツメカワウソ",
+    "hint": "小さくてかわいいカワウソが暮らすスペース。入口の看板に描かれた絵のどこかに隠し文字がある。",
+    "unlockTime": "18:30",
+    "x": 49,
+    "y": 62
+  },
+  {
+    "id": 12,
+    "title": "ギャラリー・企画展",
+    "hint": "季節の展示が行われるギャラリー。今回の特別展示パネルの最後の1枚の裏面を覗いてみよう。",
+    "unlockTime": "18:33",
+    "x": 70,
+    "y": 66
+  },
+  {
+    "id": 13,
+    "title": "アシカプール",
+    "hint": "アシカショーが行われる屋外プール。観客席の一番端の椅子の下に小さなカードが貼られているよ。",
+    "unlockTime": "18:36",
+    "x": 49,
+    "y": 45
+  },
+  {
+    "id": 14,
+    "title": "オットセイプール",
+    "hint": "アシカのお隣のオットセイたちのプール。解説板の右側にある魚マークのシールの下を探せ。",
+    "unlockTime": "18:39",
+    "x": 82,
+    "y": 71
+  },
+  {
+    "id": 15,
+    "title": "ミュージアムショップ",
+    "hint": "グッズいっぱいのお土産コーナー。深海魚のぬいぐるみコーナーの近く、棚の一番下の段に注目！",
+    "unlockTime": "18:42",
+    "x": 64,
+    "y": 71
+  },
+  {
+    "id": 16,
+    "title": "カピバラ・ケヅメリクガメ",
+    "hint": "のんびり暮らす動物たちのコーナー。リクガメの飼育スペースの前にある解説看板を後ろから見てみよう。",
+    "unlockTime": "18:45",
+    "x": 49,
+    "y": 28
+  },
+  {
     "id": 17,
-    "title": "タカアシガニ",
-    "hint": "※一部、展示場所とのリンクはしていません。",
-    "unlockTime": "19:04",
-    "x": 48,
-    "y": 46
+    "title": "広場・キッチンカー",
+    "hint": "最後の宝！屋外の広場にあるキッチンカーの車輪の近く。地面に描かれた魚のマークの中心に宝がある！",
+    "unlockTime": "18:48",
+    "x": 79,
+    "y": 60
   }
 ];
 
@@ -1803,22 +1802,6 @@ setInterval(tick, 1000);
 
 
 <script>
-/* GOALバナー表示ON/OFF制御（スライダー処理とは完全に独立） */
-(function() {
-  const showGoal = (typeof SHOW_GOAL === 'undefined') ? true : Boolean(SHOW_GOAL);
-  const goalBanner = document.getElementById('goalBanner');
-  const giftBanner = document.getElementById('giftBanner');
-  if (!showGoal) {
-    if (giftBanner) giftBanner.style.display = 'none';
-    if (goalBanner) goalBanner.style.display = 'none';
-  } else {
-    if (giftBanner) giftBanner.style.display = '';
-    if (goalBanner) goalBanner.style.display = '';
-  }
-})();
-</script>
-
-<script>
 /* =====================================================
    ゴールバナー：スワイプ／長押しで引き換え済みに変更
    - スマホ：右にスライドで引き換え
@@ -1835,6 +1818,13 @@ setInterval(tick, 1000);
 
   if (!banner) return;
 
+  // SHOW_GOAL制御
+  if (typeof SHOW_GOAL === 'undefined' || SHOW_GOAL) {
+    banner.style.display = '';
+    var gb = document.getElementById('giftBanner');
+    if (gb) gb.style.display = '';
+  }
+
   /* 引き換え済み状態を復元（リセット：常に未引き換えで開始） */
   // localStorage.removeItem(STORAGE_KEY); // 毎回リセットしたい場合はここを有効に
   if (localStorage.getItem(STORAGE_KEY) === '1') {
@@ -1844,19 +1834,22 @@ setInterval(tick, 1000);
 
   /* —— 引き換え実行 —— */
   function redeem(animate) {
-    /* スタッフのパスコード確認 */
-    const code = prompt('🎣 スタッフ確認\n\nスタッフに「引き換えコード」を聞いてから入力してください。\n（プレイヤー自身では引き換えできません）');
-    if (code === null) {
-      /* キャンセル時は元に戻す */
-      resetSwipe();
-      return;
+    /* 復元時(animate=false)はパスコード確認をスキップ */
+    if (animate !== false) {
+      /* スタッフのパスコード確認 */
+      const code = prompt('🎣 スタッフ確認\n\nスタッフに「引き換えコード」を聞いてから入力してください。\n（プレイヤー自身では引き換えできません）');
+      if (code === null) {
+        /* キャンセル時は元に戻す */
+        resetSwipe();
+        return;
+      }
+      if (code !== STAFF_PASSCODE) {
+        alert('❌ コードが違います。スタッフに確認してください。');
+        resetSwipe();
+        return;
+      }
     }
-    if (code !== STAFF_PASSCODE) {
-      alert('❌ コードが違います。スタッフに確認してください。');
-      resetSwipe();
-      return;
-    }
-    /* 認証成功 → 引き換え実行 */
+    /* 認証成功 or 復元 → 引き換え実行 */
     banner.classList.add('redeemed');
     if (animate) {
       knob.style.transition = 'left 0.3s ease';
@@ -1887,6 +1880,7 @@ setInterval(tick, 1000);
   let holdProgress = 0;
   const HOLD_MS = 3000; /* 長押し判定秒数（厳しめ） */
   const STAFF_PASSCODE = "1234"; /* スタッフ用パスコード */
+  const SHOW_GOAL = false;
 
   function getKnobLeft() {
     return parseInt(knob.style.left) || 4;
